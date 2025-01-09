@@ -412,6 +412,24 @@ mixin _$BeneficiarioAterController on _BeneficiarioAterControllerBase, Store {
     });
   }
 
+  late final _$subComunidadeSelecionadaAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.subComunidadeSelecionada',
+      context: context);
+
+  @override
+  Comunidade? get subComunidadeSelecionada {
+    _$subComunidadeSelecionadaAtom.reportRead();
+    return super.subComunidadeSelecionada;
+  }
+
+  @override
+  set subComunidadeSelecionada(Comunidade? value) {
+    _$subComunidadeSelecionadaAtom
+        .reportWrite(value, super.subComunidadeSelecionada, () {
+      super.subComunidadeSelecionada = value;
+    });
+  }
+
   late final _$motivoRegistroSelecionadoListaAtom = Atom(
       name: '_BeneficiarioAterControllerBase.motivoRegistroSelecionadoLista',
       context: context);
@@ -687,6 +705,19 @@ mixin _$BeneficiarioAterController on _BeneficiarioAterControllerBase, Store {
   }
 
   @override
+  void changesubComunidadeSelecionada(Comunidade? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changesubComunidadeSelecionada');
+    try {
+      return super.changesubComunidadeSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void addRegistroMotivo(MotivoRegistro? e) {
     final _$actionInfo = _$_BeneficiarioAterControllerBaseActionController
         .startAction(name: '_BeneficiarioAterControllerBase.addRegistroMotivo');
@@ -735,6 +766,7 @@ entidadeCaf: ${entidadeCaf},
 enqCaf: ${enqCaf},
 registroStatusSelecionado: ${registroStatusSelecionado},
 comunidadeSelecionada: ${comunidadeSelecionada},
+subComunidadeSelecionada: ${subComunidadeSelecionada},
 motivoRegistroSelecionadoLista: ${motivoRegistroSelecionadoLista},
 cadastraBeneficiarioStatus: ${cadastraBeneficiarioStatus},
 deleteBeneficiarioAterStatus: ${deleteBeneficiarioAterStatus}

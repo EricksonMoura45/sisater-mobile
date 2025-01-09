@@ -116,7 +116,7 @@ class _BeneficiariosAterPageState extends State<BeneficiariosAterPage> {
     child: TextField(
       decoration: InputDecoration(
         labelText: 'Buscar beneficiário',
-        hintText: 'Digite nome, documento ou telefone',
+        hintText: 'Digite nome',
         prefixIcon: Icon(Icons.search),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
@@ -125,7 +125,7 @@ class _BeneficiariosAterPageState extends State<BeneficiariosAterPage> {
       onChanged: controller.atualizaTermoBusca, // Chama o método do controller
     ),
   );
-}
+ }
 
 
 }

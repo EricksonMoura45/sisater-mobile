@@ -48,11 +48,11 @@ class _CadastrarBeneficiarioAterPageState
   final TextEditingController orgaoRGController = TextEditingController();
   final TextEditingController nomeMaeController = TextEditingController();
   
-   final TextEditingController lougradouroController = TextEditingController();
-    final TextEditingController numeroController = TextEditingController();
-     final TextEditingController complementoController = TextEditingController();
-      final TextEditingController bairroController = TextEditingController();
-       final TextEditingController cepMaeController = TextEditingController();
+  final TextEditingController lougradouroController = TextEditingController();
+  final TextEditingController numeroController = TextEditingController();
+  final TextEditingController complementoController = TextEditingController();
+  final TextEditingController bairroController = TextEditingController();
+  final TextEditingController cepMaeController = TextEditingController();
 
   final TextEditingController telefoneController = TextEditingController();
   final TextEditingController celularController = TextEditingController();
@@ -188,6 +188,9 @@ class _CadastrarBeneficiarioAterPageState
           buildStep(
               title: 'Informações Gerais',
               content: formularioinformacoesGerais()),
+          buildStep(
+              title: 'Informações de Registro',
+              content: formularioInformacoesRegistro()),    
         ],
         controlsBuilder: (context, details) => const SizedBox(),
       ),
@@ -492,6 +495,44 @@ class _CadastrarBeneficiarioAterPageState
           onChanged: controller.changeComunidadeSelecionada
           ),
           SizedBox(height: 10,),
+
+          Observer(builder: (_){
+            if(controller.comunidadeSelecionada != null){
+              return Column(
+                children: [
+                   Text('Comunidade',
+              style: const TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold)),
+        DropdownButtonFormField<Comunidade>(
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(
+            color: Colors.white,
+            width: 1.0,
+          ),
+        ),
+          ),
+          borderRadius: BorderRadius.circular(10),
+           key: const ValueKey('municipiocomunidadeDropdown'),
+           isExpanded: true,
+           value: controller.subComunidadeSelecionada,
+          items: controller.subComunidades.map(
+            (e) => DropdownMenuItem<Comunidade>(
+              value: e,
+              key: ValueKey(e.name),
+              child: Text(e.name ?? 'Sem nome'),
+              )).toList(), 
+          onChanged: controller.changeComunidadeSelecionada
+          ),
+          SizedBox(height: 10,),
+                ],
+              );
+            }
+            else{
+              return SizedBox();
+            }
+          }),
       ],
     );
   }
@@ -679,6 +720,29 @@ class _CadastrarBeneficiarioAterPageState
           controller: cadastroNacionalController,
         ),
 
+            // Wrap(
+            //   spacing: 8.0,
+            //   runSpacing: 4.0,
+            //   children: controller.motivoRegistroSelecionadoLista!
+            //       .map((item) => Chip(
+            //             label: Text(item.name ?? ''),
+            //             deleteIcon: Icon(Icons.close),
+            //             onDeleted: () {
+            //               setState(() {
+            //                 controller.motivoRegistroSelecionadoLista!.remove(item);
+            //               });
+            //             },
+            //           ))
+            //       .toList(),
+            // ),
+
+      ],
+    );
+  }
+
+  Widget formularioInformacoesRegistro (){
+    return Column(
+      children:[
         Text('Motivo Cadastro*',
               style: const TextStyle(
                   fontSize: 18, fontWeight: FontWeight.bold)),
@@ -732,23 +796,7 @@ class _CadastrarBeneficiarioAterPageState
           onChanged: controller.changeRegistroStatusSelecionada
           ),
           SizedBox(height: 10,),
-            // Wrap(
-            //   spacing: 8.0,
-            //   runSpacing: 4.0,
-            //   children: controller.motivoRegistroSelecionadoLista!
-            //       .map((item) => Chip(
-            //             label: Text(item.name ?? ''),
-            //             deleteIcon: Icon(Icons.close),
-            //             onDeleted: () {
-            //               setState(() {
-            //                 controller.motivoRegistroSelecionadoLista!.remove(item);
-            //               });
-            //             },
-            //           ))
-            //       .toList(),
-            // ),
-
-      ],
+      ]
     );
   }
 
@@ -839,7 +887,7 @@ class _CadastrarBeneficiarioAterPageState
   }
 
   void nextStep() {
-    if (currentStep < 5) {
+    if (currentStep < 6) {
       setState(() {
         currentStep++;
       });

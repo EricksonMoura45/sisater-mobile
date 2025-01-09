@@ -16,7 +16,7 @@ class CadastroSucessoPage extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: _buildTexto(context)),
-            SizedBox(height: MediaQuery.of(context).size.height / 4,),
+            SizedBox(height: MediaQuery.of(context).size.height / 4),
             _buildBotoes(context),
       ],),
       );
@@ -28,9 +28,9 @@ class CadastroSucessoPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-        SizedBox(height: MediaQuery.of(context).size.height / 5,),
+        SizedBox(height: MediaQuery.of(context).size.height / 5),
         Image.asset(Images.logo_emater),  
-        SizedBox(height: 20,),  
+        SizedBox(height: 20),  
         Text('Registro do beneficiário concluído com sucesso!',
         textAlign: TextAlign.center, 
         maxLines: 5,
@@ -52,8 +52,9 @@ class CadastroSucessoPage extends StatelessWidget {
           colorBrightness: Brightness.dark,
           color: Themes.verdeBotao,
           onPressed: () async {
-            //controller.clearStates();
+            
             Modular.to.pushReplacementNamed('/beneficiarios_ater');
+
            }
           ,
           child: Text(
@@ -64,7 +65,7 @@ class CadastroSucessoPage extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 15,),
+        SizedBox(height: 15),
       ],
     );
   }

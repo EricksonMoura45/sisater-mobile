@@ -52,8 +52,7 @@ abstract class _BeneficiarioAterControllerBase with Store {
 
   List<Sexo> listaSexo = [Sexo(id: 1, name: 'Masculino'), Sexo(id: 2, name: 'Feminino'), Sexo(id: 3, name: 'Outro')];
   List<EstadoCivil> listaEstadoCivil = [EstadoCivil(id: 1, name: 'Não informado'), EstadoCivil(id: 2, name: 'Casado(a)'), EstadoCivil(id: 3, name: 'Divorciado(a)'), EstadoCivil(id: 4, name: 'Separado(a)'),
-  EstadoCivil(id: 5, name: 'Solteiro(a)'), EstadoCivil(id: 6, name: 'União Estável'), EstadoCivil(id: 7, name: 'Viúvo(a)')
-  ];
+  EstadoCivil(id: 5, name: 'Solteiro(a)'), EstadoCivil(id: 6, name: 'União Estável'), EstadoCivil(id: 7, name: 'Viúvo(a)')];
   List<Escolaridade> listaEscolaridade = [];
   List<Nacionalidade> listaNacionalidade = [];
   List<Naturalidade> listaNaturalidade = [];
@@ -67,6 +66,8 @@ abstract class _BeneficiarioAterControllerBase with Store {
   List<EntidadeCaf> listaEntidadeCaf = [];
   List<RegistroStatus> listaRegistroStatus = [];
   List<Comunidade> listaComunidade = [];
+
+
   
   @observable
   Sexo? sexoSelecionado;
@@ -118,6 +119,11 @@ abstract class _BeneficiarioAterControllerBase with Store {
 
   @observable
   Comunidade? comunidadeSelecionada;
+
+  List<Comunidade> subComunidades = [];
+
+  @observable
+  Comunidade? subComunidadeSelecionada;
 
   @observable
   List<MotivoRegistro>? motivoRegistroSelecionadoLista = [];
@@ -181,6 +187,10 @@ abstract class _BeneficiarioAterControllerBase with Store {
     statusCarregaMunicipios = Status.AGUARDANDO;
   }
 
+  void carregaSubComunidades(int id) async{
+    subComunidades = listaComunidade.where((element) => element.cityCode == id.toString()).toList();
+  }
+
 
   Future postBeneficiarios(BeneficiarioAterPost? beneficiarioAterPost)async{
 
@@ -192,7 +202,7 @@ abstract class _BeneficiarioAterControllerBase with Store {
       if(beneficiarioAterRepository.postBeneficiarioCode == 203 || beneficiarioAterRepository.postBeneficiarioCode == 200){
         cadastraBeneficiarioStatus = Status.CONCLUIDO;
 
-        ToastAvisosSucesso("Beneficiário Cadastrado com Sucesso.");
+          ToastAvisosSucesso("Beneficiário Cadastrado com Sucesso.");
 
           Modular.to.pushReplacementNamed('sucesso_cadastro_ater');
       }
@@ -329,6 +339,12 @@ void atualizaTermoBusca(String termo) {
   void changeComunidadeSelecionada(Comunidade? e){
     if (e == null) return;
     comunidadeSelecionada = e;
+  }
+
+   @action
+  void changesubComunidadeSelecionada(Comunidade? e){
+    if (e == null) return;
+    subComunidadeSelecionada = e;
   }
 
   @action
