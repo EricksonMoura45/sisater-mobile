@@ -7,9 +7,9 @@ Future<bool?> ToastAvisosErro(String mensagem){
   Fluttertoast.showToast(
             msg: mensagem,
             toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 3,
-            backgroundColor: Themes.cinzaTexto,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 4,
+            backgroundColor: Themes.cinzaTexto.withOpacity(.8),
             textColor: Colors.black,
             fontSize: 16.0);
 }

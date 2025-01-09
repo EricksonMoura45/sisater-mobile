@@ -15,6 +15,7 @@ import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/entidad
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/escolaridade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/estado_civil.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/motivo_registro.dart';
+import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/municipio.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/nacionalidade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/naturalidade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/produto.dart';
@@ -463,13 +464,52 @@ class _CadastrarBeneficiarioAterPageState
           ),
           SizedBox(height: 10,),
 
-        buildInputField(
+          Observer(builder: (_){
+            if(controller.ufEnderecoSelecionado != null){
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                   Text('Município*',
+              style: const TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold)),
+        DropdownButtonFormField<Municipio>(
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(
+            color: Colors.white,
+            width: 1.0,
+          ),
+        ),
+          ),
+          borderRadius: BorderRadius.circular(10),
+           key: const ValueKey('municipioDropdown'),
+           isExpanded: true,
+           value: controller.municipioSelecionado,
+           items: controller.municipioUF.map(
+            (e) => DropdownMenuItem<Municipio>(
+              value: e,
+              key: ValueKey(e.name),
+              child: Text(e.name ?? 'Sem nome'),
+              )).toList(), 
+          onChanged: controller.changeMunicipioSelecionada
+          ),
+          SizedBox(height: 10,),
+                ],
+              );
+            }
+            else{
+              return SizedBox();
+            }
+          }),
+
+          buildInputField(
           label: 'CEP',
           controller: cepMaeController,
           formatters: [cepMask]
-        ),
+        ), 
 
-         Text('Município de Comunidade',
+         Text('Comunidade',
               style: const TextStyle(
                   fontSize: 18, fontWeight: FontWeight.bold)),
         DropdownButtonFormField<Comunidade>(
@@ -495,44 +535,6 @@ class _CadastrarBeneficiarioAterPageState
           onChanged: controller.changeComunidadeSelecionada
           ),
           SizedBox(height: 10,),
-
-          Observer(builder: (_){
-            if(controller.comunidadeSelecionada != null){
-              return Column(
-                children: [
-                   Text('Comunidade',
-              style: const TextStyle(
-                  fontSize: 18, fontWeight: FontWeight.bold)),
-        DropdownButtonFormField<Comunidade>(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          borderSide: BorderSide(
-            color: Colors.white,
-            width: 1.0,
-          ),
-        ),
-          ),
-          borderRadius: BorderRadius.circular(10),
-           key: const ValueKey('municipiocomunidadeDropdown'),
-           isExpanded: true,
-           value: controller.subComunidadeSelecionada,
-          items: controller.subComunidades.map(
-            (e) => DropdownMenuItem<Comunidade>(
-              value: e,
-              key: ValueKey(e.name),
-              child: Text(e.name ?? 'Sem nome'),
-              )).toList(), 
-          onChanged: controller.changeComunidadeSelecionada
-          ),
-          SizedBox(height: 10,),
-                ],
-              );
-            }
-            else{
-              return SizedBox();
-            }
-          }),
       ],
     );
   }
@@ -742,6 +744,7 @@ class _CadastrarBeneficiarioAterPageState
 
   Widget formularioInformacoesRegistro (){
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children:[
         Text('Motivo Cadastro*',
               style: const TextStyle(

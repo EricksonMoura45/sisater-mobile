@@ -11,6 +11,7 @@ import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/entidad
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/escolaridade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/estado_civil.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/motivo_registro.dart';
+import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/municipio.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/nacionalidade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/naturalidade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/produto.dart';
@@ -66,6 +67,7 @@ abstract class _BeneficiarioAterControllerBase with Store {
   List<EntidadeCaf> listaEntidadeCaf = [];
   List<RegistroStatus> listaRegistroStatus = [];
   List<Comunidade> listaComunidade = [];
+  List<Municipio> listaMunicipios = [];
 
 
   
@@ -116,6 +118,11 @@ abstract class _BeneficiarioAterControllerBase with Store {
 
   @observable
   RegistroStatus? registroStatusSelecionado;
+
+  @observable
+  Municipio? municipioSelecionado;
+
+  List<Municipio> municipioUF = [];
 
   @observable
   Comunidade? comunidadeSelecionada;
@@ -173,6 +180,7 @@ abstract class _BeneficiarioAterControllerBase with Store {
       listaEnqCaf = await beneficiarioAterRepository.listaEnqCaf();
       listaEntidadeCaf = await beneficiarioAterRepository.listaEntidadeCaf();
       listaRegistroStatus = await beneficiarioAterRepository.listaRegistroStatus();
+      listaMunicipios = await beneficiarioAterRepository.listaMunicipios();
       listaComunidade = await beneficiarioAterRepository.listaComunidade();
 
       statusCarregaDadosPagina = Status.CONCLUIDO;
@@ -182,13 +190,13 @@ abstract class _BeneficiarioAterControllerBase with Store {
     }
   }
 
-  Future carregaMunicipios() async{
-    //TODO
-    statusCarregaMunicipios = Status.AGUARDANDO;
+  void carregaMunicipios () async{
+    municipioUF = listaMunicipios.where((element) => element.ufCode.toString() == ufEnderecoSelecionado!.code.toString()).toList();
+
   }
 
-  void carregaSubComunidades(int id) async{
-    subComunidades = listaComunidade.where((element) => element.cityCode == id.toString()).toList();
+  void carregaSubComunidades() async{
+    subComunidades = listaComunidade.where((element) => element.cityCode == municipioSelecionado!.code).toList();
   }
 
 
@@ -267,6 +275,7 @@ void atualizaTermoBusca(String termo) {
   void changeUfEnderecoSelecionada(UF? e){
     if (e == null) return;
     ufEnderecoSelecionado = e;
+    carregaMunicipios();
   }
 
   @action
@@ -339,6 +348,12 @@ void atualizaTermoBusca(String termo) {
   void changeComunidadeSelecionada(Comunidade? e){
     if (e == null) return;
     comunidadeSelecionada = e;
+  }
+
+  @action
+  void changeMunicipioSelecionada(Municipio? e){
+    if (e == null) return;
+    municipioSelecionado = e;
   }
 
    @action

@@ -3,6 +3,7 @@ import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater.dart';
 import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater_post.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/categoria_atividade_produtiva.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/categoria_publico.dart';
+import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/municipio.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/comunidade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/enq_caf.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/entidade_caf.dart';
@@ -157,6 +158,16 @@ class BeneficiarioAterRepository {
     (response.data as List).map((a) => listaRegistroStatus.add(RegistroStatus.fromJson(a))).toList();
 
     return listaRegistroStatus;
+  }
+
+  Future<List<Municipio>> listaMunicipios() async{
+    var response = await dio.get('/v1/city/index');
+
+    List<Municipio> listaMunicipios = [];
+
+    (response.data as List).map((a) => listaMunicipios.add(Municipio.fromJson(a))).toList();
+
+    return listaMunicipios;
   }
 
   Future<List<Comunidade>> listaComunidade() async{

@@ -394,6 +394,24 @@ mixin _$BeneficiarioAterController on _BeneficiarioAterControllerBase, Store {
     });
   }
 
+  late final _$municipioSelecionadoAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.municipioSelecionado',
+      context: context);
+
+  @override
+  Municipio? get municipioSelecionado {
+    _$municipioSelecionadoAtom.reportRead();
+    return super.municipioSelecionado;
+  }
+
+  @override
+  set municipioSelecionado(Municipio? value) {
+    _$municipioSelecionadoAtom.reportWrite(value, super.municipioSelecionado,
+        () {
+      super.municipioSelecionado = value;
+    });
+  }
+
   late final _$comunidadeSelecionadaAtom = Atom(
       name: '_BeneficiarioAterControllerBase.comunidadeSelecionada',
       context: context);
@@ -705,6 +723,18 @@ mixin _$BeneficiarioAterController on _BeneficiarioAterControllerBase, Store {
   }
 
   @override
+  void changeMunicipioSelecionada(Municipio? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.changeMunicipioSelecionada');
+    try {
+      return super.changeMunicipioSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void changesubComunidadeSelecionada(Comunidade? e) {
     final _$actionInfo =
         _$_BeneficiarioAterControllerBaseActionController.startAction(
@@ -765,6 +795,7 @@ cafBool: ${cafBool},
 entidadeCaf: ${entidadeCaf},
 enqCaf: ${enqCaf},
 registroStatusSelecionado: ${registroStatusSelecionado},
+municipioSelecionado: ${municipioSelecionado},
 comunidadeSelecionada: ${comunidadeSelecionada},
 subComunidadeSelecionada: ${subComunidadeSelecionada},
 motivoRegistroSelecionadoLista: ${motivoRegistroSelecionadoLista},
