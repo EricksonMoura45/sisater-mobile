@@ -3,6 +3,7 @@ import 'package:sisater_mobile/modules/beneficiario_ater/beneficiario_ater_contr
 import 'package:sisater_mobile/modules/beneficiario_ater/pages/beneficiarios_ater_page.dart';
 import 'package:sisater_mobile/modules/beneficiario_ater/pages/cadastrar_beneficiario_ater_page.dart';
 import 'package:sisater_mobile/modules/beneficiario_ater/pages/cadastro_sucesso_ater_page.dart';
+import 'package:sisater_mobile/modules/beneficiario_ater/pages/editar_beneficiario_page.dart';
 import 'package:sisater_mobile/modules/beneficiario_ater/repository/beneficiario_ater_repository.dart';
 import 'package:sisater_mobile/shared/utils/custom_dio.dart';
 
@@ -32,6 +33,11 @@ class BeneficiarioaterModule extends Module{
           '/sucesso_cadastro_ater',
           child: (_, args) => const CadastroSucessoPage(),
           transition: TransitionType.fadeIn,
+        ),
+        ChildRoute(
+          '/editar_ater',
+          child: (_, args) => const EditarBeneficiarioPage(),
+          transition: TransitionType.leftToRight,
         ),
   ];
 }

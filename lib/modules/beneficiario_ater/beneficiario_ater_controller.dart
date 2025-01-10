@@ -144,7 +144,11 @@ abstract class _BeneficiarioAterControllerBase with Store {
   Status deleteBeneficiarioAterStatus = Status.NAO_CARREGADO;
   bool? deleteBeneficiarioSucess;
 
+  //Editar
+  BeneficiarioAterPost? beneficiarioAterEdit;
 
+  @observable
+  Status editarBeneficiarioStatus = Status.NAO_CARREGADO;
 
   Future carregaBeneficiarios() async{
     try {
@@ -236,6 +240,22 @@ abstract class _BeneficiarioAterControllerBase with Store {
     } catch (e) {
       deleteBeneficiarioAterStatus = Status.ERRO;
       ToastAvisosSucesso('Erro ao apagar o beneficiário.');
+    }
+  }
+
+  Future editBeneficiarioAter(int id) async{
+    try {
+      editarBeneficiarioStatus = Status.AGUARDANDO;
+
+      beneficiarioAterEdit = await beneficiarioAterRepository.getBeneficiario(id);
+
+      if(beneficiarioAterRepository.putBeneficiarioCode == 203 || beneficiarioAterRepository.putBeneficiarioCode == 200){
+        editarBeneficiarioStatus = Status.CONCLUIDO;
+      }
+
+    } catch (e) {
+      editarBeneficiarioStatus = Status.ERRO;
+      ToastAvisosErro('Erro ao editar o usuário.');
     }
   }
 

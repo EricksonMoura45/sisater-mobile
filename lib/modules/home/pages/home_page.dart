@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-          child: BotaoMenu(tituloBotao: 'Org. Sociais de FATER', function: (){
+          child: BotaoMenu(tituloBotao: 'FATER - Org Sociais', function: (){
 
           }),
         ),

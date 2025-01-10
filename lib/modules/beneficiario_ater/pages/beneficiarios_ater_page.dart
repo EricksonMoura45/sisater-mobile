@@ -58,13 +58,13 @@ class _BeneficiariosAterPageState extends State<BeneficiariosAterPage> {
 
           if(controller.statusCarregaBeneficiarios == Status.ERRO){
             return Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text('Erro ao carregar beneficiários'),
-        SizedBox(height: 10),
-        ElevatedButton(
-          onPressed: () {
+             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+            Text('Erro ao carregar beneficiários'),
+            SizedBox(height: 10),
+            ElevatedButton(
+             onPressed: () {
             controller.carregaBeneficiarios();
           },
           child: Text('Tentar novamente'),

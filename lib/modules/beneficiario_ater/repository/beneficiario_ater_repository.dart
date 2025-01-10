@@ -23,6 +23,8 @@ class BeneficiarioAterRepository {
 
   int? postBeneficiarioCode;
 
+  int? putBeneficiarioCode;
+
   BeneficiarioAterRepository(this.dio);
   
 
@@ -181,6 +183,7 @@ class BeneficiarioAterRepository {
   }
 
 
+  //BENEFICIARIO
 
   Future postBeneficiario(BeneficiarioAterPost beneficiarioAterPost) async{
     var response = await dio.post('/beneficiary/create',
@@ -195,7 +198,17 @@ class BeneficiarioAterRepository {
     
     return sucess;
   }
+  
+  //Aqui usamos o mesmo modelo de BeneficiarioAterPost, pois a resposta é a mesma
+  Future<BeneficiarioAterPost> getBeneficiario(int? id) async{
+    var response = await dio.get('/beneficiary/$id');
 
+    BeneficiarioAterPost beneficiarioAter = BeneficiarioAterPost.fromJson(response.data);
+
+    putBeneficiarioCode = response.statusCode;
+
+    return beneficiarioAter;
+  }
 
 
 

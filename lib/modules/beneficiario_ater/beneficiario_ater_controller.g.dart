@@ -502,6 +502,24 @@ mixin _$BeneficiarioAterController on _BeneficiarioAterControllerBase, Store {
     });
   }
 
+  late final _$editarBeneficiarioStatusAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.editarBeneficiarioStatus',
+      context: context);
+
+  @override
+  Status get editarBeneficiarioStatus {
+    _$editarBeneficiarioStatusAtom.reportRead();
+    return super.editarBeneficiarioStatus;
+  }
+
+  @override
+  set editarBeneficiarioStatus(Status value) {
+    _$editarBeneficiarioStatusAtom
+        .reportWrite(value, super.editarBeneficiarioStatus, () {
+      super.editarBeneficiarioStatus = value;
+    });
+  }
+
   late final _$_BeneficiarioAterControllerBaseActionController =
       ActionController(
           name: '_BeneficiarioAterControllerBase', context: context);
@@ -800,7 +818,8 @@ comunidadeSelecionada: ${comunidadeSelecionada},
 subComunidadeSelecionada: ${subComunidadeSelecionada},
 motivoRegistroSelecionadoLista: ${motivoRegistroSelecionadoLista},
 cadastraBeneficiarioStatus: ${cadastraBeneficiarioStatus},
-deleteBeneficiarioAterStatus: ${deleteBeneficiarioAterStatus}
+deleteBeneficiarioAterStatus: ${deleteBeneficiarioAterStatus},
+editarBeneficiarioStatus: ${editarBeneficiarioStatus}
     ''';
   }
 }

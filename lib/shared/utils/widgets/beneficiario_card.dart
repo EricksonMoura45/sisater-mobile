@@ -43,8 +43,8 @@ class BeneficiarioCard extends StatelessWidget {
                     Row(
                       children: [
                         GestureDetector(
-                          onTap: (){
-                            //TODO
+                          onTap: () {
+                            Modular.to.pushNamed('editar_ater', arguments: beneficiarioAter);
                           },
                           child: Container(
                                               padding: const EdgeInsets.all(1),

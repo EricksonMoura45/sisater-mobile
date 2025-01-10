@@ -6,9 +6,9 @@ class Municipio {
   Municipio({this.code, this.name, this.ufCode});
 
   Municipio.fromJson(Map<String, dynamic> json) {
-    code = json['code'];
-    name = json['name'];
-    ufCode = json['uf_code'];
+    code = json['code'] ?? '';
+    name = json['name'] ?? '';
+    ufCode = json['uf_code'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
