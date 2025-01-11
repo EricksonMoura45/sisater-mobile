@@ -42,8 +42,8 @@ class _BeneficiariosAterPageState extends State<BeneficiariosAterPage> {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                         child: Container(
-              width: double.infinity,
-              height: 120,
+              height: MediaQuery.of(context).size.height / 4,
+              width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
