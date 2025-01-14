@@ -11,14 +11,16 @@ class CadastroSucessoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          Align(
-            alignment: Alignment.center,
-            child: _buildTexto(context)),
-            SizedBox(height: MediaQuery.of(context).size.height / 4),
-            _buildBotoes(context),
-      ],),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: _buildTexto(context)),
+              SizedBox(height: MediaQuery.of(context).size.height / 7),
+              _buildBotoes(context),
+        ],),
+      ),
       );
   }
 

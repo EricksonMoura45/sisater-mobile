@@ -921,6 +921,7 @@ class _CadastrarBeneficiarioAterPageState
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Observer(builder: (_){
+            
             if(controller.cadastraBeneficiarioStatus == Status.AGUARDANDO){
               return CircularProgressIndicator(
                 color: Colors.white,
@@ -988,6 +989,10 @@ class _CadastrarBeneficiarioAterPageState
 
           await controller.postBeneficiarios(beneficiarioAterPost);
 
+        }
+        else{
+          //Campos de informações gerais obrigatórios não preenchidos
+          ToastAvisosErro('Campos de informações gerais obrigatórios não preenchidos(*).');
         }
       }
       else{
