@@ -1,3 +1,4 @@
+import 'package:esig_utils/extensions/date_time.dart';
 import 'package:esig_utils/size_screen.dart';
 import 'package:esig_utils/status.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +20,14 @@ import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/municip
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/nacionalidade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/naturalidade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/produto.dart';
+import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/programas_governamentais.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/registro_status.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/sexo.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/subproduto.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/uf.dart';
 import 'package:sisater_mobile/modules/beneficiario_ater/beneficiario_ater_controller.dart';
 import 'package:sisater_mobile/shared/utils/themes.dart';
+import 'package:sisater_mobile/shared/utils/widgets/date_picker.dart';
 import 'package:sisater_mobile/shared/utils/widgets/form_appbar.dart';
 import 'package:sisater_mobile/shared/utils/widgets/input_widget.dart';
 import 'package:sisater_mobile/shared/utils/widgets/toast_avisos_erro.dart';
@@ -246,13 +249,10 @@ class _CadastrarBeneficiarioAterPageState
               )).toList(), 
           onChanged: controller.changeSexoSelecionada
           ),
-          SizedBox(height: 10,),
+         SizedBox(height: 10,),
 
-        buildInputField(
-          label: 'Data de Nascimento*',
-          controller: dataNascimentoController,
-          formatters: [maskDataNascimento],
-        ),
+         DatePickerWidget(label: 'Data de Nascimento*', formfield: 1),
+
         buildInputField(
           label: 'CPF*',
           controller: cpfController,
@@ -290,11 +290,9 @@ class _CadastrarBeneficiarioAterPageState
           label: 'RG',
           controller: rgController,
         ),
-        buildInputField(
-          label: 'Data de Emissão',
-          controller: dataEmissaoController,
-          formatters: [maskDataNascimento],
-        ),
+        
+        DatePickerWidget(label: 'Data de Emissão', formfield: 2),
+
         buildInputField(
           label: 'Órgão de Emissão',
           controller: orgaoRGController,
@@ -621,6 +619,33 @@ class _CadastrarBeneficiarioAterPageState
           ),
           SizedBox(height: 10,),
 
+          controller.categoriasAtividadeProdutivaSelecionadas.isEmpty ? 
+          SizedBox()
+          : Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Themes.verdeBotao, width: 2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                spacing: 8.0,
+                runSpacing: 4.0,
+                children: controller.categoriasAtividadeProdutivaSelecionadas
+                    .map((item) => Chip(
+                          label: Text(item.name ?? ''),
+                          deleteIcon: Icon(Icons.close),
+                          onDeleted: () {
+                            setState(() {
+                              controller.categoriasAtividadeProdutivaSelecionadas.remove(item);
+                            });
+                          },
+                        ))
+                    .toList(),
+              ),
+            ),
+          ),
+
           Text('Produto',
               style: const TextStyle(
                   fontSize: 18, fontWeight: FontWeight.bold)),
@@ -648,6 +673,33 @@ class _CadastrarBeneficiarioAterPageState
           ),
           SizedBox(height: 10,),
 
+          controller.produtosSelecionados.isEmpty ? 
+          SizedBox()
+          : Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Themes.verdeBotao, width: 2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                spacing: 8.0,
+                runSpacing: 4.0,
+                children: controller.produtosSelecionados
+                    .map((item) => Chip(
+                          label: Text(item.name ?? ''),
+                          deleteIcon: Icon(Icons.close),
+                          onDeleted: () {
+                            setState(() {
+                              controller.produtosSelecionados.remove(item);
+                            });
+                          },
+                        ))
+                    .toList(),
+              ),
+            ),
+          ),
+            
           Text('Subprodutos/Derivados',
               style: const TextStyle(
                   fontSize: 18, fontWeight: FontWeight.bold)),
@@ -674,6 +726,33 @@ class _CadastrarBeneficiarioAterPageState
           onChanged: controller.changeSubProdutoSelecionada
           ),
           SizedBox(height: 10,),
+
+          controller.subProdutosSelecionados.isEmpty ? 
+          SizedBox()
+          : Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Themes.verdeBotao, width: 2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                spacing: 8.0,
+                runSpacing: 4.0,
+                children: controller.subProdutosSelecionados
+                    .map((item) => Chip(
+                          label: Text(item.name ?? ''),
+                          deleteIcon: Icon(Icons.close),
+                          onDeleted: () {
+                            setState(() {
+                              controller.subProdutosSelecionados.remove(item);
+                            });
+                          },
+                        ))
+                    .toList(),
+              ),
+            ),
+          ),
 
           Text('CAF',
               style: const TextStyle(
@@ -720,24 +799,63 @@ class _CadastrarBeneficiarioAterPageState
         buildInputField(
           label: 'Cadastro Nacional da Agricultura Familiar - CAF',
           controller: cadastroNacionalController,
+
+
         ),
 
-            // Wrap(
-            //   spacing: 8.0,
-            //   runSpacing: 4.0,
-            //   children: controller.motivoRegistroSelecionadoLista!
-            //       .map((item) => Chip(
-            //             label: Text(item.name ?? ''),
-            //             deleteIcon: Icon(Icons.close),
-            //             onDeleted: () {
-            //               setState(() {
-            //                 controller.motivoRegistroSelecionadoLista!.remove(item);
-            //               });
-            //             },
-            //           ))
-            //       .toList(),
-            // ),
+          Text('Programas Governamentais',
+              style: const TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold)),
+        DropdownButtonFormField<ProgramasGovernamentais>(
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(
+            color: Colors.white,
+            width: 1.0,
+          ),
+        ),
+          ),
+          borderRadius: BorderRadius.circular(10),
+           key: const ValueKey('progGovDropdown'),
+           isExpanded: true,
+           value: controller.programasGovernamentaisSelecionado,
+          items: controller.listaProgramasGovernamentais.map(
+            (e) => DropdownMenuItem<ProgramasGovernamentais>(
+              value: e,
+              key: ValueKey(e.name),
+              child: Text(e.name ?? 'Sem nome'),
+              )).toList(), 
+          onChanged: controller.changeProgGovSelecionada
+          ),
+          SizedBox(height: 10,),  
 
+          controller.programasGovernamentaisSelecionados.isEmpty ? 
+          SizedBox()
+          : Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Themes.verdeBotao, width: 2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                spacing: 8.0,
+                runSpacing: 4.0,
+                children: controller.programasGovernamentaisSelecionados
+                    .map((item) => Chip(
+                          label: Text(item.name ?? ''),
+                          deleteIcon: Icon(Icons.close),
+                          onDeleted: () {
+                            setState(() {
+                              controller.programasGovernamentaisSelecionados.remove(item);
+                            });
+                          },
+                        ))
+                    .toList(),
+              ),
+            ),
+          ),
       ],
     );
   }
@@ -772,6 +890,33 @@ class _CadastrarBeneficiarioAterPageState
           onChanged: controller.changeMotivoRegistroSelecionada
           ),
           SizedBox(height: 10,),
+
+          controller.motivosRegistroSelecionados.isEmpty ? 
+          SizedBox()
+          : Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Themes.verdeBotao, width: 2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                spacing: 8.0,
+                runSpacing: 4.0,
+                children: controller.motivosRegistroSelecionados
+                    .map((item) => Chip(
+                          label: Text(item.name ?? ''),
+                          deleteIcon: Icon(Icons.close),
+                          onDeleted: () {
+                            setState(() {
+                              controller.motivosRegistroSelecionados.remove(item);
+                            });
+                          },
+                        ))
+                    .toList(),
+              ),
+            ),
+          ),
 
           Text('Situação Cadastro*',
               style: const TextStyle(
@@ -921,7 +1066,7 @@ class _CadastrarBeneficiarioAterPageState
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Observer(builder: (_){
-            
+
             if(controller.cadastraBeneficiarioStatus == Status.AGUARDANDO){
               return CircularProgressIndicator(
                 color: Colors.white,
@@ -944,7 +1089,7 @@ class _CadastrarBeneficiarioAterPageState
 
   void verificaCamposObrigatorios() async{
     
-    if(nomeController.text != '' && controller.sexoSelecionado != null && dataNascimentoController.text != '' && cpfController.text != '' && controller.estadoCivilSelecionado != null && controller.escolaridadeSelecionada != null && controller.nacionalidadeSelecionada != null && controller.naturalidadeSelecionada != null){
+    if(nomeController.text != '' && controller.sexoSelecionado != null && /* controller.dataNascimentoPicked != null && */ cpfController.text != '' && controller.estadoCivilSelecionado != null && controller.escolaridadeSelecionada != null && controller.nacionalidadeSelecionada != null && controller.naturalidadeSelecionada != null){
       if(lougradouroController.text != '' && numeroController.text != '' && controller.ufEnderecoSelecionado != null){
         if(controller.categoriaPublicoSelecionada != null && controller.motivoRegistroSelecionado != null && controller.registroStatusSelecionado != null){
           //Apto para fazer POST
@@ -971,7 +1116,7 @@ class _CadastrarBeneficiarioAterPageState
             caf: cadastroNacionalController.text,
             reasonMultiples: ['${controller.motivoRegistroSelecionado!.id}'],
             officeId: 1, //MOCK
-            registrationStatusId: 4,
+            registrationStatusId: 4,//MOCK
             physicalPerson: PhysicalPerson(
               nickname: apelidoController.text,
               gender: controller.sexoSelecionado!.id,
@@ -979,9 +1124,9 @@ class _CadastrarBeneficiarioAterPageState
               nationalityId: controller.nacionalidadeSelecionada!.id,
               nationalIdentity: rgController.text,
               naturalnessId: controller.naturalidadeSelecionada!.id,
-              birthDate: dataNascimentoController.text,
+              birthDate: controller.dataNascimentoPicked?.formattedDate("yyyy-MM-dd").toString() ?? '2000-01-01', //MOCK
               issuingEntity: orgaoRGController.text,
-              issueDate: dataEmissaoController.text,
+              issueDate: controller.dataEmissaoRGPicked?.formattedDate("yyyy-MM-dd").toString() ?? '2000-01-01', //MOCK
               scholarityId: controller.escolaridadeSelecionada!.id,
               mothersName: nomeMaeController.text
             )

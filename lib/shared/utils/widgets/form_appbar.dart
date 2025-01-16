@@ -40,7 +40,7 @@ PreferredSizeWidget? formAppBar(BuildContext context, String titulo){
         textAlign: TextAlign.center,
         style: TextStyle(
           fontWeight: FontWeight.w800,
-          fontSize: 24,
+          fontSize: MediaQuery.of(context).size.width / 20,
         ),
         overflow: TextOverflow.ellipsis,
         maxLines: 1,

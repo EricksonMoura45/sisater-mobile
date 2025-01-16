@@ -114,6 +114,100 @@ mixin _$BeneficiarioAterController on _BeneficiarioAterControllerBase, Store {
     });
   }
 
+  late final _$produtosSelecionadosAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.produtosSelecionados',
+      context: context);
+
+  @override
+  List<Produto> get produtosSelecionados {
+    _$produtosSelecionadosAtom.reportRead();
+    return super.produtosSelecionados;
+  }
+
+  @override
+  set produtosSelecionados(List<Produto> value) {
+    _$produtosSelecionadosAtom.reportWrite(value, super.produtosSelecionados,
+        () {
+      super.produtosSelecionados = value;
+    });
+  }
+
+  late final _$motivosRegistroSelecionadosAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.motivosRegistroSelecionados',
+      context: context);
+
+  @override
+  List<MotivoRegistro> get motivosRegistroSelecionados {
+    _$motivosRegistroSelecionadosAtom.reportRead();
+    return super.motivosRegistroSelecionados;
+  }
+
+  @override
+  set motivosRegistroSelecionados(List<MotivoRegistro> value) {
+    _$motivosRegistroSelecionadosAtom
+        .reportWrite(value, super.motivosRegistroSelecionados, () {
+      super.motivosRegistroSelecionados = value;
+    });
+  }
+
+  late final _$subProdutosSelecionadosAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.subProdutosSelecionados',
+      context: context);
+
+  @override
+  List<SubProduto> get subProdutosSelecionados {
+    _$subProdutosSelecionadosAtom.reportRead();
+    return super.subProdutosSelecionados;
+  }
+
+  @override
+  set subProdutosSelecionados(List<SubProduto> value) {
+    _$subProdutosSelecionadosAtom
+        .reportWrite(value, super.subProdutosSelecionados, () {
+      super.subProdutosSelecionados = value;
+    });
+  }
+
+  late final _$categoriasAtividadeProdutivaSelecionadasAtom = Atom(
+      name:
+          '_BeneficiarioAterControllerBase.categoriasAtividadeProdutivaSelecionadas',
+      context: context);
+
+  @override
+  List<CategoriaAtividadeProdutiva>
+      get categoriasAtividadeProdutivaSelecionadas {
+    _$categoriasAtividadeProdutivaSelecionadasAtom.reportRead();
+    return super.categoriasAtividadeProdutivaSelecionadas;
+  }
+
+  @override
+  set categoriasAtividadeProdutivaSelecionadas(
+      List<CategoriaAtividadeProdutiva> value) {
+    _$categoriasAtividadeProdutivaSelecionadasAtom
+        .reportWrite(value, super.categoriasAtividadeProdutivaSelecionadas, () {
+      super.categoriasAtividadeProdutivaSelecionadas = value;
+    });
+  }
+
+  late final _$programasGovernamentaisSelecionadosAtom = Atom(
+      name:
+          '_BeneficiarioAterControllerBase.programasGovernamentaisSelecionados',
+      context: context);
+
+  @override
+  List<ProgramasGovernamentais> get programasGovernamentaisSelecionados {
+    _$programasGovernamentaisSelecionadosAtom.reportRead();
+    return super.programasGovernamentaisSelecionados;
+  }
+
+  @override
+  set programasGovernamentaisSelecionados(List<ProgramasGovernamentais> value) {
+    _$programasGovernamentaisSelecionadosAtom
+        .reportWrite(value, super.programasGovernamentaisSelecionados, () {
+      super.programasGovernamentaisSelecionados = value;
+    });
+  }
+
   late final _$sexoSelecionadoAtom = Atom(
       name: '_BeneficiarioAterControllerBase.sexoSelecionado',
       context: context);
@@ -288,6 +382,25 @@ mixin _$BeneficiarioAterController on _BeneficiarioAterControllerBase, Store {
     _$subProdutoSelecionadoAtom.reportWrite(value, super.subProdutoSelecionado,
         () {
       super.subProdutoSelecionado = value;
+    });
+  }
+
+  late final _$programasGovernamentaisSelecionadoAtom = Atom(
+      name:
+          '_BeneficiarioAterControllerBase.programasGovernamentaisSelecionado',
+      context: context);
+
+  @override
+  ProgramasGovernamentais? get programasGovernamentaisSelecionado {
+    _$programasGovernamentaisSelecionadoAtom.reportRead();
+    return super.programasGovernamentaisSelecionado;
+  }
+
+  @override
+  set programasGovernamentaisSelecionado(ProgramasGovernamentais? value) {
+    _$programasGovernamentaisSelecionadoAtom
+        .reportWrite(value, super.programasGovernamentaisSelecionado, () {
+      super.programasGovernamentaisSelecionado = value;
     });
   }
 
@@ -652,6 +765,32 @@ mixin _$BeneficiarioAterController on _BeneficiarioAterControllerBase, Store {
   }
 
   @override
+  void addMotivoRegistroSelecionado(MotivoRegistro? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.addMotivoRegistroSelecionado');
+    try {
+      return super.addMotivoRegistroSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void deleteMotivosRegustroSelecionado(MotivoRegistro? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.deleteMotivosRegustroSelecionado');
+    try {
+      return super.deleteMotivosRegustroSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void changeAtividadeProdutivaSelecionada(CategoriaAtividadeProdutiva? e) {
     final _$actionInfo =
         _$_BeneficiarioAterControllerBaseActionController.startAction(
@@ -659,6 +798,32 @@ mixin _$BeneficiarioAterController on _BeneficiarioAterControllerBase, Store {
                 '_BeneficiarioAterControllerBase.changeAtividadeProdutivaSelecionada');
     try {
       return super.changeAtividadeProdutivaSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addAtividadeProdutivaSelecionado(CategoriaAtividadeProdutiva? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.addAtividadeProdutivaSelecionado');
+    try {
+      return super.addAtividadeProdutivaSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void deleteAtividadeProdutivaSelecionado(CategoriaAtividadeProdutiva? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.deleteAtividadeProdutivaSelecionado');
+    try {
+      return super.deleteAtividadeProdutivaSelecionado(e);
     } finally {
       _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -677,6 +842,66 @@ mixin _$BeneficiarioAterController on _BeneficiarioAterControllerBase, Store {
   }
 
   @override
+  void addProdutoSelecionado(Produto? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.addProdutoSelecionado');
+    try {
+      return super.addProdutoSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void deleteProdutoSelecionado(Produto? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.deleteProdutoSelecionado');
+    try {
+      return super.deleteProdutoSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeProgGovSelecionada(ProgramasGovernamentais? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.changeProgGovSelecionada');
+    try {
+      return super.changeProgGovSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addProgGovSelecionado(ProgramasGovernamentais? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.addProgGovSelecionado');
+    try {
+      return super.addProgGovSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void deleteProgGovSelecionado(ProgramasGovernamentais? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.deleteProgGovSelecionado');
+    try {
+      return super.deleteProgGovSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void changeSubProdutoSelecionada(SubProduto? e) {
     final _$actionInfo =
         _$_BeneficiarioAterControllerBaseActionController.startAction(
@@ -684,6 +909,31 @@ mixin _$BeneficiarioAterController on _BeneficiarioAterControllerBase, Store {
                 '_BeneficiarioAterControllerBase.changeSubProdutoSelecionada');
     try {
       return super.changeSubProdutoSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addSubProdutoSelecionado(SubProduto? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.addSubProdutoSelecionado');
+    try {
+      return super.addSubProdutoSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void deleteSubProdutoSelecionado(SubProduto? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.deleteSubProdutoSelecionado');
+    try {
+      return super.deleteSubProdutoSelecionado(e);
     } finally {
       _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -797,6 +1047,11 @@ termoBusca: ${termoBusca},
 statusCarregaBeneficiarios: ${statusCarregaBeneficiarios},
 statusCarregaDadosPagina: ${statusCarregaDadosPagina},
 statusCarregaMunicipios: ${statusCarregaMunicipios},
+produtosSelecionados: ${produtosSelecionados},
+motivosRegistroSelecionados: ${motivosRegistroSelecionados},
+subProdutosSelecionados: ${subProdutosSelecionados},
+categoriasAtividadeProdutivaSelecionadas: ${categoriasAtividadeProdutivaSelecionadas},
+programasGovernamentaisSelecionados: ${programasGovernamentaisSelecionados},
 sexoSelecionado: ${sexoSelecionado},
 estadoCivilSelecionado: ${estadoCivilSelecionado},
 ufSelecionado: ${ufSelecionado},
@@ -807,6 +1062,7 @@ naturalidadeSelecionada: ${naturalidadeSelecionada},
 categoriaPublicoSelecionada: ${categoriaPublicoSelecionada},
 motivoRegistroSelecionado: ${motivoRegistroSelecionado},
 subProdutoSelecionado: ${subProdutoSelecionado},
+programasGovernamentaisSelecionado: ${programasGovernamentaisSelecionado},
 produtoSelecionado: ${produtoSelecionado},
 categoriaAtividadeProdutivaSelecionada: ${categoriaAtividadeProdutivaSelecionada},
 cafBool: ${cafBool},

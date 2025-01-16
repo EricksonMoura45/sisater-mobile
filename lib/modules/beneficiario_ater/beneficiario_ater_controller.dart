@@ -15,6 +15,7 @@ import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/municip
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/nacionalidade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/naturalidade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/produto.dart';
+import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/programas_governamentais.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/registro_status.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/sexo.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/subproduto.dart';
@@ -68,11 +69,33 @@ abstract class _BeneficiarioAterControllerBase with Store {
   List<RegistroStatus> listaRegistroStatus = [];
   List<Comunidade> listaComunidade = [];
   List<Municipio> listaMunicipios = [];
+  List<ProgramasGovernamentais> listaProgramasGovernamentais = [];
 
+  //Lista de opções com multipla escolha:
+  
+  //Produtos que irão para o post
+  @observable
+  List<Produto> produtosSelecionados = [];
 
+  @observable
+  List<MotivoRegistro> motivosRegistroSelecionados = [];
   
   @observable
+  List<SubProduto> subProdutosSelecionados = [];
+
+  @observable
+  List<CategoriaAtividadeProdutiva> categoriasAtividadeProdutivaSelecionadas = [];
+
+  @observable
+  List<ProgramasGovernamentais> programasGovernamentaisSelecionados = [];
+
+  /* Variáveis selecionadas */
+  @observable
   Sexo? sexoSelecionado;
+
+  DateTime? dataNascimentoPicked;
+
+  DateTime? dataEmissaoRGPicked;
 
   @observable
   EstadoCivil? estadoCivilSelecionado;
@@ -100,6 +123,9 @@ abstract class _BeneficiarioAterControllerBase with Store {
 
   @observable
   SubProduto? subProdutoSelecionado;
+
+  @observable
+  ProgramasGovernamentais? programasGovernamentaisSelecionado;
 
   @observable
   Produto? produtoSelecionado;
@@ -186,6 +212,7 @@ abstract class _BeneficiarioAterControllerBase with Store {
       listaRegistroStatus = await beneficiarioAterRepository.listaRegistroStatus();
       listaMunicipios = await beneficiarioAterRepository.listaMunicipios();
       listaComunidade = await beneficiarioAterRepository.listaComunidade();
+      listaProgramasGovernamentais = await beneficiarioAterRepository.listaProgGovernamentais();
 
       statusCarregaDadosPagina = Status.CONCLUIDO;
       
@@ -321,29 +348,99 @@ void atualizaTermoBusca(String termo) {
     if (e == null) return;
     categoriaPublicoSelecionada = e;
   }
-
+  /* MOTIVO REGISTRO */
    @action
   void changeMotivoRegistroSelecionada(MotivoRegistro? e){
     if (e == null) return;
     motivoRegistroSelecionado = e;
+    addMotivoRegistroSelecionado(e);
   }
-
+  @action
+  void addMotivoRegistroSelecionado(MotivoRegistro? e){
+    if (e == null) return;
+    motivosRegistroSelecionados.add(e);
+  }
+  @action
+  void deleteMotivosRegustroSelecionado(MotivoRegistro? e){
+    if (e == null) return;
+    motivosRegistroSelecionados.removeLast();
+  }
+  /* ATIVIDADE PRODUTIVA */
    @action
   void changeAtividadeProdutivaSelecionada(CategoriaAtividadeProdutiva? e){
     if (e == null) return;
     categoriaAtividadeProdutivaSelecionada = e;
+    addAtividadeProdutivaSelecionado(e);
   }
+  @action
+  void addAtividadeProdutivaSelecionado(CategoriaAtividadeProdutiva? e){
+    if (e == null) return;
+    categoriasAtividadeProdutivaSelecionadas.add(e);
+  }
+  @action
+  void deleteAtividadeProdutivaSelecionado(CategoriaAtividadeProdutiva? e){
+    if (e == null) return;
+    categoriasAtividadeProdutivaSelecionadas.removeLast();
+  }
+  /* PRODUTOS */
 
    @action
   void changeProdutoSelecionada(Produto? e){
     if (e == null) return;
     produtoSelecionado = e;
+    addProdutoSelecionado(e);
+  }
+  
+  @action
+  void addProdutoSelecionado(Produto? e){
+    if (e == null) return;
+    produtosSelecionados.add(e);
+  }
+  
+  @action
+  void deleteProdutoSelecionado(Produto? e){
+    if (e == null) return;
+    produtosSelecionados.removeLast();
   }
 
+  /* PROGRAMAS GOVERNAMENTAIS */
+
+   @action
+  void changeProgGovSelecionada(ProgramasGovernamentais? e){
+    if (e == null) return;
+    programasGovernamentaisSelecionado = e;
+    addProgGovSelecionado(e);
+  }
+  
+  @action
+  void addProgGovSelecionado(ProgramasGovernamentais? e){
+    if (e == null) return;
+    programasGovernamentaisSelecionados.add(e);
+  }
+  
+  @action
+  void deleteProgGovSelecionado(ProgramasGovernamentais? e){
+    if (e == null) return;
+    programasGovernamentaisSelecionados.removeLast();
+  }
+
+ /*SUBPRODUTOS*/
    @action
   void changeSubProdutoSelecionada(SubProduto? e){
     if (e == null) return;
     subProdutoSelecionado = e;
+    addSubProdutoSelecionado(e);
+  }
+  @action
+  void addSubProdutoSelecionado(SubProduto? e){
+    if (e == null) return;
+    subProdutosSelecionados.add(e);
+  }
+  
+  @action
+  void deleteSubProdutoSelecionado(SubProduto? e){
+    if (e == null) return;
+    subProdutosSelecionados.removeLast();
   }
 
   @action

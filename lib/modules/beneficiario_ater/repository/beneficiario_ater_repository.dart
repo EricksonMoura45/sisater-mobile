@@ -12,6 +12,7 @@ import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/motivo_
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/nacionalidade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/naturalidade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/produto.dart';
+import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/programas_governamentais.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/registro_status.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/subproduto.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/uf.dart';
@@ -180,6 +181,16 @@ class BeneficiarioAterRepository {
     (response.data as List).map((a) => listaComunidade.add(Comunidade.fromJson(a))).toList();
 
     return listaComunidade;
+  }
+
+  Future<List<ProgramasGovernamentais>> listaProgGovernamentais() async{
+    var response = await dio.get('/v1/government-programs/index');
+
+    List<ProgramasGovernamentais> listaProgramasGovernamentais= [];
+
+    (response.data as List).map((a) => listaProgramasGovernamentais.add(ProgramasGovernamentais.fromJson(a))).toList();
+
+    return listaProgramasGovernamentais;
   }
 
 
