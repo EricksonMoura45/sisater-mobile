@@ -638,18 +638,6 @@ mixin _$BeneficiarioAterController on _BeneficiarioAterControllerBase, Store {
           name: '_BeneficiarioAterControllerBase', context: context);
 
   @override
-  void atualizaTermoBusca(String termo) {
-    final _$actionInfo =
-        _$_BeneficiarioAterControllerBaseActionController.startAction(
-            name: '_BeneficiarioAterControllerBase.atualizaTermoBusca');
-    try {
-      return super.atualizaTermoBusca(termo);
-    } finally {
-      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void changeSexoSelecionada(Sexo? e) {
     final _$actionInfo =
         _$_BeneficiarioAterControllerBaseActionController.startAction(

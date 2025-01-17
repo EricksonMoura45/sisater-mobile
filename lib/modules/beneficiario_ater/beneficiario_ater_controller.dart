@@ -39,7 +39,7 @@ abstract class _BeneficiarioAterControllerBase with Store {
 
    @observable
   List<BeneficiarioAter> beneficiariosFiltrados = [];
-
+  
   @observable
   String termoBusca = '';
 
@@ -183,7 +183,7 @@ abstract class _BeneficiarioAterControllerBase with Store {
       beneficiariosFiltrados = await beneficiarioAterRepository.listaBeneficiariosAter();
 
       if(beneficiarioAterRepository.listaAter == true){
-
+        listaBeneficiarios = beneficiariosFiltrados;
         statusCarregaBeneficiarios = Status.CONCLUIDO;
 
       }
@@ -285,20 +285,6 @@ abstract class _BeneficiarioAterControllerBase with Store {
       ToastAvisosErro('Erro ao editar o usuário.');
     }
   }
-
- @action
-void atualizaTermoBusca(String termo) {
-  termoBusca = termo;
-  // Filtrando a lista original (listaBeneficiarios) com base no termo
-  beneficiariosFiltrados = listaBeneficiarios.where((beneficiario) {
-    final query = termo.toLowerCase();
-
-    return (beneficiario.name?.toLowerCase().contains(query) ?? false) ||
-           (beneficiario.document?.contains(query) ?? false) ||
-           (beneficiario.cellphone?.contains(query) ?? false);
-  }).toList();
-}
-
 
   @action
   void changeSexoSelecionada(Sexo? e){

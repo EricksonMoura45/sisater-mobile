@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater.dart';
 import 'package:sisater_mobile/modules/beneficiario_ater/beneficiario_ater_controller.dart';
 import 'package:sisater_mobile/shared/utils/widgets/beneficiario_card.dart';
 import 'package:sisater_mobile/shared/utils/widgets/listpage_appbar.dart';
@@ -116,16 +117,34 @@ class _BeneficiariosAterPageState extends State<BeneficiariosAterPage> {
     child: TextField(
       decoration: InputDecoration(
         labelText: 'Buscar beneficiário',
-        hintText: 'Digite nome',
+        hintText: 'Digite o nome do beneficiário',
         prefixIcon: Icon(Icons.search),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      onChanged: controller.atualizaTermoBusca, // Chama o método do controller
+      onChanged: atualizaTermoBusca, // Chama o método do controller
     ),
   );
  }
+
+ void atualizaTermoBusca(String? termo) {
+  List<BeneficiarioAter> listaQuery = controller.beneficiariosFiltrados;
+  // Filtrando a lista original (listaBeneficiarios) com base no termo
+  final sugestoes = listaQuery.where((beneficiario) {
+  final query = beneficiario.name?.toLowerCase();
+  final input = termo!.toLowerCase();
+  return query!.contains(input);
+  }).toList();
+  setState(() {
+  if(termo == null || termo.isEmpty || termo == ''){
+    controller.beneficiariosFiltrados = controller.listaBeneficiarios;
+  }
+  else{
+    controller.beneficiariosFiltrados = sugestoes;
+  }}
+  );
+}
 
 
 }

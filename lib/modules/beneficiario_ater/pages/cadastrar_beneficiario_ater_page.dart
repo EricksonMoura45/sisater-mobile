@@ -162,7 +162,16 @@ class _CadastrarBeneficiarioAterPageState
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
-        child: botaoCadastrar(context)
+        child: Observer(builder: (_){
+           if(controller.statusCarregaDadosPagina == Status.CONCLUIDO){
+            return 
+            
+              botaoCadastrar(context);
+           }
+            else{
+              return SizedBox();
+            }
+        }) 
       ),
     );
   }
@@ -1091,7 +1100,8 @@ class _CadastrarBeneficiarioAterPageState
     
     if(nomeController.text != '' && controller.sexoSelecionado != null && /* controller.dataNascimentoPicked != null && */ cpfController.text != '' && controller.estadoCivilSelecionado != null && controller.escolaridadeSelecionada != null && controller.nacionalidadeSelecionada != null && controller.naturalidadeSelecionada != null){
       if(lougradouroController.text != '' && numeroController.text != '' && controller.ufEnderecoSelecionado != null){
-        if(controller.categoriaPublicoSelecionada != null && controller.motivoRegistroSelecionado != null && controller.registroStatusSelecionado != null){
+        if(controller.categoriaPublicoSelecionada != null){
+          if(controller.motivoRegistroSelecionado != null && controller.registroStatusSelecionado != null){
           //Apto para fazer POST
 
           beneficiarioAterPost = BeneficiarioAterPost(
@@ -1133,7 +1143,11 @@ class _CadastrarBeneficiarioAterPageState
           );
 
           await controller.postBeneficiarios(beneficiarioAterPost);
-
+          }
+          else{
+            //Campos de registro obrigatórios não preenchidos
+            ToastAvisosErro('Campos de registro obrigatórios não preenchidos(*).');
+          }
         }
         else{
           //Campos de informações gerais obrigatórios não preenchidos
