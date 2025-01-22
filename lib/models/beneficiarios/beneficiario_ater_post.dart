@@ -1,4 +1,5 @@
 class BeneficiarioAterPost {
+  int? id;
   String? document;
   String? name;
   int? type;
@@ -49,6 +50,7 @@ class BeneficiarioAterPost {
       this.physicalPerson});
 
   BeneficiarioAterPost.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     document = json['document'];
     name = json['name'];
     type = json['type'];

@@ -209,6 +209,13 @@ class BeneficiarioAterRepository {
     
     return sucess;
   }
+
+  Future putBeneficiario(int? id, BeneficiarioAterPost beneficiarioAterPost) async{
+    var response = await dio.put('/beneficiary/$id/update',
+    data: beneficiarioAterPost.toJson());
+
+    putBeneficiarioCode = response.statusCode;
+  }
   
   //Aqui usamos o mesmo modelo de BeneficiarioAterPost, pois a resposta é a mesma
   Future<BeneficiarioAterPost> getBeneficiario(int? id) async{

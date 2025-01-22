@@ -597,6 +597,24 @@ mixin _$BeneficiarioAterController on _BeneficiarioAterControllerBase, Store {
     });
   }
 
+  late final _$putBeneficiarioStatusAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.putBeneficiarioStatus',
+      context: context);
+
+  @override
+  Status get putBeneficiarioStatus {
+    _$putBeneficiarioStatusAtom.reportRead();
+    return super.putBeneficiarioStatus;
+  }
+
+  @override
+  set putBeneficiarioStatus(Status value) {
+    _$putBeneficiarioStatusAtom.reportWrite(value, super.putBeneficiarioStatus,
+        () {
+      super.putBeneficiarioStatus = value;
+    });
+  }
+
   late final _$deleteBeneficiarioAterStatusAtom = Atom(
       name: '_BeneficiarioAterControllerBase.deleteBeneficiarioAterStatus',
       context: context);
@@ -1062,6 +1080,7 @@ comunidadeSelecionada: ${comunidadeSelecionada},
 subComunidadeSelecionada: ${subComunidadeSelecionada},
 motivoRegistroSelecionadoLista: ${motivoRegistroSelecionadoLista},
 cadastraBeneficiarioStatus: ${cadastraBeneficiarioStatus},
+putBeneficiarioStatus: ${putBeneficiarioStatus},
 deleteBeneficiarioAterStatus: ${deleteBeneficiarioAterStatus},
 editarBeneficiarioStatus: ${editarBeneficiarioStatus}
     ''';

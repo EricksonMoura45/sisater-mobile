@@ -165,6 +165,10 @@ abstract class _BeneficiarioAterControllerBase with Store {
   @observable
   Status cadastraBeneficiarioStatus = Status.NAO_CARREGADO;
 
+  //Editar(PUT)
+  @observable
+  Status putBeneficiarioStatus = Status.NAO_CARREGADO;
+
   //Delete
   @observable
   Status deleteBeneficiarioAterStatus = Status.NAO_CARREGADO;
@@ -238,12 +242,52 @@ abstract class _BeneficiarioAterControllerBase with Store {
 
       await beneficiarioAterRepository.postBeneficiario(beneficiarioAterPost!);
 
-      if(beneficiarioAterRepository.postBeneficiarioCode == 203 || beneficiarioAterRepository.postBeneficiarioCode == 200){
-        cadastraBeneficiarioStatus = Status.CONCLUIDO;
+      if(beneficiarioAterRepository.postBeneficiarioCode == 201){
+
+          cadastraBeneficiarioStatus = Status.CONCLUIDO;
 
           ToastAvisosSucesso("Beneficiário Cadastrado com Sucesso.");
 
           Modular.to.pushReplacementNamed('sucesso_cadastro_ater');
+
+          cadastroDisposer();
+
+      }
+      else if(beneficiarioAterRepository.postBeneficiarioCode == 203){
+        cadastraBeneficiarioStatus = Status.ERRO;
+
+        ToastAvisosSucesso("Erro ao cadastrar o beneficiário. Revise os campos e tente novamente.");
+
+        Modular.to.pushReplacementNamed('sucesso_cadastro_ater');
+
+        cadastroDisposer();
+      }
+
+
+
+    } catch (e) {
+      statusCarregaBeneficiarios = Status.ERRO;
+      ToastAvisosErro('Erro ao realizar o cadastro.');
+    }
+  }
+
+  Future putBeneficiarios(int? id, BeneficiarioAterPost? beneficiarioAterPost)async{
+
+    try {
+      putBeneficiarioStatus = Status.AGUARDANDO;
+
+      await beneficiarioAterRepository.putBeneficiario(id ,beneficiarioAterPost!);
+
+      if(beneficiarioAterRepository.putBeneficiarioCode == 203 || beneficiarioAterRepository.putBeneficiarioCode == 200){
+
+          putBeneficiarioStatus = Status.CONCLUIDO;
+
+          ToastAvisosSucesso("Beneficiário Editado com Sucesso.");
+
+          Modular.to.pushReplacementNamed('sucesso_cadastro_ater');
+
+          cadastroDisposer();
+
       }
 
 
@@ -270,7 +314,7 @@ abstract class _BeneficiarioAterControllerBase with Store {
     }
   }
 
-  Future editBeneficiarioAter(int id) async{
+  Future getBeneficiarioAter(int id) async{
     try {
       editarBeneficiarioStatus = Status.AGUARDANDO;
 
@@ -282,8 +326,48 @@ abstract class _BeneficiarioAterControllerBase with Store {
 
     } catch (e) {
       editarBeneficiarioStatus = Status.ERRO;
-      ToastAvisosErro('Erro ao editar o usuário.');
+      ToastAvisosErro('Erro ao receber dados do usuário.');
     }
+  }
+
+  void cadastroDisposer(){
+
+   sexoSelecionado = null;
+   dataNascimentoPicked = null ;
+   dataEmissaoRGPicked = null;
+   estadoCivilSelecionado = null;
+   ufSelecionado= null;
+   ufEnderecoSelecionado= null;
+   escolaridadeSelecionada= null;
+   nacionalidadeSelecionada= null;
+   naturalidadeSelecionada= null;
+   categoriaPublicoSelecionada= null;
+   motivoRegistroSelecionado= null;
+   subProdutoSelecionado= null;
+   programasGovernamentaisSelecionado= null;
+   produtoSelecionado= null;
+   categoriaAtividadeProdutivaSelecionada= null;
+   cafBool= null;
+   entidadeCaf= null;
+   enqCaf= null;
+   registroStatusSelecionado= null;
+   municipioSelecionado= null;
+   municipioUF = [];
+   comunidadeSelecionada= null;
+   subComunidades = [];
+   subComunidadeSelecionada= null;
+   motivoRegistroSelecionadoLista = [];
+   cadastraBeneficiarioStatus = Status.NAO_CARREGADO;
+   deleteBeneficiarioAterStatus = Status.NAO_CARREGADO;
+   deleteBeneficiarioSucess= null;
+   beneficiarioAterEdit= null;
+   editarBeneficiarioStatus = Status.NAO_CARREGADO;
+   produtosSelecionados = [];
+   motivosRegistroSelecionados = [];
+   subProdutosSelecionados = [];
+   categoriasAtividadeProdutivaSelecionadas = [];
+   programasGovernamentaisSelecionados = [];
+   
   }
 
   @action

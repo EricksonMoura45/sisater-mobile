@@ -1,3 +1,4 @@
+import 'package:esig_utils/extensions/date_time.dart';
 import 'package:esig_utils/size_screen.dart';
 import 'package:esig_utils/status.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +21,14 @@ import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/municip
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/nacionalidade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/naturalidade.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/produto.dart';
+import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/programas_governamentais.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/registro_status.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/sexo.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/subproduto.dart';
 import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/uf.dart';
 import 'package:sisater_mobile/modules/beneficiario_ater/beneficiario_ater_controller.dart';
 import 'package:sisater_mobile/shared/utils/themes.dart';
+import 'package:sisater_mobile/shared/utils/widgets/date_picker.dart';
 import 'package:sisater_mobile/shared/utils/widgets/form_appbar.dart';
 import 'package:sisater_mobile/shared/utils/widgets/input_widget.dart';
 import 'package:sisater_mobile/shared/utils/widgets/toast_avisos_erro.dart';
@@ -62,8 +65,6 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
   
   final TextEditingController cadastroNacionalController = TextEditingController();
 
-
-
   final maskCpf = MaskTextInputFormatter(
       mask: "###.###.###-##", filter: {"#": RegExp(r'[0-9]')});
   final maskDataNascimento = MaskTextInputFormatter(
@@ -89,23 +90,24 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
 
   BeneficiarioAterController controller = Modular.get();
 
-  BeneficiarioAterPost? beneficiarioAterPost;
+  BeneficiarioAterPost? beneficiarioAterPut;
 
   @override
   void initState() {
-    controller.editBeneficiarioAter(beneficiarioAter.id!);
+    controller.getBeneficiarioAter(beneficiarioAter.id!);
     controller.carregaDadosSelecionaveis();
+    preencheDadosEdit();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: formAppBar(context, 'Editar Beneficiários'),
-
+      appBar: formAppBar(context, 'Cadastrar Beneficiários'),
       body: Observer(
         builder: (_){
-          if(controller.statusCarregaDadosPagina == Status.AGUARDANDO){
+
+          if(controller.statusCarregaDadosPagina == Status.AGUARDANDO || controller.editarBeneficiarioStatus == Status.AGUARDANDO){
             return SingleChildScrollView(
               child: Shimmer.fromColors(
               baseColor: Colors.grey[300]!,
@@ -129,7 +131,8 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
             );
 
           }
-        if(controller.statusCarregaDadosPagina == Status.CONCLUIDO){
+        if(controller.editarBeneficiarioStatus == Status.CONCLUIDO){
+          if(controller.statusCarregaDadosPagina == Status.CONCLUIDO){
 
           return Column(
           children: [
@@ -147,8 +150,9 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
           ],
         );
         }
-
-        if(controller.statusCarregaDadosPagina == Status.ERRO){
+        }  
+        
+        if(controller.statusCarregaDadosPagina == Status.ERRO || controller.editarBeneficiarioStatus == Status.ERRO){
 
           return Center(child: Text('Erro ao carregar a página.'),);
 
@@ -163,7 +167,16 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
-        child: botaoEditar(context)
+        child: Observer(builder: (_){
+           if(controller.statusCarregaDadosPagina == Status.CONCLUIDO){
+            return 
+            
+              botaoCadastrar(context);
+           }
+            else{
+              return SizedBox();
+            }
+        }) 
       ),
     );
   }
@@ -212,21 +225,6 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
   }
 
   Widget formularioDadosPessoais() {
-
-    nomeController.text = controller.beneficiarioAterEdit?.name ?? '';
-    apelidoController.text = controller.beneficiarioAterEdit?.physicalPerson?.nickname ?? '';
-    controller.sexoSelecionado = controller.listaSexo.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.gender, orElse: () => Sexo(id: 0, name: ''));
-    controller.estadoCivilSelecionado = controller.listaEstadoCivil.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.civilStatus, orElse: () => EstadoCivil(id: 0, name: ''));
-    controller.escolaridadeSelecionada = controller.listaEscolaridade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.scholarityId, orElse: () => Escolaridade(id: 0, name: ''));
-    controller.nacionalidadeSelecionada = controller.listaNacionalidade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.nationalityId, orElse: () => Nacionalidade(id: 0, name: ''));
-    controller.naturalidadeSelecionada = controller.listaNaturalidade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.naturalnessId, orElse: () => Naturalidade(id: 0, name: ''));
-    controller.ufSelecionado = controller.listaUF.firstWhere((element) => element.name == controller.beneficiarioAterEdit?.physicalPerson?.issuingUf, orElse: () => UF(name: ''));
-    dataNascimentoController.text = controller.beneficiarioAterEdit?.physicalPerson?.birthDate ?? '';
-    cpfController.text = controller.beneficiarioAterEdit?.document ?? '';
-    rgController.text = controller.beneficiarioAterEdit?.physicalPerson?.nationalityId.toString() ?? '';
-    orgaoRGController.text = controller.beneficiarioAterEdit?.physicalPerson?.issuingEntity ?? '';
-    nomeMaeController.text = controller.beneficiarioAterEdit?.physicalPerson?.mothersName ?? '';
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -265,13 +263,10 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
               )).toList(), 
           onChanged: controller.changeSexoSelecionada
           ),
-          SizedBox(height: 10,),
+         SizedBox(height: 10,),
 
-        buildInputField(
-          label: 'Data de Nascimento*',
-          controller: dataNascimentoController,
-          formatters: [maskDataNascimento],
-        ),
+         DatePickerWidget(label: 'Data de Nascimento*', formfield: 1),
+
         buildInputField(
           label: 'CPF*',
           controller: cpfController,
@@ -309,11 +304,9 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
           label: 'RG',
           controller: rgController,
         ),
-        buildInputField(
-          label: 'Data de Emissão',
-          controller: dataEmissaoController,
-          formatters: [maskDataNascimento],
-        ),
+        
+        DatePickerWidget(label: 'Data de Emissão', formfield: 2),
+
         buildInputField(
           label: 'Órgão de Emissão',
           controller: orgaoRGController,
@@ -435,16 +428,6 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
   }
 
   Widget formularioInformacoesEndereco() {
-
-    lougradouroController.text = controller.beneficiarioAterEdit?.street ?? '';
-    numeroController.text = controller.beneficiarioAterEdit?.number ?? '';
-    controller.ufEnderecoSelecionado = controller.listaUF.firstWhere((element) => element.name == controller.beneficiarioAterEdit?.physicalPerson?.issuingUf, orElse: () => UF(name: ''));
-    controller.municipioSelecionado = controller.municipioUF.firstWhere((element) => element.code == controller.beneficiarioAterEdit?.cityCode, orElse: () => Municipio(code: '', name: ''));
-    controller.comunidadeSelecionada = controller.listaComunidade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.communityId, orElse: () => Comunidade(id: 0, name: ''));
-    complementoController.text = controller.beneficiarioAterEdit?.complement ?? '';
-    bairroController.text = controller.beneficiarioAterEdit?.neighborhood ?? '';
-    cepMaeController.text = controller.beneficiarioAterEdit?.postalCode ?? '';
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -569,11 +552,6 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
   }
 
   Widget formularioinformacoesContato() {
-
-    telefoneController.text = controller.beneficiarioAterEdit?.phone ?? '';
-    celularController.text = controller.beneficiarioAterEdit?.cellphone ?? '';
-    emailController.text = controller.beneficiarioAterEdit?.email ?? '';
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -597,9 +575,6 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
   }
 
   Widget formularioinformacoesGerais() {
-
-    controller.categoriaPublicoSelecionada = controller.listaCategoriaPublico.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.targetPublicId, orElse: () => CategoriaPublico(id: 0, name: ''));
-    //controller.categoriaAtividadeProdutivaSelecionada = controller.listaCategoriaAtividadeProdutiva.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.productiveActivityCategoryId, orElse: () => CategoriaAtividadeProdutiva(id: 0, name: ''));
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -658,6 +633,33 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
           ),
           SizedBox(height: 10,),
 
+          controller.categoriasAtividadeProdutivaSelecionadas.isEmpty ? 
+          SizedBox()
+          : Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Themes.verdeBotao, width: 2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                spacing: 8.0,
+                runSpacing: 4.0,
+                children: controller.categoriasAtividadeProdutivaSelecionadas
+                    .map((item) => Chip(
+                          label: Text(item.name ?? ''),
+                          deleteIcon: Icon(Icons.close),
+                          onDeleted: () {
+                            setState(() {
+                              controller.categoriasAtividadeProdutivaSelecionadas.remove(item);
+                            });
+                          },
+                        ))
+                    .toList(),
+              ),
+            ),
+          ),
+
           Text('Produto',
               style: const TextStyle(
                   fontSize: 18, fontWeight: FontWeight.bold)),
@@ -685,6 +687,33 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
           ),
           SizedBox(height: 10,),
 
+          controller.produtosSelecionados.isEmpty ? 
+          SizedBox()
+          : Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Themes.verdeBotao, width: 2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                spacing: 8.0,
+                runSpacing: 4.0,
+                children: controller.produtosSelecionados
+                    .map((item) => Chip(
+                          label: Text(item.name ?? ''),
+                          deleteIcon: Icon(Icons.close),
+                          onDeleted: () {
+                            setState(() {
+                              controller.produtosSelecionados.remove(item);
+                            });
+                          },
+                        ))
+                    .toList(),
+              ),
+            ),
+          ),
+            
           Text('Subprodutos/Derivados',
               style: const TextStyle(
                   fontSize: 18, fontWeight: FontWeight.bold)),
@@ -711,6 +740,33 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
           onChanged: controller.changeSubProdutoSelecionada
           ),
           SizedBox(height: 10,),
+
+          controller.subProdutosSelecionados.isEmpty ? 
+          SizedBox()
+          : Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Themes.verdeBotao, width: 2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                spacing: 8.0,
+                runSpacing: 4.0,
+                children: controller.subProdutosSelecionados
+                    .map((item) => Chip(
+                          label: Text(item.name ?? ''),
+                          deleteIcon: Icon(Icons.close),
+                          onDeleted: () {
+                            setState(() {
+                              controller.subProdutosSelecionados.remove(item);
+                            });
+                          },
+                        ))
+                    .toList(),
+              ),
+            ),
+          ),
 
           Text('CAF',
               style: const TextStyle(
@@ -757,33 +813,68 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
         buildInputField(
           label: 'Cadastro Nacional da Agricultura Familiar - CAF',
           controller: cadastroNacionalController,
+
+
         ),
 
-            // Wrap(
-            //   spacing: 8.0,
-            //   runSpacing: 4.0,
-            //   children: controller.motivoRegistroSelecionadoLista!
-            //       .map((item) => Chip(
-            //             label: Text(item.name ?? ''),
-            //             deleteIcon: Icon(Icons.close),
-            //             onDeleted: () {
-            //               setState(() {
-            //                 controller.motivoRegistroSelecionadoLista!.remove(item);
-            //               });
-            //             },
-            //           ))
-            //       .toList(),
-            // ),
+          Text('Programas Governamentais',
+              style: const TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold)),
+        DropdownButtonFormField<ProgramasGovernamentais>(
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(
+            color: Colors.white,
+            width: 1.0,
+          ),
+        ),
+          ),
+          borderRadius: BorderRadius.circular(10),
+           key: const ValueKey('progGovDropdown'),
+           isExpanded: true,
+           value: controller.programasGovernamentaisSelecionado,
+          items: controller.listaProgramasGovernamentais.map(
+            (e) => DropdownMenuItem<ProgramasGovernamentais>(
+              value: e,
+              key: ValueKey(e.name),
+              child: Text(e.name ?? 'Sem nome'),
+              )).toList(), 
+          onChanged: controller.changeProgGovSelecionada
+          ),
+          SizedBox(height: 10,),  
 
+          controller.programasGovernamentaisSelecionados.isEmpty ? 
+          SizedBox()
+          : Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Themes.verdeBotao, width: 2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                spacing: 8.0,
+                runSpacing: 4.0,
+                children: controller.programasGovernamentaisSelecionados
+                    .map((item) => Chip(
+                          label: Text(item.name ?? ''),
+                          deleteIcon: Icon(Icons.close),
+                          onDeleted: () {
+                            setState(() {
+                              controller.programasGovernamentaisSelecionados.remove(item);
+                            });
+                          },
+                        ))
+                    .toList(),
+              ),
+            ),
+          ),
       ],
     );
   }
 
   Widget formularioInformacoesRegistro (){
-
-    controller.motivoRegistroSelecionado = controller.listaMotivoRegistro.firstWhere((element) => element.id.toString() == controller.beneficiarioAterEdit!.reasonMultiples.toString(), orElse: () => MotivoRegistro(id: 0, name: ''));
-    controller.registroStatusSelecionado = controller.listaRegistroStatus.firstWhere((element) => element.id == controller.beneficiarioAterEdit!.registrationStatusId, orElse: () => RegistroStatus(id: 0, name: ''));
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children:[
@@ -813,6 +904,33 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
           onChanged: controller.changeMotivoRegistroSelecionada
           ),
           SizedBox(height: 10,),
+
+          controller.motivosRegistroSelecionados.isEmpty ? 
+          SizedBox()
+          : Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Themes.verdeBotao, width: 2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                spacing: 8.0,
+                runSpacing: 4.0,
+                children: controller.motivosRegistroSelecionados
+                    .map((item) => Chip(
+                          label: Text(item.name ?? ''),
+                          deleteIcon: Icon(Icons.close),
+                          onDeleted: () {
+                            setState(() {
+                              controller.motivosRegistroSelecionados.remove(item);
+                            });
+                          },
+                        ))
+                    .toList(),
+              ),
+            ),
+          ),
 
           Text('Situação Cadastro*',
               style: const TextStyle(
@@ -946,7 +1064,7 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
     }
   }
 
-  Widget botaoEditar(BuildContext context) {
+  Widget botaoCadastrar(BuildContext context) {
     return MaterialButton(
       padding: const EdgeInsets.all(17),
       minWidth: SizeScreen.perWidth(context, 90),
@@ -962,6 +1080,7 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Observer(builder: (_){
+
             if(controller.cadastraBeneficiarioStatus == Status.AGUARDANDO){
               return CircularProgressIndicator(
                 color: Colors.white,
@@ -969,7 +1088,7 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
             }
             else{
               return Text(
-            'Confirmar Edição',
+            'Cadastrar',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -984,12 +1103,13 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
 
   void verificaCamposObrigatorios() async{
     
-    if(nomeController.text != '' && controller.sexoSelecionado != null && dataNascimentoController.text != '' && cpfController.text != '' && controller.estadoCivilSelecionado != null && controller.escolaridadeSelecionada != null && controller.nacionalidadeSelecionada != null && controller.naturalidadeSelecionada != null){
+    if(nomeController.text != '' && controller.sexoSelecionado != null &&  controller.dataNascimentoPicked != null && cpfController.text != '' && controller.estadoCivilSelecionado != null && controller.escolaridadeSelecionada != null && controller.nacionalidadeSelecionada != null && controller.naturalidadeSelecionada != null){
       if(lougradouroController.text != '' && numeroController.text != '' && controller.ufEnderecoSelecionado != null){
-        if(controller.categoriaPublicoSelecionada != null && controller.motivoRegistroSelecionado != null && controller.registroStatusSelecionado != null){
+        if(controller.categoriaPublicoSelecionada != null){
+          if(controller.motivoRegistroSelecionado != null && controller.registroStatusSelecionado != null){
           //Apto para fazer POST
 
-          beneficiarioAterPost = BeneficiarioAterPost(
+          beneficiarioAterPut = BeneficiarioAterPost(
             document: cpfController.text,
             name: nomeController.text,
             type: controller.sexoSelecionado!.id,
@@ -997,21 +1117,21 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
             number: numeroController.text,
             complement: complementoController.text,
             neighborhood: bairroController.text,
-            cityCode: controller.comunidadeSelecionada!.cityCode,
+            cityCode: controller.comunidadeSelecionada?.cityCode ?? '1502509', //MOCK
             postalCode: cepMaeController.text,
             phone: telefoneController.text,
             cellphone: celularController.text,
             email: emailController.text,
-            communityId: controller.comunidadeSelecionada!.id,
-            targetPublicId: controller.categoriaPublicoSelecionada!.id,
+            communityId: controller.comunidadeSelecionada?.id,
+            targetPublicId: controller.categoriaPublicoSelecionada?.id,
             hasDap: false, //MOCK
             nis: '', //MOCK
-            dapId: controller.enqCaf!.id,
-            dapOriginId: controller.entidadeCaf!.id,
+            dapId: controller.enqCaf?.id,
+            dapOriginId: controller.entidadeCaf?.id,
             caf: cadastroNacionalController.text,
-            reasonMultiples: ['${controller.motivoRegistroSelecionado!.id}'],
+            reasonMultiples: ['${controller.motivoRegistroSelecionado?.id}'],
             officeId: 1, //MOCK
-            registrationStatusId: 4,
+            registrationStatusId: 4,//MOCK
             physicalPerson: PhysicalPerson(
               nickname: apelidoController.text,
               gender: controller.sexoSelecionado!.id,
@@ -1019,27 +1139,73 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
               nationalityId: controller.nacionalidadeSelecionada!.id,
               nationalIdentity: rgController.text,
               naturalnessId: controller.naturalidadeSelecionada!.id,
-              birthDate: dataNascimentoController.text,
+              birthDate: controller.dataNascimentoPicked?.formattedDate("yyyy/MM/dd").toString() ?? '2000-01-01', //MOCK
               issuingEntity: orgaoRGController.text,
-              issueDate: dataEmissaoController.text,
+              issueDate: controller.dataEmissaoRGPicked?.formattedDate("yyyy/MM/dd").toString() ?? '2000-01-01', //MOCK
               scholarityId: controller.escolaridadeSelecionada!.id,
               mothersName: nomeMaeController.text
             )
           );
 
-          await controller.postBeneficiarios(beneficiarioAterPost);
-
+          await controller.putBeneficiarios(controller.beneficiarioAterEdit?.id,beneficiarioAterPut);
+          }
+          else{
+            //Campos de registro obrigatórios não preenchidos
+            ToastAvisosErro('Campos obrigatórios(*) em "Informações de Registro" não preenchidos');
+          }
+        }
+        else{
+          //Campos de informações gerais obrigatórios não preenchidos
+          ToastAvisosErro('Campos obrigatórios(*) em "Informações Gerais" não preenchidos');
         }
       }
       else{
         //Campos de endereço obrigatórios não preenchidos
-        ToastAvisosErro('Campos de endereço obrigatórios não preenchidos(*).');
+        ToastAvisosErro('Campos obrigatórios(*) em "Informações de Endereço" não preenchidos');
       }
     }
     else{
       //Campos de dados pessoais obrigatórios não preenchidos
-      ToastAvisosErro('Campos de dados pessoais obrigatórios não preenchidos(*).');
+      ToastAvisosErro('Campos obrigatórios(*) em "Informações Pessoais" não preenchidos');
     }
     
+  }
+
+  void preencheDadosEdit(){
+    nomeController.text = controller.beneficiarioAterEdit?.name ?? '';
+    apelidoController.text = beneficiarioAter.physicalPerson?.nickname ?? '';
+    dataNascimentoController.text = beneficiarioAter.physicalPerson?.birthDate ?? '';
+    cpfController.text = controller.beneficiarioAterEdit?.document ?? '';
+    rgController.text = controller.beneficiarioAterEdit?.physicalPerson?.nationalIdentity ?? '';
+    dataEmissaoController.text = controller.beneficiarioAterEdit?.physicalPerson?.issueDate ?? '';
+    orgaoRGController.text = controller.beneficiarioAterEdit?.physicalPerson?.issuingEntity ?? '';
+    nomeMaeController.text = controller.beneficiarioAterEdit?.physicalPerson?.mothersName ?? '';
+    lougradouroController.text = controller.beneficiarioAterEdit?.street ?? '';
+    numeroController.text = controller.beneficiarioAterEdit?.number ?? '';
+    complementoController.text = controller.beneficiarioAterEdit?.complement ?? '';
+    bairroController.text = controller.beneficiarioAterEdit?.neighborhood ?? '';
+    cepMaeController.text = controller.beneficiarioAterEdit?.postalCode ?? '';
+    telefoneController.text = controller.beneficiarioAterEdit?.phone ?? '';
+    celularController.text = controller.beneficiarioAterEdit?.cellphone ?? '';
+    emailController.text = controller.beneficiarioAterEdit?.email ?? '';
+    cadastroNacionalController.text = controller.beneficiarioAterEdit?.caf ?? '';
+    controller.sexoSelecionado = controller.listaSexo.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.gender, orElse: controller.sexoSelecionado = null);
+    controller.estadoCivilSelecionado = controller.listaEstadoCivil.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.civilStatus);
+    controller.escolaridadeSelecionada = controller.listaEscolaridade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.scholarityId);
+    controller.nacionalidadeSelecionada = controller.listaNacionalidade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.nationalityId);
+    controller.naturalidadeSelecionada = controller.listaNaturalidade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.naturalnessId);
+    controller.ufEnderecoSelecionado = controller.listaUF.firstWhere((element) => element.code == controller.beneficiarioAterEdit?.physicalPerson?.issuingUf);
+    controller.comunidadeSelecionada = controller.listaComunidade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.communityId);
+    controller.categoriaPublicoSelecionada = controller.listaCategoriaPublico.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.targetPublicId);
+    controller.motivosRegistroSelecionados = controller.listaMotivoRegistro.where((element) => controller.beneficiarioAterEdit!.reasonMultiples!.contains(element.id)).toList();
+    controller.registroStatusSelecionado = controller.listaRegistroStatus.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.registrationStatusId);
+    //controller.produtosSelecionados = controller.listaProdutos.where((element) => controller.beneficiarioAterEdit!.products!.contains(element)).toList();
+    //controller.subProdutosSelecionados = controller.listaSubprodutos.where((element) => controller.beneficiarioAterEdit!.subProducts!.contains(element)).toList();
+    //controller.categoriasAtividadeProdutivaSelecionadas = controller.listaCategoriaAtividadeProdutiva.where((element) => controller.beneficiarioAterEdit!.productiveActivities!.contains(element)).toList();
+    //controller.programasGovernamentaisSelecionados = controller.listaProgramasGovernamentais.where((element) => controller.beneficiarioAterEdit!.governmentPrograms!.contains(element)).toList();
+    // controller.cafBool = controller.beneficiarioAterEdit!.hasDap ?? false;
+    // controller.enqCaf = controller.listaEnqCaf.firstWhere((element) => element.id == controller.beneficiarioAterEdit!.dapId);
+    // controller.entidadeCaf = controller.listaEntidadeCaf.firstWhere((element) => element.id == controller.beneficiarioAterEdit!.dapOriginId);
+
   }
 }

@@ -1,6 +1,9 @@
+import 'package:esig_utils/status.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater.dart';
+import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater_post.dart';
 import 'package:sisater_mobile/modules/beneficiario_ater/beneficiario_ater_controller.dart';
 import 'package:sisater_mobile/shared/utils/themes.dart';
 
@@ -43,7 +46,7 @@ class BeneficiarioCard extends StatelessWidget {
                     Row(
                       children: [
                         GestureDetector(
-                          onTap: () {
+                          onTap: () async {
                             Modular.to.pushNamed('editar_ater', arguments: beneficiarioAter);
                           },
                           child: Container(
@@ -55,13 +58,13 @@ class BeneficiarioCard extends StatelessWidget {
                                               ),
                                               child: Padding(
                                                 padding: const EdgeInsets.all(3),
-                                                child: Row(
-                          children: [
-                            Icon(Icons.edit, color: Colors.white,),
-                            SizedBox(width: 2,),
-                            Text('Editar', style: TextStyle(color: Colors.white),),
-                          ],
-                                                ),
+                                                child:Row(
+                                                      children: [
+                                                        Icon(Icons.edit, color: Colors.white,),
+                                                        SizedBox(width: 2,),
+                                                        Text('Editar', style: TextStyle(color: Colors.white),),
+                                                     ],
+                                                )
                                               )),
                         ),
                     SizedBox(width: 5,),
@@ -142,7 +145,7 @@ class BeneficiarioCard extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('Apagar Beneficiário?'),
+            const Text('Apagar Beneficiário?', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
             GestureDetector(
               child: Icon(Icons.close, color: Themes.vermelhoTexto, size: 30),
               onTap: () {

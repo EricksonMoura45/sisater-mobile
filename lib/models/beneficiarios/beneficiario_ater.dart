@@ -1,3 +1,5 @@
+import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater_post.dart';
+
 class BeneficiarioAter {
   int? id;
   String? document;
@@ -23,6 +25,7 @@ class BeneficiarioAter {
   int? registrationStatusId;
   int? createdAt;
   int? updatedAt;
+  PhysicalPerson? physicalPerson;
 
 
   BeneficiarioAter(
@@ -50,33 +53,37 @@ class BeneficiarioAter {
       registrationStatusId,
       createdAt,
       updatedAt,
+      PhysicalPerson
       });
 
   BeneficiarioAter.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    document = json['document'];
-    name = json['name'];
-    type = json['type'];
-    street = json['street'];
-    number = json['number'];
-    complement = json['complement'];
-    neighborhood = json['neighborhood'];
+    document = json['document'] ?? '';
+    name = json['name'] ?? '';
+    type = json['type'] ?? 0;
+    street = json['street'] ?? '';
+    number = json['number'] ?? '';
+    complement = json['complement'] ?? '';
+    neighborhood = json['neighborhood'] ?? '';
     cityCode = json['city_code'];
-    postalCode = json['postal_code'];
+    postalCode = json['postal_code'] ?? '';
     phone = json['phone'];
-    cellphone = json['cellphone'];
-    email = json['email'];
-    communityId = json['community_id'];
-    targetPublicId = json['target_public_id'];
-    hasDap = json['has_dap'];
-    nis = json['nis'];
-    dapId = json['dap_id'];
-    dapOriginId = json['dap_origin_id'];
-    reasonMultiples = json['reason_multiples'].cast<String>();
-    officeId = json['office_id'];
-    registrationStatusId = json['registration_status_id'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    cellphone = json['cellphone']   ?? '';
+    email = json['email'] ?? '';
+    communityId = json['community_id'] ?? 0;
+    targetPublicId = json['target_public_id'] ?? 0;
+    hasDap = json['has_dap'] ?? false;
+    nis = json['nis'] ?? '';
+    dapId = json['dap_id'] ?? 0;
+    dapOriginId = json['dap_origin_id'] ?? 0;
+    reasonMultiples = json['reason_multiples'].cast<String>() ?? [];
+    officeId = json['office_id'] ?? '';
+    registrationStatusId = json['registration_status_id'] ?? 0; 
+    createdAt = json['created_at'] ?? 0;
+    updatedAt = json['updated_at'] ?? 0;
+    physicalPerson = json['physical_person'] != null
+        ? PhysicalPerson.fromJson(json['physical_person'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -105,6 +112,9 @@ class BeneficiarioAter {
     data['registration_status_id'] = registrationStatusId;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
+    if (physicalPerson != null) {
+      data['physical_person'] = physicalPerson!.toJson();
+    }
     return data;
   }
 }

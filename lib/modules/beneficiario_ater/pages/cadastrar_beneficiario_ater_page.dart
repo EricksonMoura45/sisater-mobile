@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater_post.dart';
@@ -76,7 +77,9 @@ class _CadastrarBeneficiarioAterPageState
       mask: "(##)#####-####", filter: {"#": RegExp(r'[0-9]')});
 
   final cepMask = MaskTextInputFormatter(
-      mask: "#####-###", filter: {"#": RegExp(r'[0-9]')});    
+      mask: "#####-###", filter: {"#": RegExp(r'[0-9]')});
+
+  DateFormat dateFormat = DateFormat('yyyy-MM-dd');        
 
   final List<Widget> opcoesCAF = <Widget>[
   Text('NÃO'),
@@ -306,7 +309,7 @@ class _CadastrarBeneficiarioAterPageState
           label: 'Órgão de Emissão',
           controller: orgaoRGController,
         ),
-        Text('Estado de Emissão',
+        Text('Estado de Emissão*',
               style: const TextStyle(
                   fontSize: 18, fontWeight: FontWeight.bold)),
         DropdownButtonFormField<UF>(
@@ -1098,7 +1101,7 @@ class _CadastrarBeneficiarioAterPageState
 
   void verificaCamposObrigatorios() async{
     
-    if(nomeController.text != '' && controller.sexoSelecionado != null && /* controller.dataNascimentoPicked != null && */ cpfController.text != '' && controller.estadoCivilSelecionado != null && controller.escolaridadeSelecionada != null && controller.nacionalidadeSelecionada != null && controller.naturalidadeSelecionada != null){
+    if(nomeController.text != '' && controller.sexoSelecionado != null &&  controller.dataNascimentoPicked != null && cpfController.text != '' && controller.estadoCivilSelecionado != null && controller.escolaridadeSelecionada != null && controller.nacionalidadeSelecionada != null && controller.naturalidadeSelecionada != null){
       if(lougradouroController.text != '' && numeroController.text != '' && controller.ufEnderecoSelecionado != null){
         if(controller.categoriaPublicoSelecionada != null){
           if(controller.motivoRegistroSelecionado != null && controller.registroStatusSelecionado != null){
@@ -1112,19 +1115,19 @@ class _CadastrarBeneficiarioAterPageState
             number: numeroController.text,
             complement: complementoController.text,
             neighborhood: bairroController.text,
-            cityCode: controller.comunidadeSelecionada!.cityCode,
+            cityCode: controller.comunidadeSelecionada?.cityCode ?? '1502509', //MOCK
             postalCode: cepMaeController.text,
             phone: telefoneController.text,
             cellphone: celularController.text,
             email: emailController.text,
-            communityId: controller.comunidadeSelecionada!.id,
-            targetPublicId: controller.categoriaPublicoSelecionada!.id,
+            communityId: controller.comunidadeSelecionada?.id,
+            targetPublicId: controller.categoriaPublicoSelecionada?.id,
             hasDap: false, //MOCK
             nis: '', //MOCK
-            dapId: controller.enqCaf!.id,
-            dapOriginId: controller.entidadeCaf!.id,
+            dapId: controller.enqCaf?.id,
+            dapOriginId: controller.entidadeCaf?.id,
             caf: cadastroNacionalController.text,
-            reasonMultiples: ['${controller.motivoRegistroSelecionado!.id}'],
+            reasonMultiples: ['${controller.motivoRegistroSelecionado?.id}'],
             officeId: 1, //MOCK
             registrationStatusId: 4,//MOCK
             physicalPerson: PhysicalPerson(
@@ -1134,11 +1137,12 @@ class _CadastrarBeneficiarioAterPageState
               nationalityId: controller.nacionalidadeSelecionada!.id,
               nationalIdentity: rgController.text,
               naturalnessId: controller.naturalidadeSelecionada!.id,
-              birthDate: controller.dataNascimentoPicked?.formattedDate("yyyy-MM-dd").toString() ?? '2000-01-01', //MOCK
+              birthDate: controller.dataNascimentoPicked?.formattedDate("yyyy/MM/dd") ?? '2000-01-01', //MOCK
               issuingEntity: orgaoRGController.text,
-              issueDate: controller.dataEmissaoRGPicked?.formattedDate("yyyy-MM-dd").toString() ?? '2000-01-01', //MOCK
+              issueDate: controller.dataEmissaoRGPicked?.formattedDate("yyyy/MM/dd") ?? '2000-01-01', //MOCK
               scholarityId: controller.escolaridadeSelecionada!.id,
-              mothersName: nomeMaeController.text
+              mothersName: nomeMaeController.text,
+              issuingUf: controller.ufSelecionado?.code,
             )
           );
 
@@ -1146,22 +1150,22 @@ class _CadastrarBeneficiarioAterPageState
           }
           else{
             //Campos de registro obrigatórios não preenchidos
-            ToastAvisosErro('Campos de registro obrigatórios não preenchidos(*).');
+            ToastAvisosErro('Campos obrigatórios(*) em "Informações de Registro" não preenchidos');
           }
         }
         else{
           //Campos de informações gerais obrigatórios não preenchidos
-          ToastAvisosErro('Campos de informações gerais obrigatórios não preenchidos(*).');
+          ToastAvisosErro('Campos obrigatórios(*) em "Informações Gerais" não preenchidos');
         }
       }
       else{
         //Campos de endereço obrigatórios não preenchidos
-        ToastAvisosErro('Campos de endereço obrigatórios não preenchidos(*).');
+        ToastAvisosErro('Campos obrigatórios(*) em "Informações de Endereço" não preenchidos');
       }
     }
     else{
       //Campos de dados pessoais obrigatórios não preenchidos
-      ToastAvisosErro('Campos de dados pessoais obrigatórios não preenchidos(*).');
+      ToastAvisosErro('Campos obrigatórios(*) em "Informações Pessoais" não preenchidos');
     }
     
   }
