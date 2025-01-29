@@ -26,11 +26,19 @@ class BeneficiarioAterRepository {
 
   int? putBeneficiarioCode;
 
+  Response<dynamic>? responsePOST;
+
+
   BeneficiarioAterRepository(this.dio);
   
 
   Future<List<BeneficiarioAter>> listaBeneficiariosAter() async {
-    var response = await dio.get('/beneficiary');
+    var response = await dio.get(
+      '/beneficiary',
+      queryParameters: {
+        'pagination': -1, //Para trazer todos os registros
+      }
+      );
 
     List<BeneficiarioAter> beneficiariosAter = [];
 
@@ -38,6 +46,7 @@ class BeneficiarioAterRepository {
 
     if(response.statusCode == 200){
       listaAter = true;
+      print(response.statusCode);
     }
 
     return beneficiariosAter; 
@@ -200,6 +209,10 @@ class BeneficiarioAterRepository {
     var response = await dio.post('/beneficiary/create',
     data: beneficiarioAterPost.toJson());
 
+    if(response.statusCode != 201){
+      responsePOST = response;
+    }
+
     postBeneficiarioCode = response.statusCode;
   }
 
@@ -227,17 +240,4 @@ class BeneficiarioAterRepository {
 
     return beneficiarioAter;
   }
-
-
-
-
-
-
-  
-  
-
-  
-
-
-
-}
+  }

@@ -1,9 +1,6 @@
-import 'package:esig_utils/status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater.dart';
-import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater_post.dart';
 import 'package:sisater_mobile/modules/beneficiario_ater/beneficiario_ater_controller.dart';
 import 'package:sisater_mobile/shared/utils/themes.dart';
 
@@ -109,19 +106,23 @@ class BeneficiarioCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text('CPF'),
-                        Text(beneficiarioAter.document ?? 'Cpf indisponível', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                      ],
+                    Flexible(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text('CPF'),
+                          Text(beneficiarioAter.document ?? 'Cpf indisponível', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                        ],
+                      ),
                     ),
                     //SizedBox(width: MediaQuery.of(context).size.width / 10,),
-                    Column(
-                      children: [
-                        Text('Telefone'),
-                        Text(beneficiarioAter.cellphone ?? '---', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                      ],
+                    Flexible(
+                      child: Column(
+                        children: [
+                          Text('Telefone'),
+                          Text(beneficiarioAter.cellphone ?? '---', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                        ],
+                      ),
                     ),
                   ],
                 ),

@@ -1,5 +1,6 @@
 import 'package:esig_utils/status.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:loading_empty_error/snackbar.dart';
 import 'package:mobx/mobx.dart';
 import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater.dart';
 import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater_post.dart';
@@ -93,9 +94,9 @@ abstract class _BeneficiarioAterControllerBase with Store {
   @observable
   Sexo? sexoSelecionado;
 
-  DateTime? dataNascimentoPicked;
+  DateTime dataNascimentoPicked = DateTime.now();
 
-  DateTime? dataEmissaoRGPicked;
+  DateTime dataEmissaoRGPicked = DateTime.now();
 
   @observable
   EstadoCivil? estadoCivilSelecionado;
@@ -253,7 +254,7 @@ abstract class _BeneficiarioAterControllerBase with Store {
           cadastroDisposer();
 
       }
-      else if(beneficiarioAterRepository.postBeneficiarioCode == 203){
+      else {
         cadastraBeneficiarioStatus = Status.ERRO;
 
         ToastAvisosSucesso("Erro ao cadastrar o beneficiário. Revise os campos e tente novamente.");
@@ -268,6 +269,9 @@ abstract class _BeneficiarioAterControllerBase with Store {
     } catch (e) {
       statusCarregaBeneficiarios = Status.ERRO;
       ToastAvisosErro('Erro ao realizar o cadastro.');
+
+      getEsigSnackBar(beneficiarioAterRepository.responsePOST.toString());
+
     }
   }
 
@@ -333,8 +337,8 @@ abstract class _BeneficiarioAterControllerBase with Store {
   void cadastroDisposer(){
 
    sexoSelecionado = null;
-   dataNascimentoPicked = null ;
-   dataEmissaoRGPicked = null;
+   dataNascimentoPicked = DateTime.now() ;
+   dataEmissaoRGPicked = DateTime.now();
    estadoCivilSelecionado = null;
    ufSelecionado= null;
    ufEnderecoSelecionado= null;

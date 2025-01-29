@@ -1,11 +1,10 @@
-import 'package:esig_utils/extensions/date_time.dart';
 import 'package:esig_utils/size_screen.dart';
+import 'package:intl/intl.dart';
 import 'package:esig_utils/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater_post.dart';
@@ -1115,21 +1114,26 @@ class _CadastrarBeneficiarioAterPageState
             number: numeroController.text,
             complement: complementoController.text,
             neighborhood: bairroController.text,
-            cityCode: controller.comunidadeSelecionada?.cityCode ?? '1502509', //MOCK
+            cityCode: controller.municipioSelecionado?.code ?? '1502509', //MOCK
             postalCode: cepMaeController.text,
             phone: telefoneController.text,
             cellphone: celularController.text,
             email: emailController.text,
             communityId: controller.comunidadeSelecionada?.id,
-            targetPublicId: controller.categoriaPublicoSelecionada?.id,
+            targetPublicId: controller.categoriaPublicoSelecionada?.id ?? 1, //MOCK
             hasDap: false, //MOCK
             nis: '', //MOCK
             dapId: controller.enqCaf?.id,
             dapOriginId: controller.entidadeCaf?.id,
             caf: cadastroNacionalController.text,
-            reasonMultiples: ['${controller.motivoRegistroSelecionado?.id}'],
+            reasonMultiples: controller.motivosRegistroSelecionados.map((e) => e.id.toString()).toList(),
             officeId: 1, //MOCK
-            registrationStatusId: 4,//MOCK
+            registrationStatusId: controller.registroStatusSelecionado?.id ?? 4,//MOCK
+            productMultiples: controller.produtosSelecionados.map((e) => e.id.toString()).toList(),
+            derivativesMultiple: controller.subProdutosSelecionados.map((e) => e.id.toString()).toList(),
+            productiveActivityMultiples: controller.categoriasAtividadeProdutivaSelecionadas.map((e) => e.id.toString()).toList(),
+            governmentProgramsMultiples: controller.programasGovernamentaisSelecionados.map((e) => e.id.toString()).toList(),
+            targetPublicMultiples: controller.motivosRegistroSelecionados.map((e) => e.id.toString()).toList(),
             physicalPerson: PhysicalPerson(
               nickname: apelidoController.text,
               gender: controller.sexoSelecionado!.id,
@@ -1137,9 +1141,9 @@ class _CadastrarBeneficiarioAterPageState
               nationalityId: controller.nacionalidadeSelecionada!.id,
               nationalIdentity: rgController.text,
               naturalnessId: controller.naturalidadeSelecionada!.id,
-              birthDate: controller.dataNascimentoPicked?.formattedDate("yyyy/MM/dd") ?? '2000-01-01', //MOCK
+              birthDate: '${controller.dataNascimentoPicked.year}-${controller.dataNascimentoPicked.month}-${controller.dataNascimentoPicked.day}', //MOCK
               issuingEntity: orgaoRGController.text,
-              issueDate: controller.dataEmissaoRGPicked?.formattedDate("yyyy/MM/dd") ?? '2000-01-01', //MOCK
+              issueDate: '${controller.dataEmissaoRGPicked.year}-${controller.dataEmissaoRGPicked.month}-${controller.dataEmissaoRGPicked.day}', //MOCK
               scholarityId: controller.escolaridadeSelecionada!.id,
               mothersName: nomeMaeController.text,
               issuingUf: controller.ufSelecionado?.code,

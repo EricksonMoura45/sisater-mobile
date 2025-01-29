@@ -24,12 +24,12 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
   BeneficiarioAterController beneficiarioAterController = Modular.get();
 
   // Variável para armazenar a data selecionada
-  DateTime? selectedDate;
+  DateTime selectedDate = DateTime.now();
 
   // Função para abrir o DatePicker
   Future<void> _selectDate(BuildContext context) async {
     // Data inicial (se não tiver uma data selecionada)
-    DateTime initialDate = selectedDate ?? DateTime.now();
+    DateTime initialDate = selectedDate;
     // Data de início e fim para o calendário
     DateTime firstDate = DateTime(DateTime.now().year - 100);
     DateTime lastDate = DateTime(DateTime.now().year, DateTime.now().day, DateTime.now().month);

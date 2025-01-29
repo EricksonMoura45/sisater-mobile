@@ -1,3 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
+
 class BeneficiarioAterPost {
   int? id;
   String? document;
@@ -19,93 +24,115 @@ class BeneficiarioAterPost {
   int? dapId;
   int? dapOriginId;
   String? caf;
-  List<String>? reasonMultiples;
   int? officeId;
   int? registrationStatusId;
+  List<String>? derivativesMultiple;
+  List<String>? reasonMultiples;
+  List<String>? productiveActivityMultiples;
+  List<String>? productMultiples = [];
+  List<String>? governmentProgramsMultiples;
+  List<String>? targetPublicMultiples;
   PhysicalPerson? physicalPerson;
 
-  BeneficiarioAterPost(
-      {this.document,
-      this.name,
-      this.type,
-      this.street,
-      this.number,
-      this.complement,
-      this.neighborhood,
-      this.cityCode,
-      this.postalCode,
-      this.phone,
-      this.cellphone,
-      this.email,
-      this.communityId,
-      this.targetPublicId,
-      this.hasDap,
-      this.nis,
-      this.dapId,
-      this.dapOriginId,
-      this.caf,
-      this.reasonMultiples,
-      this.officeId,
-      this.registrationStatusId,
-      this.physicalPerson});
+  BeneficiarioAterPost({
+    this.id,
+    this.document,
+    this.name,
+    this.type,
+    this.street,
+    this.number,
+    this.complement,
+    this.neighborhood,
+    this.cityCode,
+    this.postalCode,
+    this.phone,
+    this.cellphone,
+    this.email,
+    this.communityId,
+    this.targetPublicId,
+    this.hasDap,
+    this.nis,
+    this.dapId,
+    this.dapOriginId,
+    this.caf,
+    this.officeId,
+    this.registrationStatusId,
+    this.derivativesMultiple,
+    this.reasonMultiples,
+    this.productiveActivityMultiples,
+    this.productMultiples,
+    this.governmentProgramsMultiples,
+    this.targetPublicMultiples,
+    this.physicalPerson,
+  });
 
-  BeneficiarioAterPost.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    document = json['document'];
-    name = json['name'];
-    type = json['type'];
-    street = json['street'];
-    number = json['number'];
-    complement = json['complement'];
-    neighborhood = json['neighborhood'];
-    cityCode = json['city_code'];
-    postalCode = json['postal_code'];
-    phone = json['phone'];
-    cellphone = json['cellphone'];
-    email = json['email'];
-    communityId = json['community_id'];
-    targetPublicId = json['target_public_id'];
-    hasDap = json['has_dap'];
-    nis = json['nis'];
-    dapId = json['dap_id'];
-    dapOriginId = json['dap_origin_id'];
-    caf = json['caf'];
-    reasonMultiples = json['reason_multiples'].cast<String>();
-    officeId = json['office_id'];
-    registrationStatusId = json['registration_status_id'];
-    physicalPerson = json['physicalPerson'] != null
-        ? PhysicalPerson.fromJson(json['physicalPerson'])
-        : null;
-  }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['document'] = document;
-    data['name'] = name;
-    data['type'] = type;
-    data['street'] = street;
-    data['number'] = number;
-    data['complement'] = complement;
-    data['neighborhood'] = neighborhood;
-    data['city_code'] = cityCode;
-    data['postal_code'] = postalCode;
-    data['phone'] = phone;
-    data['cellphone'] = cellphone;
-    data['email'] = email;
-    data['community_id'] = communityId;
-    data['target_public_id'] = targetPublicId;
-    data['has_dap'] = hasDap;
-    data['nis'] = nis;
-    data['dap_id'] = dapId;
-    data['dap_origin_id'] = dapOriginId;
-    data['caf'] = caf;
-    data['reason_multiples'] = reasonMultiples;
-    data['office_id'] = officeId;
-    data['registration_status_id'] = registrationStatusId;
-    if (physicalPerson != null) {
-      data['physicalPerson'] = physicalPerson!.toJson();
-    }
-    return data;
+    return <String, dynamic>{
+      'id': id,
+      'document': document,
+      'name': name,
+      'type': type,
+      'street': street,
+      'number': number,
+      'complement': complement,
+      'neighborhood': neighborhood,
+      'city_code': cityCode,
+      'postalCode': postalCode,
+      'phone': phone,
+      'cellphone': cellphone,
+      'email': email,
+      'community_id': communityId,
+      'target_public_id': targetPublicId,
+      'has_dap': hasDap,
+      'nis': nis,
+      'dapId': dapId,
+      'dap_origin_id': dapOriginId,
+      'caf': caf,
+      'reason_multiples': reasonMultiples,
+      'officeId': officeId,
+      'registration_status_id': registrationStatusId,
+      'derivatives_multiple': derivativesMultiple,
+      'productive_activity_multiples': productiveActivityMultiples,
+      'product_multiples': productMultiples,
+      'government_programs_multiples': governmentProgramsMultiples,
+      'target_public_multiple': targetPublicMultiples,
+      'physicalPerson': physicalPerson?.toJson(),
+    };
+  }
+
+  factory BeneficiarioAterPost.fromJson(Map<String, dynamic> map) {
+    return BeneficiarioAterPost(
+      id: map['id'] != null ? map['id'] as int : null,
+      document: map['document'] != null ? map['document'] as String : null,
+      name: map['name'] != null ? map['name'] as String : null,
+      type: map['type'] != null ? map['type'] as int : null,
+      street: map['street'] != null ? map['street'] as String : null,
+      number: map['number'] != null ? map['number'] as String : null,
+      complement: map['complement'] != null ? map['complement'] as String : null,
+      neighborhood: map['neighborhood'] != null ? map['neighborhood'] as String : null,
+      cityCode: map['city_code'] != null ? map['city_code'] as String : null,
+      postalCode: map['postal_code'] != null ? map['postal_code'] as String : null,
+      phone: map['phone'] != null ? map['phone'] as String : null,
+      cellphone: map['cellphone'] != null ? map['cellphone'] as String : null,
+      email: map['email'] != null ? map['email'] as String : null,
+      communityId: map['community_id'] != null ? map['community_id'] as int : null,
+      targetPublicId: map['target_public_id'] != null ? map['target_public_id'] as int : null,
+      hasDap: map['has_dap'] != null ? map['has_dap'] as bool : null,
+      nis: map['nis'] != null ? map['nis'] as String : null,
+      dapId: map['dap_id'] != null ? map['dap_id'] as int : null,
+      dapOriginId: map['dap_origin_id'] != null ? map['dap_origin_id'] as int : null,
+      caf: map['caf'] != null ? map['caf'] as String : null,
+      reasonMultiples: map['reason_multiples'] != null ? List<String>.from((map['reason_multiples'] as List<String>)) : null,
+      officeId: map['office_id'] != null ? map['office_id'] as int : null,
+      registrationStatusId: map['registration_status_id'] != null ? map['registration_status_id'] as int : null,
+      derivativesMultiple: map['derivatives_multiple'] != null ? List<String>.from((map['derivatives_multiple'] as List<String>)) : null,
+      productiveActivityMultiples: map['productive_activity_multiples'] != null ? List<String>.from((map['productive_activity_multiples'] as List<String>)) : null,
+      productMultiples: map['product_multiples'] != null ? List<String>.from((map['product_multiples'] as List<String>)) : null,
+      governmentProgramsMultiples: map['government_programs_multiples'] != null ? List<String>.from((map['government_programs_multiples'] as List<String>)) : null,
+      targetPublicMultiples: map['target_public_multiples'] != null ? List<String>.from((map['target_public_multiples'] as List<String>)) : null,
+      physicalPerson: map['physicalPerson'] != null ? PhysicalPerson.fromJson(map['physicalPerson'] as Map<String,dynamic>) : null,
+    );
   }
 }
 
