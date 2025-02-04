@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:sisater_mobile/models/autenticacao/usuario_dados.dart';
 import 'package:sisater_mobile/modules/app_store.dart';
+import 'package:sisater_mobile/modules/autenticacao/autenticacao_controller.dart';
 import 'package:sisater_mobile/modules/home/widgets/appbar_home.dart';
 import 'package:sisater_mobile/modules/home/widgets/botao_menu.dart';
 import 'package:sisater_mobile/modules/home/widgets/custom_drawer_widget.dart';
@@ -12,6 +14,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  AutenticacaoController autenticacaoController = Modular.get();
+
+  UsuarioDados? usuarioDados = Modular.args.data;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +31,15 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Olá, Usuário!', style: TextStyle(fontSize: 35),),
+              Text(
+                'Olá, ${usuarioDados?.name ?? 'Usuário'}',
+                maxLines: 2,
+                overflow: TextOverflow.fade, 
+                style: TextStyle(fontSize: 35),),
               Text('Sisater Mobile', style: TextStyle(fontSize: 20),),
-              SizedBox(height: 40,),
+              SizedBox(height: 10,),
+              Text('Selecione entre as opções abaixo:', style: TextStyle(fontSize: 14),),
+              SizedBox(height: 20,),
               opcoesBotoes()
             ],
           ),

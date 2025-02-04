@@ -104,7 +104,7 @@ abstract class _AppStoreBase with Store {
 
     loginResponse = null;
     //permissoes = null;
-    Modular.to.pushReplacementNamed('/login_page');
+    Modular.to.pushReplacementNamed('/');
     return removedKeys;
   }
 

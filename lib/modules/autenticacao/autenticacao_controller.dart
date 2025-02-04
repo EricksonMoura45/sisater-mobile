@@ -60,9 +60,8 @@ abstract class _AutenticacaoControllerBase with Store {
       
       statusLogin = StatusLogin.AGUARDANDO;
       appStore.loginResponse = await _authRepository.login(loginPost!);
-      
+      await carregaUsuario();
        await appStore.prefs.saveSenha(senha);
-       await carregaUsuario();
        //TODO arrumar 'lembrar-me'
       if(manterLogado){
         appStore.persistirDadosLogin();
@@ -71,8 +70,8 @@ abstract class _AutenticacaoControllerBase with Store {
       
       if (_authRepository.statusLogin == true) {
         statusLogin = StatusLogin.LOGADO;
-        Modular.to.pushReplacementNamed('/home');
-        print(appStore.usuarioDados);
+        Modular.to.pushReplacementNamed('/home', arguments: usuarioDados);
+        print(appStore.loginResponse?.accessToken);
 
       } else {
         Fluttertoast.showToast(

@@ -14,13 +14,13 @@ class SplashScreenPage extends StatefulWidget {
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
   
-  //final AutenticacaoController _authController = Modular.get();
+  final AutenticacaoController _authController = Modular.get();
 
-  // @override
-  // void initState() {
-  //   _authController.verificarDadoPersistidos();
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    _authController.verificarDadoPersistidos();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

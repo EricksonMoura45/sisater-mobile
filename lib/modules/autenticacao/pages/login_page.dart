@@ -64,35 +64,33 @@ class _LoginPageState extends State<LoginPage> {
       key: scaffoldKey,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 100),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 70),
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     _buildLogoApp(context),
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 30),
                     _buildLoginInput(),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
                     _buildPassInput(),
-                    const SizedBox(height: 15),
                     _buildBotaoEsqueciSenha(context),
-                    const SizedBox(height: 70),
-                    _buildBotaoLogin(context),
-                    const SizedBox(height: 30),
-                    //_buildBotaoCadastro(context),
-                    const SizedBox(height: 25),
                   ],
                 ))
           ]),
         ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(30),
+        child: _buildBotaoLogin(context),
       ),
     );
   }
 
   Widget _buildLogoApp(BuildContext context) {
     return const Align(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.topLeft,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

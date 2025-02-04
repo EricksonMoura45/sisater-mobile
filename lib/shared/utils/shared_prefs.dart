@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sisater_mobile/models/autenticacao/login_response.dart';
 
 class SharedPrefs {
     // Instância global para toda aplicação (Singleton pattern)
@@ -18,7 +19,6 @@ class SharedPrefs {
   static const dashboardResponseKey = 'dashboardResponseKey';
   static const senhaKey = 'senhaKey';
   static const permissoesKey = 'permissoesKey';
-  static const registroOfflineey = 'pontoOfflineKey';
 
   Future read(String key) async {
     final prefs = await SharedPreferences.getInstance();
@@ -40,10 +40,9 @@ class SharedPrefs {
     return prefs.containsKey(key);
   }
 
-  
-  //  Future<LoginResponse> readUsuario() async {
-  //    return LoginResponse.fromJson(await read(loginResponseKey));
-  //  }
+   Future<LoginResponse> readUsuario() async {
+     return LoginResponse.fromJson(await read(loginResponseKey));
+   }
 
   Future<bool> saveSenha(String pass) async {
     Codec<String, String> stringToBase64 = utf8.fuse(base64);
