@@ -7,25 +7,25 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater.dart';
-import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater_post.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/categoria_atividade_produtiva.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/categoria_publico.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/comunidade.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/enq_caf.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/entidade_caf.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/escolaridade.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/estado_civil.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/motivo_registro.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/municipio.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/nacionalidade.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/naturalidade.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/produto.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/programas_governamentais.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/registro_status.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/sexo.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/subproduto.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/uf.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/beneficiario_ater.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/beneficiario_ater_post.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/categoria_atividade_produtiva.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/categoria_publico.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/comunidade.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/enq_caf.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/entidade_caf.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/escolaridade.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/estado_civil.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/motivo_registro.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/municipio.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/nacionalidade.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/naturalidade.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/produto.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/programas_governamentais.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/registro_status.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/sexo.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/subproduto.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/uf.dart';
 import 'package:sisater_mobile/modules/beneficiario_ater/beneficiario_ater_controller.dart';
 import 'package:sisater_mobile/shared/utils/themes.dart';
 import 'package:sisater_mobile/shared/utils/widgets/date_picker.dart';
@@ -107,7 +107,8 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
       body: Observer(
         builder: (_){
 
-          if(controller.statusCarregaDadosPagina == Status.AGUARDANDO || controller.editarBeneficiarioStatus == Status.AGUARDANDO){
+          if(controller.editarBeneficiarioStatus == Status.AGUARDANDO){
+            if(controller.statusCarregaDadosPagina == Status.AGUARDANDO){
             return SingleChildScrollView(
               child: Shimmer.fromColors(
               baseColor: Colors.grey[300]!,
@@ -131,6 +132,7 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
             );
 
           }
+        }
         if(controller.editarBeneficiarioStatus == Status.CONCLUIDO){
           if(controller.statusCarregaDadosPagina == Status.CONCLUIDO){
 
@@ -169,9 +171,7 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
         padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
         child: Observer(builder: (_){
            if(controller.statusCarregaDadosPagina == Status.CONCLUIDO){
-            return 
-            
-              botaoCadastrar(context);
+            return botaoCadastrar(context);
            }
             else{
               return SizedBox();
@@ -1189,23 +1189,22 @@ class _EditarBeneficiarioPageState extends State<EditarBeneficiarioPage> {
     celularController.text = controller.beneficiarioAterEdit?.cellphone ?? '';
     emailController.text = controller.beneficiarioAterEdit?.email ?? '';
     cadastroNacionalController.text = controller.beneficiarioAterEdit?.caf ?? '';
-    controller.sexoSelecionado = controller.listaSexo.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.gender, orElse: controller.sexoSelecionado = null);
-    controller.estadoCivilSelecionado = controller.listaEstadoCivil.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.civilStatus);
-    controller.escolaridadeSelecionada = controller.listaEscolaridade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.scholarityId);
-    controller.nacionalidadeSelecionada = controller.listaNacionalidade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.nationalityId);
-    controller.naturalidadeSelecionada = controller.listaNaturalidade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.naturalnessId);
-    controller.ufEnderecoSelecionado = controller.listaUF.firstWhere((element) => element.code == controller.beneficiarioAterEdit?.physicalPerson?.issuingUf);
-    controller.comunidadeSelecionada = controller.listaComunidade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.communityId);
-    controller.categoriaPublicoSelecionada = controller.listaCategoriaPublico.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.targetPublicId);
-    controller.motivosRegistroSelecionados = controller.listaMotivoRegistro.where((element) => controller.beneficiarioAterEdit!.reasonMultiples!.contains(element.id)).toList();
-    controller.registroStatusSelecionado = controller.listaRegistroStatus.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.registrationStatusId);
-    //controller.produtosSelecionados = controller.listaProdutos.where((element) => controller.beneficiarioAterEdit!.products!.contains(element)).toList();
-    //controller.subProdutosSelecionados = controller.listaSubprodutos.where((element) => controller.beneficiarioAterEdit!.subProducts!.contains(element)).toList();
-    //controller.categoriasAtividadeProdutivaSelecionadas = controller.listaCategoriaAtividadeProdutiva.where((element) => controller.beneficiarioAterEdit!.productiveActivities!.contains(element)).toList();
-    //controller.programasGovernamentaisSelecionados = controller.listaProgramasGovernamentais.where((element) => controller.beneficiarioAterEdit!.governmentPrograms!.contains(element)).toList();
+    // controller.sexoSelecionado = controller.listaSexo.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.gender, orElse: controller.sexoSelecionado = null);
+    // controller.estadoCivilSelecionado = controller.listaEstadoCivil.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.civilStatus);
+    // controller.escolaridadeSelecionada = controller.listaEscolaridade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.scholarityId);
+    // controller.nacionalidadeSelecionada = controller.listaNacionalidade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.nationalityId);
+    // controller.naturalidadeSelecionada = controller.listaNaturalidade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.physicalPerson?.naturalnessId);
+    // controller.ufEnderecoSelecionado = controller.listaUF.firstWhere((element) => element.code == controller.beneficiarioAterEdit?.physicalPerson?.issuingUf);
+    // controller.comunidadeSelecionada = controller.listaComunidade.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.communityId);
+    // controller.categoriaPublicoSelecionada = controller.listaCategoriaPublico.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.targetPublicId);
+    // controller.motivosRegistroSelecionados = controller.listaMotivoRegistro.where((element) => controller.beneficiarioAterEdit?.reasonMultiples?.contains(element.id)).toList() ?? [];
+    // controller.registroStatusSelecionado = controller.listaRegistroStatus.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.registrationStatusId);
+    // controller.produtosSelecionados = controller.listaProdutos.where((element) => controller.beneficiarioAterEdit?.productMultiples?.contains(element)).toList();
+    // controller.subProdutosSelecionados = controller.listaSubprodutos.where((element) => controller.beneficiarioAterEdit!.subProducts!.contains(element)).toList();
+    // controller.categoriasAtividadeProdutivaSelecionadas = controller.listaCategoriaAtividadeProdutiva.where((element) => controller.beneficiarioAterEdit!.productiveActivities!.contains(element)).toList();
+    // controller.programasGovernamentaisSelecionados = controller.listaProgramasGovernamentais.where((element) => controller.beneficiarioAterEdit!.governmentPrograms!.contains(element)).toList();
     // controller.cafBool = controller.beneficiarioAterEdit!.hasDap ?? false;
-    // controller.enqCaf = controller.listaEnqCaf.firstWhere((element) => element.id == controller.beneficiarioAterEdit!.dapId);
-    // controller.entidadeCaf = controller.listaEntidadeCaf.firstWhere((element) => element.id == controller.beneficiarioAterEdit!.dapOriginId);
-
+    // controller.enqCaf = controller.listaEnqCaf.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.dapId);
+    // controller.entidadeCaf = controller.listaEntidadeCaf.firstWhere((element) => element.id == controller.beneficiarioAterEdit?.dapOriginId);
   }
 }

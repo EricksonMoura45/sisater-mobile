@@ -1,21 +1,21 @@
 import 'package:dio/dio.dart';
-import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater.dart';
-import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater_post.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/categoria_atividade_produtiva.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/categoria_publico.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/municipio.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/comunidade.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/enq_caf.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/entidade_caf.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/escolaridade.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/motivo_registro.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/nacionalidade.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/naturalidade.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/produto.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/programas_governamentais.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/registro_status.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/subproduto.dart';
-import 'package:sisater_mobile/models/beneficiarios/campos_selecionaveis/uf.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/beneficiario_ater.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/beneficiario_ater_post.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/categoria_atividade_produtiva.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/categoria_publico.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/municipio.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/comunidade.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/enq_caf.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/entidade_caf.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/escolaridade.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/motivo_registro.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/nacionalidade.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/naturalidade.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/produto.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/programas_governamentais.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/registro_status.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/subproduto.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/campos_selecionaveis/uf.dart';
 
 class BeneficiarioAterRepository {
 

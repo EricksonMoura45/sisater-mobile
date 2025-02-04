@@ -1,4 +1,4 @@
-import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater_post.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/beneficiario_ater_post.dart';
 
 class BeneficiarioAter {
   int? id;

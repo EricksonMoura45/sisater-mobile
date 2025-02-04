@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/beneficiario_ater.dart';
 import 'package:sisater_mobile/modules/beneficiario_ater/beneficiario_ater_controller.dart';
 import 'package:sisater_mobile/shared/utils/widgets/beneficiario_card.dart';
 import 'package:sisater_mobile/shared/utils/widgets/listpage_appbar.dart';

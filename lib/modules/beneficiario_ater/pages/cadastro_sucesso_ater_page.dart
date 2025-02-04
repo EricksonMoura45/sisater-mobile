@@ -1,6 +1,7 @@
 import 'package:esig_utils/size_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:sisater_mobile/modules/beneficiario_ater/beneficiario_ater_controller.dart';
 import 'package:sisater_mobile/shared/utils/images.dart';
 import 'package:sisater_mobile/shared/utils/themes.dart';
 
@@ -43,6 +44,8 @@ class CadastroSucessoPage extends StatelessWidget {
   }
 
    Widget _buildBotoes(BuildContext context) {
+    BeneficiarioAterController controller = Modular.get();
+
     return Column(
       children: [
         MaterialButton(
@@ -55,6 +58,8 @@ class CadastroSucessoPage extends StatelessWidget {
           color: Themes.verdeBotao,
           onPressed: () async {
             
+            controller.carregaBeneficiarios(); //Atualiza a lista de beneficiários após o cadastro
+
             Modular.to.pushReplacementNamed('/beneficiarios_ater');
 
            }

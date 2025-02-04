@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:sisater_mobile/models/beneficiarios/beneficiario_ater.dart';
+import 'package:sisater_mobile/models/beneficiarios_ater/beneficiario_ater.dart';
 import 'package:sisater_mobile/modules/beneficiario_ater/beneficiario_ater_controller.dart';
 import 'package:sisater_mobile/shared/utils/themes.dart';
 
@@ -42,28 +42,28 @@ class BeneficiarioCard extends StatelessWidget {
                     )),
                     Row(
                       children: [
-                        GestureDetector(
-                          onTap: () async {
-                            Modular.to.pushNamed('editar_ater', arguments: beneficiarioAter);
-                          },
-                          child: Container(
-                                              padding: const EdgeInsets.all(1),
-                                              decoration: BoxDecoration(
-                                                color: Colors.grey.withOpacity(.8),
-                                                borderRadius: BorderRadius.circular(5),
-                                                border: Border.all(color: Colors.white)
-                                              ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(3),
-                                                child:Row(
-                                                      children: [
-                                                        Icon(Icons.edit, color: Colors.white,),
-                                                        SizedBox(width: 2,),
-                                                        Text('Editar', style: TextStyle(color: Colors.white),),
-                                                     ],
-                                                )
-                                              )),
-                        ),
+                        // GestureDetector(
+                        //   onTap: () async {
+                        //     Modular.to.pushNamed('editar_ater', arguments: beneficiarioAter);
+                        //   },
+                        //   child: Container(
+                        //                       padding: const EdgeInsets.all(1),
+                        //                       decoration: BoxDecoration(
+                        //                         color: Colors.grey.withOpacity(.8),
+                        //                         borderRadius: BorderRadius.circular(5),
+                        //                         border: Border.all(color: Colors.white)
+                        //                       ),
+                        //                       child: Padding(
+                        //                         padding: const EdgeInsets.all(3),
+                        //                         child:Row(
+                        //                               children: [
+                        //                                 Icon(Icons.edit, color: Colors.white,),
+                        //                                 SizedBox(width: 2,),
+                        //                                 Text('Editar', style: TextStyle(color: Colors.white),),
+                        //                              ],
+                        //                         )
+                        //                       )),
+                        // ),
                     SizedBox(width: 5,),
                     
                     GestureDetector(
