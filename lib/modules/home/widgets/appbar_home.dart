@@ -17,6 +17,6 @@ appBarhome(BuildContext context) {
           tooltip: MaterialLocalizations.of(buildContext).openAppDrawerTooltip,
         );
       },
-    ), 
+    ),
     );
 }
