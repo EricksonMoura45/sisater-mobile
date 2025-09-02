@@ -7,6 +7,7 @@ import 'package:sisater_mobile/modules/app_store.dart';
 
 
 class Appinterceptors extends QueuedInterceptor {
+  
    final AppStore _appStore = Modular.get();
 
   @override

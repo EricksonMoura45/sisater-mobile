@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class BeneficiarioSearchBar extends StatelessWidget {
   final Function(String) onSearchChanged;
 
-  BeneficiarioSearchBar({required this.onSearchChanged});
+  const BeneficiarioSearchBar({super.key, required this.onSearchChanged});
 
   @override
   Widget build(BuildContext context) {

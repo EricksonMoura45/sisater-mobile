@@ -1,0 +1,271 @@
+// **************************************************************************
+// StoreGenerator
+// **************************************************************************
+
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
+
+mixin _$UnidadeProducaoController on _UnidadeProducaoControllerBase, Store {
+  late final _$statusCarregaUnidadesAtom = Atom(
+      name: '_UnidadeProducaoControllerBase.statusCarregaUnidades',
+      context: context);
+
+  @override
+  Status get statusCarregaUnidades {
+    _$statusCarregaUnidadesAtom.reportRead();
+    return super.statusCarregaUnidades;
+  }
+
+  @override
+  set statusCarregaUnidades(Status value) {
+    _$statusCarregaUnidadesAtom.reportWrite(value, super.statusCarregaUnidades,
+        () {
+      super.statusCarregaUnidades = value;
+    });
+  }
+
+  late final _$statusCarregaMaisUnidadesAtom = Atom(
+      name: '_UnidadeProducaoControllerBase.statusCarregaMaisUnidades',
+      context: context);
+
+  @override
+  Status get statusCarregaMaisUnidades {
+    _$statusCarregaMaisUnidadesAtom.reportRead();
+    return super.statusCarregaMaisUnidades;
+  }
+
+  @override
+  set statusCarregaMaisUnidades(Status value) {
+    _$statusCarregaMaisUnidadesAtom
+        .reportWrite(value, super.statusCarregaMaisUnidades, () {
+      super.statusCarregaMaisUnidades = value;
+    });
+  }
+
+  late final _$statusCarregaUnidadesPorNomeAtom = Atom(
+      name: '_UnidadeProducaoControllerBase.statusCarregaUnidadesPorNome',
+      context: context);
+
+  @override
+  Status get statusCarregaUnidadesPorNome {
+    _$statusCarregaUnidadesPorNomeAtom.reportRead();
+    return super.statusCarregaUnidadesPorNome;
+  }
+
+  @override
+  set statusCarregaUnidadesPorNome(Status value) {
+    _$statusCarregaUnidadesPorNomeAtom
+        .reportWrite(value, super.statusCarregaUnidadesPorNome, () {
+      super.statusCarregaUnidadesPorNome = value;
+    });
+  }
+
+  late final _$statusPostUnidadeAtom = Atom(
+      name: '_UnidadeProducaoControllerBase.statusPostUnidade',
+      context: context);
+
+  @override
+  Status get statusPostUnidade {
+    _$statusPostUnidadeAtom.reportRead();
+    return super.statusPostUnidade;
+  }
+
+  @override
+  set statusPostUnidade(Status value) {
+    _$statusPostUnidadeAtom.reportWrite(value, super.statusPostUnidade, () {
+      super.statusPostUnidade = value;
+    });
+  }
+
+  late final _$statusPutUnidadeAtom = Atom(
+      name: '_UnidadeProducaoControllerBase.statusPutUnidade',
+      context: context);
+
+  @override
+  Status get statusPutUnidade {
+    _$statusPutUnidadeAtom.reportRead();
+    return super.statusPutUnidade;
+  }
+
+  @override
+  set statusPutUnidade(Status value) {
+    _$statusPutUnidadeAtom.reportWrite(value, super.statusPutUnidade, () {
+      super.statusPutUnidade = value;
+    });
+  }
+
+  late final _$statusDeleteUnidadeAtom = Atom(
+      name: '_UnidadeProducaoControllerBase.statusDeleteUnidade',
+      context: context);
+
+  @override
+  Status get statusDeleteUnidade {
+    _$statusDeleteUnidadeAtom.reportRead();
+    return super.statusDeleteUnidade;
+  }
+
+  @override
+  set statusDeleteUnidade(Status value) {
+    _$statusDeleteUnidadeAtom.reportWrite(value, super.statusDeleteUnidade, () {
+      super.statusDeleteUnidade = value;
+    });
+  }
+
+  late final _$unidadesAtom =
+      Atom(name: '_UnidadeProducaoControllerBase.unidades', context: context);
+
+  @override
+  List<UnidadedeProducaoList> get unidades {
+    _$unidadesAtom.reportRead();
+    return super.unidades;
+  }
+
+  @override
+  set unidades(List<UnidadedeProducaoList> value) {
+    _$unidadesAtom.reportWrite(value, super.unidades, () {
+      super.unidades = value;
+    });
+  }
+
+  late final _$unidadesFiltradasAtom = Atom(
+      name: '_UnidadeProducaoControllerBase.unidadesFiltradas',
+      context: context);
+
+  @override
+  List<UnidadedeProducaoList> get unidadesFiltradas {
+    _$unidadesFiltradasAtom.reportRead();
+    return super.unidadesFiltradas;
+  }
+
+  @override
+  set unidadesFiltradas(List<UnidadedeProducaoList> value) {
+    _$unidadesFiltradasAtom.reportWrite(value, super.unidadesFiltradas, () {
+      super.unidadesFiltradas = value;
+    });
+  }
+
+  late final _$maisUnidadesFiltradasAtom = Atom(
+      name: '_UnidadeProducaoControllerBase.maisUnidadesFiltradas',
+      context: context);
+
+  @override
+  List<UnidadedeProducaoList> get maisUnidadesFiltradas {
+    _$maisUnidadesFiltradasAtom.reportRead();
+    return super.maisUnidadesFiltradas;
+  }
+
+  @override
+  set maisUnidadesFiltradas(List<UnidadedeProducaoList> value) {
+    _$maisUnidadesFiltradasAtom.reportWrite(value, super.maisUnidadesFiltradas,
+        () {
+      super.maisUnidadesFiltradas = value;
+    });
+  }
+
+  late final _$mensagemErroAtom = Atom(
+      name: '_UnidadeProducaoControllerBase.mensagemErro', context: context);
+
+  @override
+  String get mensagemErro {
+    _$mensagemErroAtom.reportRead();
+    return super.mensagemErro;
+  }
+
+  @override
+  set mensagemErro(String value) {
+    _$mensagemErroAtom.reportWrite(value, super.mensagemErro, () {
+      super.mensagemErro = value;
+    });
+  }
+
+  late final _$pageCounterAtom = Atom(
+      name: '_UnidadeProducaoControllerBase.pageCounter', context: context);
+
+  @override
+  int get pageCounter {
+    _$pageCounterAtom.reportRead();
+    return super.pageCounter;
+  }
+
+  @override
+  set pageCounter(int value) {
+    _$pageCounterAtom.reportWrite(value, super.pageCounter, () {
+      super.pageCounter = value;
+    });
+  }
+
+  late final _$carregarUnidadesAsyncAction = AsyncAction(
+      '_UnidadeProducaoControllerBase.carregarUnidades',
+      context: context);
+
+  @override
+  Future<void> carregarUnidades() {
+    return _$carregarUnidadesAsyncAction.run(() => super.carregarUnidades());
+  }
+
+  late final _$carregarMaisUnidadesAsyncAction = AsyncAction(
+      '_UnidadeProducaoControllerBase.carregarMaisUnidades',
+      context: context);
+
+  @override
+  Future<void> carregarMaisUnidades() {
+    return _$carregarMaisUnidadesAsyncAction
+        .run(() => super.carregarMaisUnidades());
+  }
+
+  late final _$carregarUnidadesPorNomeAsyncAction = AsyncAction(
+      '_UnidadeProducaoControllerBase.carregarUnidadesPorNome',
+      context: context);
+
+  @override
+  Future<void> carregarUnidadesPorNome(String nome) {
+    return _$carregarUnidadesPorNomeAsyncAction
+        .run(() => super.carregarUnidadesPorNome(nome));
+  }
+
+  late final _$postUnidadeDeProducaoAsyncAction = AsyncAction(
+      '_UnidadeProducaoControllerBase.postUnidadeDeProducao',
+      context: context);
+
+  @override
+  Future<void> postUnidadeDeProducao(UnidadeDeProducaoPost unidade) {
+    return _$postUnidadeDeProducaoAsyncAction
+        .run(() => super.postUnidadeDeProducao(unidade));
+  }
+
+  late final _$putUnidadeDeProducaoAsyncAction = AsyncAction(
+      '_UnidadeProducaoControllerBase.putUnidadeDeProducao',
+      context: context);
+
+  @override
+  Future<void> putUnidadeDeProducao(UnidadeDeProducaoPost unidade, int id) {
+    return _$putUnidadeDeProducaoAsyncAction
+        .run(() => super.putUnidadeDeProducao(unidade, id));
+  }
+
+  late final _$deleteUnidadeDeProducaoAsyncAction = AsyncAction(
+      '_UnidadeProducaoControllerBase.deleteUnidadeDeProducao',
+      context: context);
+
+  @override
+  Future<void> deleteUnidadeDeProducao(int id) {
+    return _$deleteUnidadeDeProducaoAsyncAction
+        .run(() => super.deleteUnidadeDeProducao(id));
+  }
+
+  @override
+  String toString() {
+    return '''
+statusCarregaUnidades: ${statusCarregaUnidades},
+statusCarregaMaisUnidades: ${statusCarregaMaisUnidades},
+statusCarregaUnidadesPorNome: ${statusCarregaUnidadesPorNome},
+statusPostUnidade: ${statusPostUnidade},
+statusPutUnidade: ${statusPutUnidade},
+statusDeleteUnidade: ${statusDeleteUnidade},
+unidades: ${unidades},
+unidadesFiltradas: ${unidadesFiltradas},
+maisUnidadesFiltradas: ${maisUnidadesFiltradas},
+mensagemErro: ${mensagemErro},
+pageCounter: ${pageCounter}
+    ''';
+  }
+}

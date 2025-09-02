@@ -1,38 +1,72 @@
 class UsuarioDados {
   int? id;
-  String? registry;
-  String? name;
-  String? email;
-  String? phone;
-  int? gender;
   String? document;
-  String? nationalIdentity;
-  String? issuingEntity;
-  String? birthDate;
+  int? beneficiaryId;
+  int? forcaTrabalhoId;
+  int? status;
+  int? admin;
+  String? name;
+  int? createdAt;
+  String? officeName;
+  bool? primeiroAcesso;
+  int? updatedAt;
+  String? perfil;
+  String? cityCode;
+  int? officeId;
+  String? foto;
+
   UsuarioDados(
       {this.id,
-      this.registry,
-      this.name,
-      this.email,
-      this.phone,
-      this.gender,
       this.document,
-      this.nationalIdentity,
-      this.issuingEntity,
-      this.birthDate,
-      });
+      this.beneficiaryId,
+      this.forcaTrabalhoId,
+      this.status,
+      this.admin,
+      this.name,
+      this.createdAt,
+      this.officeName,
+      this.primeiroAcesso,
+      this.updatedAt,
+      this.perfil,
+      this.cityCode,
+      this.officeId,
+      this.foto});
 
   UsuarioDados.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    registry = json['registry'];
-    name = json['name'];
-    email = json['email'];
-    phone = json['phone'];
-    gender = json['gender'];
     document = json['document'];
-    nationalIdentity = json['national_identity'];
-    issuingEntity = json['issuing_entity'];
-    birthDate = json['birth_date'];
+    beneficiaryId = json['beneficiary_id'];
+    forcaTrabalhoId = json['forca_trabalho_id'];
+    status = json['status'];
+    admin = json['admin'];
+    name = json['name'];
+    createdAt = json['created_at'];
+    officeName = json['office_name'];
+    primeiroAcesso = json['primeiro_acesso'];
+    updatedAt = json['updated_at'];
+    perfil = json['perfil'];
+    cityCode = json['city_code'];
+    officeId = json['office_id'];
+    foto = json['foto'];
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['document'] = document;
+    data['beneficiary_id'] = beneficiaryId;
+    data['forca_trabalho_id'] = forcaTrabalhoId;
+    data['status'] = status;
+    data['admin'] = admin;
+    data['name'] = name;
+    data['created_at'] = createdAt;
+    data['office_name'] = officeName;
+    data['primeiro_acesso'] = primeiroAcesso;
+    data['updated_at'] = updatedAt;
+    data['perfil'] = perfil;
+    data['city_code'] = cityCode;
+    data['office_id'] = officeId;
+    data['foto'] = foto;
+    return data;
+  }
 }

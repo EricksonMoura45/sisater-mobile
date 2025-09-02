@@ -1,0 +1,1522 @@
+// **************************************************************************
+// StoreGenerator
+// **************************************************************************
+
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
+
+mixin _$BeneficiarioAterController on _BeneficiarioAterControllerBase, Store {
+  late final _$listaBeneficiariosAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.listaBeneficiarios',
+      context: context);
+
+  @override
+  List<BeneficiarioAter> get listaBeneficiarios {
+    _$listaBeneficiariosAtom.reportRead();
+    return super.listaBeneficiarios;
+  }
+
+  @override
+  set listaBeneficiarios(List<BeneficiarioAter> value) {
+    _$listaBeneficiariosAtom.reportWrite(value, super.listaBeneficiarios, () {
+      super.listaBeneficiarios = value;
+    });
+  }
+
+  late final _$beneficiariosFiltradosAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.beneficiariosFiltrados',
+      context: context);
+
+  @override
+  List<BeneficiarioAter> get beneficiariosFiltrados {
+    _$beneficiariosFiltradosAtom.reportRead();
+    return super.beneficiariosFiltrados;
+  }
+
+  @override
+  set beneficiariosFiltrados(List<BeneficiarioAter> value) {
+    _$beneficiariosFiltradosAtom
+        .reportWrite(value, super.beneficiariosFiltrados, () {
+      super.beneficiariosFiltrados = value;
+    });
+  }
+
+  late final _$beneficiariosFiltradosPorNomeAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.beneficiariosFiltradosPorNome',
+      context: context);
+
+  @override
+  List<BeneficiarioAter> get beneficiariosFiltradosPorNome {
+    _$beneficiariosFiltradosPorNomeAtom.reportRead();
+    return super.beneficiariosFiltradosPorNome;
+  }
+
+  @override
+  set beneficiariosFiltradosPorNome(List<BeneficiarioAter> value) {
+    _$beneficiariosFiltradosPorNomeAtom
+        .reportWrite(value, super.beneficiariosFiltradosPorNome, () {
+      super.beneficiariosFiltradosPorNome = value;
+    });
+  }
+
+  late final _$maisBeneficiariosFiltradosAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.maisBeneficiariosFiltrados',
+      context: context);
+
+  @override
+  List<BeneficiarioAter> get maisBeneficiariosFiltrados {
+    _$maisBeneficiariosFiltradosAtom.reportRead();
+    return super.maisBeneficiariosFiltrados;
+  }
+
+  @override
+  set maisBeneficiariosFiltrados(List<BeneficiarioAter> value) {
+    _$maisBeneficiariosFiltradosAtom
+        .reportWrite(value, super.maisBeneficiariosFiltrados, () {
+      super.maisBeneficiariosFiltrados = value;
+    });
+  }
+
+  late final _$termoBuscaAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.termoBusca', context: context);
+
+  @override
+  String get termoBusca {
+    _$termoBuscaAtom.reportRead();
+    return super.termoBusca;
+  }
+
+  @override
+  set termoBusca(String value) {
+    _$termoBuscaAtom.reportWrite(value, super.termoBusca, () {
+      super.termoBusca = value;
+    });
+  }
+
+  late final _$statusCarregaBeneficiariosAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.statusCarregaBeneficiarios',
+      context: context);
+
+  @override
+  Status get statusCarregaBeneficiarios {
+    _$statusCarregaBeneficiariosAtom.reportRead();
+    return super.statusCarregaBeneficiarios;
+  }
+
+  @override
+  set statusCarregaBeneficiarios(Status value) {
+    _$statusCarregaBeneficiariosAtom
+        .reportWrite(value, super.statusCarregaBeneficiarios, () {
+      super.statusCarregaBeneficiarios = value;
+    });
+  }
+
+  late final _$statusCarregaBeneficiariosPorNomeAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.statusCarregaBeneficiariosPorNome',
+      context: context);
+
+  @override
+  Status get statusCarregaBeneficiariosPorNome {
+    _$statusCarregaBeneficiariosPorNomeAtom.reportRead();
+    return super.statusCarregaBeneficiariosPorNome;
+  }
+
+  @override
+  set statusCarregaBeneficiariosPorNome(Status value) {
+    _$statusCarregaBeneficiariosPorNomeAtom
+        .reportWrite(value, super.statusCarregaBeneficiariosPorNome, () {
+      super.statusCarregaBeneficiariosPorNome = value;
+    });
+  }
+
+  late final _$statusCarregaMaisBeneficiariosAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.statusCarregaMaisBeneficiarios',
+      context: context);
+
+  @override
+  Status get statusCarregaMaisBeneficiarios {
+    _$statusCarregaMaisBeneficiariosAtom.reportRead();
+    return super.statusCarregaMaisBeneficiarios;
+  }
+
+  @override
+  set statusCarregaMaisBeneficiarios(Status value) {
+    _$statusCarregaMaisBeneficiariosAtom
+        .reportWrite(value, super.statusCarregaMaisBeneficiarios, () {
+      super.statusCarregaMaisBeneficiarios = value;
+    });
+  }
+
+  late final _$statusCarregaDadosPaginaAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.statusCarregaDadosPagina',
+      context: context);
+
+  @override
+  Status get statusCarregaDadosPagina {
+    _$statusCarregaDadosPaginaAtom.reportRead();
+    return super.statusCarregaDadosPagina;
+  }
+
+  @override
+  set statusCarregaDadosPagina(Status value) {
+    _$statusCarregaDadosPaginaAtom
+        .reportWrite(value, super.statusCarregaDadosPagina, () {
+      super.statusCarregaDadosPagina = value;
+    });
+  }
+
+  late final _$statusCarregaMunicipiosAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.statusCarregaMunicipios',
+      context: context);
+
+  @override
+  Status get statusCarregaMunicipios {
+    _$statusCarregaMunicipiosAtom.reportRead();
+    return super.statusCarregaMunicipios;
+  }
+
+  @override
+  set statusCarregaMunicipios(Status value) {
+    _$statusCarregaMunicipiosAtom
+        .reportWrite(value, super.statusCarregaMunicipios, () {
+      super.statusCarregaMunicipios = value;
+    });
+  }
+
+  late final _$statusCarregaComunidadesAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.statusCarregaComunidades',
+      context: context);
+
+  @override
+  Status get statusCarregaComunidades {
+    _$statusCarregaComunidadesAtom.reportRead();
+    return super.statusCarregaComunidades;
+  }
+
+  @override
+  set statusCarregaComunidades(Status value) {
+    _$statusCarregaComunidadesAtom
+        .reportWrite(value, super.statusCarregaComunidades, () {
+      super.statusCarregaComunidades = value;
+    });
+  }
+
+  late final _$statusPostFamilarAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.statusPostFamilar',
+      context: context);
+
+  @override
+  Status get statusPostFamilar {
+    _$statusPostFamilarAtom.reportRead();
+    return super.statusPostFamilar;
+  }
+
+  @override
+  set statusPostFamilar(Status value) {
+    _$statusPostFamilarAtom.reportWrite(value, super.statusPostFamilar, () {
+      super.statusPostFamilar = value;
+    });
+  }
+
+  late final _$statusCarregaFamiliarAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.statusCarregaFamiliar',
+      context: context);
+
+  @override
+  Status get statusCarregaFamiliar {
+    _$statusCarregaFamiliarAtom.reportRead();
+    return super.statusCarregaFamiliar;
+  }
+
+  @override
+  set statusCarregaFamiliar(Status value) {
+    _$statusCarregaFamiliarAtom.reportWrite(value, super.statusCarregaFamiliar,
+        () {
+      super.statusCarregaFamiliar = value;
+    });
+  }
+
+  late final _$produtosSelecionadosAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.produtosSelecionados',
+      context: context);
+
+  @override
+  List<Produto> get produtosSelecionados {
+    _$produtosSelecionadosAtom.reportRead();
+    return super.produtosSelecionados;
+  }
+
+  @override
+  set produtosSelecionados(List<Produto> value) {
+    _$produtosSelecionadosAtom.reportWrite(value, super.produtosSelecionados,
+        () {
+      super.produtosSelecionados = value;
+    });
+  }
+
+  late final _$motivosRegistroSelecionadosAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.motivosRegistroSelecionados',
+      context: context);
+
+  @override
+  List<MotivoRegistro> get motivosRegistroSelecionados {
+    _$motivosRegistroSelecionadosAtom.reportRead();
+    return super.motivosRegistroSelecionados;
+  }
+
+  @override
+  set motivosRegistroSelecionados(List<MotivoRegistro> value) {
+    _$motivosRegistroSelecionadosAtom
+        .reportWrite(value, super.motivosRegistroSelecionados, () {
+      super.motivosRegistroSelecionados = value;
+    });
+  }
+
+  late final _$subProdutosSelecionadosAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.subProdutosSelecionados',
+      context: context);
+
+  @override
+  List<SubProduto> get subProdutosSelecionados {
+    _$subProdutosSelecionadosAtom.reportRead();
+    return super.subProdutosSelecionados;
+  }
+
+  @override
+  set subProdutosSelecionados(List<SubProduto> value) {
+    _$subProdutosSelecionadosAtom
+        .reportWrite(value, super.subProdutosSelecionados, () {
+      super.subProdutosSelecionados = value;
+    });
+  }
+
+  late final _$categoriasAtividadeProdutivaSelecionadasAtom = Atom(
+      name:
+          '_BeneficiarioAterControllerBase.categoriasAtividadeProdutivaSelecionadas',
+      context: context);
+
+  @override
+  List<CategoriaAtividadeProdutiva>
+      get categoriasAtividadeProdutivaSelecionadas {
+    _$categoriasAtividadeProdutivaSelecionadasAtom.reportRead();
+    return super.categoriasAtividadeProdutivaSelecionadas;
+  }
+
+  @override
+  set categoriasAtividadeProdutivaSelecionadas(
+      List<CategoriaAtividadeProdutiva> value) {
+    _$categoriasAtividadeProdutivaSelecionadasAtom
+        .reportWrite(value, super.categoriasAtividadeProdutivaSelecionadas, () {
+      super.categoriasAtividadeProdutivaSelecionadas = value;
+    });
+  }
+
+  late final _$programasGovernamentaisSelecionadosAtom = Atom(
+      name:
+          '_BeneficiarioAterControllerBase.programasGovernamentaisSelecionados',
+      context: context);
+
+  @override
+  List<ProgramasGovernamentais> get programasGovernamentaisSelecionados {
+    _$programasGovernamentaisSelecionadosAtom.reportRead();
+    return super.programasGovernamentaisSelecionados;
+  }
+
+  @override
+  set programasGovernamentaisSelecionados(List<ProgramasGovernamentais> value) {
+    _$programasGovernamentaisSelecionadosAtom
+        .reportWrite(value, super.programasGovernamentaisSelecionados, () {
+      super.programasGovernamentaisSelecionados = value;
+    });
+  }
+
+  late final _$sexoSelecionadoAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.sexoSelecionado',
+      context: context);
+
+  @override
+  Sexo? get sexoSelecionado {
+    _$sexoSelecionadoAtom.reportRead();
+    return super.sexoSelecionado;
+  }
+
+  @override
+  set sexoSelecionado(Sexo? value) {
+    _$sexoSelecionadoAtom.reportWrite(value, super.sexoSelecionado, () {
+      super.sexoSelecionado = value;
+    });
+  }
+
+  late final _$sexoFamiliarSelecionadoAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.sexoFamiliarSelecionado',
+      context: context);
+
+  @override
+  Sexo? get sexoFamiliarSelecionado {
+    _$sexoFamiliarSelecionadoAtom.reportRead();
+    return super.sexoFamiliarSelecionado;
+  }
+
+  @override
+  set sexoFamiliarSelecionado(Sexo? value) {
+    _$sexoFamiliarSelecionadoAtom
+        .reportWrite(value, super.sexoFamiliarSelecionado, () {
+      super.sexoFamiliarSelecionado = value;
+    });
+  }
+
+  late final _$estadoCivilSelecionadoAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.estadoCivilSelecionado',
+      context: context);
+
+  @override
+  EstadoCivil? get estadoCivilSelecionado {
+    _$estadoCivilSelecionadoAtom.reportRead();
+    return super.estadoCivilSelecionado;
+  }
+
+  @override
+  set estadoCivilSelecionado(EstadoCivil? value) {
+    _$estadoCivilSelecionadoAtom
+        .reportWrite(value, super.estadoCivilSelecionado, () {
+      super.estadoCivilSelecionado = value;
+    });
+  }
+
+  late final _$ufSelecionadoAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.ufSelecionado', context: context);
+
+  @override
+  UF? get ufSelecionado {
+    _$ufSelecionadoAtom.reportRead();
+    return super.ufSelecionado;
+  }
+
+  @override
+  set ufSelecionado(UF? value) {
+    _$ufSelecionadoAtom.reportWrite(value, super.ufSelecionado, () {
+      super.ufSelecionado = value;
+    });
+  }
+
+  late final _$ufEnderecoSelecionadoAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.ufEnderecoSelecionado',
+      context: context);
+
+  @override
+  UF? get ufEnderecoSelecionado {
+    _$ufEnderecoSelecionadoAtom.reportRead();
+    return super.ufEnderecoSelecionado;
+  }
+
+  @override
+  set ufEnderecoSelecionado(UF? value) {
+    _$ufEnderecoSelecionadoAtom.reportWrite(value, super.ufEnderecoSelecionado,
+        () {
+      super.ufEnderecoSelecionado = value;
+    });
+  }
+
+  late final _$escolaridadeSelecionadaAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.escolaridadeSelecionada',
+      context: context);
+
+  @override
+  Escolaridade? get escolaridadeSelecionada {
+    _$escolaridadeSelecionadaAtom.reportRead();
+    return super.escolaridadeSelecionada;
+  }
+
+  @override
+  set escolaridadeSelecionada(Escolaridade? value) {
+    _$escolaridadeSelecionadaAtom
+        .reportWrite(value, super.escolaridadeSelecionada, () {
+      super.escolaridadeSelecionada = value;
+    });
+  }
+
+  late final _$escolaridadeFamiliarSelecionadaAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.escolaridadeFamiliarSelecionada',
+      context: context);
+
+  @override
+  Escolaridade? get escolaridadeFamiliarSelecionada {
+    _$escolaridadeFamiliarSelecionadaAtom.reportRead();
+    return super.escolaridadeFamiliarSelecionada;
+  }
+
+  @override
+  set escolaridadeFamiliarSelecionada(Escolaridade? value) {
+    _$escolaridadeFamiliarSelecionadaAtom
+        .reportWrite(value, super.escolaridadeFamiliarSelecionada, () {
+      super.escolaridadeFamiliarSelecionada = value;
+    });
+  }
+
+  late final _$nacionalidadeSelecionadaAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.nacionalidadeSelecionada',
+      context: context);
+
+  @override
+  Nacionalidade? get nacionalidadeSelecionada {
+    _$nacionalidadeSelecionadaAtom.reportRead();
+    return super.nacionalidadeSelecionada;
+  }
+
+  @override
+  set nacionalidadeSelecionada(Nacionalidade? value) {
+    _$nacionalidadeSelecionadaAtom
+        .reportWrite(value, super.nacionalidadeSelecionada, () {
+      super.nacionalidadeSelecionada = value;
+    });
+  }
+
+  late final _$naturalidadeSelecionadaAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.naturalidadeSelecionada',
+      context: context);
+
+  @override
+  Naturalidade? get naturalidadeSelecionada {
+    _$naturalidadeSelecionadaAtom.reportRead();
+    return super.naturalidadeSelecionada;
+  }
+
+  @override
+  set naturalidadeSelecionada(Naturalidade? value) {
+    _$naturalidadeSelecionadaAtom
+        .reportWrite(value, super.naturalidadeSelecionada, () {
+      super.naturalidadeSelecionada = value;
+    });
+  }
+
+  late final _$categoriaPublicoSelecionadaAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.categoriaPublicoSelecionada',
+      context: context);
+
+  @override
+  CategoriaPublico? get categoriaPublicoSelecionada {
+    _$categoriaPublicoSelecionadaAtom.reportRead();
+    return super.categoriaPublicoSelecionada;
+  }
+
+  @override
+  set categoriaPublicoSelecionada(CategoriaPublico? value) {
+    _$categoriaPublicoSelecionadaAtom
+        .reportWrite(value, super.categoriaPublicoSelecionada, () {
+      super.categoriaPublicoSelecionada = value;
+    });
+  }
+
+  late final _$motivoRegistroSelecionadoAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.motivoRegistroSelecionado',
+      context: context);
+
+  @override
+  MotivoRegistro? get motivoRegistroSelecionado {
+    _$motivoRegistroSelecionadoAtom.reportRead();
+    return super.motivoRegistroSelecionado;
+  }
+
+  @override
+  set motivoRegistroSelecionado(MotivoRegistro? value) {
+    _$motivoRegistroSelecionadoAtom
+        .reportWrite(value, super.motivoRegistroSelecionado, () {
+      super.motivoRegistroSelecionado = value;
+    });
+  }
+
+  late final _$subProdutoSelecionadoAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.subProdutoSelecionado',
+      context: context);
+
+  @override
+  SubProduto? get subProdutoSelecionado {
+    _$subProdutoSelecionadoAtom.reportRead();
+    return super.subProdutoSelecionado;
+  }
+
+  @override
+  set subProdutoSelecionado(SubProduto? value) {
+    _$subProdutoSelecionadoAtom.reportWrite(value, super.subProdutoSelecionado,
+        () {
+      super.subProdutoSelecionado = value;
+    });
+  }
+
+  late final _$programasGovernamentaisSelecionadoAtom = Atom(
+      name:
+          '_BeneficiarioAterControllerBase.programasGovernamentaisSelecionado',
+      context: context);
+
+  @override
+  ProgramasGovernamentais? get programasGovernamentaisSelecionado {
+    _$programasGovernamentaisSelecionadoAtom.reportRead();
+    return super.programasGovernamentaisSelecionado;
+  }
+
+  @override
+  set programasGovernamentaisSelecionado(ProgramasGovernamentais? value) {
+    _$programasGovernamentaisSelecionadoAtom
+        .reportWrite(value, super.programasGovernamentaisSelecionado, () {
+      super.programasGovernamentaisSelecionado = value;
+    });
+  }
+
+  late final _$produtoSelecionadoAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.produtoSelecionado',
+      context: context);
+
+  @override
+  Produto? get produtoSelecionado {
+    _$produtoSelecionadoAtom.reportRead();
+    return super.produtoSelecionado;
+  }
+
+  @override
+  set produtoSelecionado(Produto? value) {
+    _$produtoSelecionadoAtom.reportWrite(value, super.produtoSelecionado, () {
+      super.produtoSelecionado = value;
+    });
+  }
+
+  late final _$categoriaAtividadeProdutivaSelecionadaAtom = Atom(
+      name:
+          '_BeneficiarioAterControllerBase.categoriaAtividadeProdutivaSelecionada',
+      context: context);
+
+  @override
+  CategoriaAtividadeProdutiva? get categoriaAtividadeProdutivaSelecionada {
+    _$categoriaAtividadeProdutivaSelecionadaAtom.reportRead();
+    return super.categoriaAtividadeProdutivaSelecionada;
+  }
+
+  @override
+  set categoriaAtividadeProdutivaSelecionada(
+      CategoriaAtividadeProdutiva? value) {
+    _$categoriaAtividadeProdutivaSelecionadaAtom
+        .reportWrite(value, super.categoriaAtividadeProdutivaSelecionada, () {
+      super.categoriaAtividadeProdutivaSelecionada = value;
+    });
+  }
+
+  late final _$cafBoolAtom =
+      Atom(name: '_BeneficiarioAterControllerBase.cafBool', context: context);
+
+  @override
+  bool? get cafBool {
+    _$cafBoolAtom.reportRead();
+    return super.cafBool;
+  }
+
+  @override
+  set cafBool(bool? value) {
+    _$cafBoolAtom.reportWrite(value, super.cafBool, () {
+      super.cafBool = value;
+    });
+  }
+
+  late final _$EntidadeCafSelecionadaAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.EntidadeCafSelecionada',
+      context: context);
+
+  @override
+  EntidadeCaf? get EntidadeCafSelecionada {
+    _$EntidadeCafSelecionadaAtom.reportRead();
+    return super.EntidadeCafSelecionada;
+  }
+
+  @override
+  set EntidadeCafSelecionada(EntidadeCaf? value) {
+    _$EntidadeCafSelecionadaAtom
+        .reportWrite(value, super.EntidadeCafSelecionada, () {
+      super.EntidadeCafSelecionada = value;
+    });
+  }
+
+  late final _$EnqCafSelecionadaAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.EnqCafSelecionada',
+      context: context);
+
+  @override
+  EnqCaf? get EnqCafSelecionada {
+    _$EnqCafSelecionadaAtom.reportRead();
+    return super.EnqCafSelecionada;
+  }
+
+  @override
+  set EnqCafSelecionada(EnqCaf? value) {
+    _$EnqCafSelecionadaAtom.reportWrite(value, super.EnqCafSelecionada, () {
+      super.EnqCafSelecionada = value;
+    });
+  }
+
+  late final _$registroStatusSelecionadoAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.registroStatusSelecionado',
+      context: context);
+
+  @override
+  RegistroStatus? get registroStatusSelecionado {
+    _$registroStatusSelecionadoAtom.reportRead();
+    return super.registroStatusSelecionado;
+  }
+
+  @override
+  set registroStatusSelecionado(RegistroStatus? value) {
+    _$registroStatusSelecionadoAtom
+        .reportWrite(value, super.registroStatusSelecionado, () {
+      super.registroStatusSelecionado = value;
+    });
+  }
+
+  late final _$municipioSelecionadoAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.municipioSelecionado',
+      context: context);
+
+  @override
+  Municipio? get municipioSelecionado {
+    _$municipioSelecionadoAtom.reportRead();
+    return super.municipioSelecionado;
+  }
+
+  @override
+  set municipioSelecionado(Municipio? value) {
+    _$municipioSelecionadoAtom.reportWrite(value, super.municipioSelecionado,
+        () {
+      super.municipioSelecionado = value;
+    });
+  }
+
+  late final _$parentescoSelecionadoAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.parentescoSelecionado',
+      context: context);
+
+  @override
+  Parentesco? get parentescoSelecionado {
+    _$parentescoSelecionadoAtom.reportRead();
+    return super.parentescoSelecionado;
+  }
+
+  @override
+  set parentescoSelecionado(Parentesco? value) {
+    _$parentescoSelecionadoAtom.reportWrite(value, super.parentescoSelecionado,
+        () {
+      super.parentescoSelecionado = value;
+    });
+  }
+
+  late final _$municipioUFAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.municipioUF', context: context);
+
+  @override
+  List<Municipio> get municipioUF {
+    _$municipioUFAtom.reportRead();
+    return super.municipioUF;
+  }
+
+  @override
+  set municipioUF(List<Municipio> value) {
+    _$municipioUFAtom.reportWrite(value, super.municipioUF, () {
+      super.municipioUF = value;
+    });
+  }
+
+  late final _$comunidadeSelecionadaAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.comunidadeSelecionada',
+      context: context);
+
+  @override
+  Comunidade? get comunidadeSelecionada {
+    _$comunidadeSelecionadaAtom.reportRead();
+    return super.comunidadeSelecionada;
+  }
+
+  @override
+  set comunidadeSelecionada(Comunidade? value) {
+    _$comunidadeSelecionadaAtom.reportWrite(value, super.comunidadeSelecionada,
+        () {
+      super.comunidadeSelecionada = value;
+    });
+  }
+
+  late final _$subComunidadesAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.subComunidades', context: context);
+
+  @override
+  List<Comunidade> get subComunidades {
+    _$subComunidadesAtom.reportRead();
+    return super.subComunidades;
+  }
+
+  @override
+  set subComunidades(List<Comunidade> value) {
+    _$subComunidadesAtom.reportWrite(value, super.subComunidades, () {
+      super.subComunidades = value;
+    });
+  }
+
+  late final _$subComunidadeSelecionadaAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.subComunidadeSelecionada',
+      context: context);
+
+  @override
+  Comunidade? get subComunidadeSelecionada {
+    _$subComunidadeSelecionadaAtom.reportRead();
+    return super.subComunidadeSelecionada;
+  }
+
+  @override
+  set subComunidadeSelecionada(Comunidade? value) {
+    _$subComunidadeSelecionadaAtom
+        .reportWrite(value, super.subComunidadeSelecionada, () {
+      super.subComunidadeSelecionada = value;
+    });
+  }
+
+  late final _$motivoRegistroSelecionadoListaAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.motivoRegistroSelecionadoLista',
+      context: context);
+
+  @override
+  List<MotivoRegistro>? get motivoRegistroSelecionadoLista {
+    _$motivoRegistroSelecionadoListaAtom.reportRead();
+    return super.motivoRegistroSelecionadoLista;
+  }
+
+  @override
+  set motivoRegistroSelecionadoLista(List<MotivoRegistro>? value) {
+    _$motivoRegistroSelecionadoListaAtom
+        .reportWrite(value, super.motivoRegistroSelecionadoLista, () {
+      super.motivoRegistroSelecionadoLista = value;
+    });
+  }
+
+  late final _$cadastraBeneficiarioStatusAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.cadastraBeneficiarioStatus',
+      context: context);
+
+  @override
+  Status get cadastraBeneficiarioStatus {
+    _$cadastraBeneficiarioStatusAtom.reportRead();
+    return super.cadastraBeneficiarioStatus;
+  }
+
+  @override
+  set cadastraBeneficiarioStatus(Status value) {
+    _$cadastraBeneficiarioStatusAtom
+        .reportWrite(value, super.cadastraBeneficiarioStatus, () {
+      super.cadastraBeneficiarioStatus = value;
+    });
+  }
+
+  late final _$mensagemErrorAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.mensagemError', context: context);
+
+  @override
+  String? get mensagemError {
+    _$mensagemErrorAtom.reportRead();
+    return super.mensagemError;
+  }
+
+  @override
+  set mensagemError(String? value) {
+    _$mensagemErrorAtom.reportWrite(value, super.mensagemError, () {
+      super.mensagemError = value;
+    });
+  }
+
+  late final _$putBeneficiarioStatusAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.putBeneficiarioStatus',
+      context: context);
+
+  @override
+  Status get putBeneficiarioStatus {
+    _$putBeneficiarioStatusAtom.reportRead();
+    return super.putBeneficiarioStatus;
+  }
+
+  @override
+  set putBeneficiarioStatus(Status value) {
+    _$putBeneficiarioStatusAtom.reportWrite(value, super.putBeneficiarioStatus,
+        () {
+      super.putBeneficiarioStatus = value;
+    });
+  }
+
+  late final _$deleteBeneficiarioAterStatusAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.deleteBeneficiarioAterStatus',
+      context: context);
+
+  @override
+  Status get deleteBeneficiarioAterStatus {
+    _$deleteBeneficiarioAterStatusAtom.reportRead();
+    return super.deleteBeneficiarioAterStatus;
+  }
+
+  @override
+  set deleteBeneficiarioAterStatus(Status value) {
+    _$deleteBeneficiarioAterStatusAtom
+        .reportWrite(value, super.deleteBeneficiarioAterStatus, () {
+      super.deleteBeneficiarioAterStatus = value;
+    });
+  }
+
+  late final _$editarBeneficiarioStatusAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.editarBeneficiarioStatus',
+      context: context);
+
+  @override
+  Status get editarBeneficiarioStatus {
+    _$editarBeneficiarioStatusAtom.reportRead();
+    return super.editarBeneficiarioStatus;
+  }
+
+  @override
+  set editarBeneficiarioStatus(Status value) {
+    _$editarBeneficiarioStatusAtom
+        .reportWrite(value, super.editarBeneficiarioStatus, () {
+      super.editarBeneficiarioStatus = value;
+    });
+  }
+
+  late final _$deleteFamiliarBeneficiarioStatusAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.deleteFamiliarBeneficiarioStatus',
+      context: context);
+
+  @override
+  Status get deleteFamiliarBeneficiarioStatus {
+    _$deleteFamiliarBeneficiarioStatusAtom.reportRead();
+    return super.deleteFamiliarBeneficiarioStatus;
+  }
+
+  @override
+  set deleteFamiliarBeneficiarioStatus(Status value) {
+    _$deleteFamiliarBeneficiarioStatusAtom
+        .reportWrite(value, super.deleteFamiliarBeneficiarioStatus, () {
+      super.deleteFamiliarBeneficiarioStatus = value;
+    });
+  }
+
+  late final _$statusFamiliaresBeneficiarioAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.statusFamiliaresBeneficiario',
+      context: context);
+
+  @override
+  Status get statusFamiliaresBeneficiario {
+    _$statusFamiliaresBeneficiarioAtom.reportRead();
+    return super.statusFamiliaresBeneficiario;
+  }
+
+  @override
+  set statusFamiliaresBeneficiario(Status value) {
+    _$statusFamiliaresBeneficiarioAtom
+        .reportWrite(value, super.statusFamiliaresBeneficiario, () {
+      super.statusFamiliaresBeneficiario = value;
+    });
+  }
+
+  late final _$listaMembrosFamiliaresAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.listaMembrosFamiliares',
+      context: context);
+
+  @override
+  List<MembroFamiliar> get listaMembrosFamiliares {
+    _$listaMembrosFamiliaresAtom.reportRead();
+    return super.listaMembrosFamiliares;
+  }
+
+  @override
+  set listaMembrosFamiliares(List<MembroFamiliar> value) {
+    _$listaMembrosFamiliaresAtom
+        .reportWrite(value, super.listaMembrosFamiliares, () {
+      super.listaMembrosFamiliares = value;
+    });
+  }
+
+  late final _$statusCarregaProntuarioAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.statusCarregaProntuario',
+      context: context);
+
+  @override
+  Status get statusCarregaProntuario {
+    _$statusCarregaProntuarioAtom.reportRead();
+    return super.statusCarregaProntuario;
+  }
+
+  @override
+  set statusCarregaProntuario(Status value) {
+    _$statusCarregaProntuarioAtom
+        .reportWrite(value, super.statusCarregaProntuario, () {
+      super.statusCarregaProntuario = value;
+    });
+  }
+
+  late final _$prontuarioAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.prontuario', context: context);
+
+  @override
+  Prontuario? get prontuario {
+    _$prontuarioAtom.reportRead();
+    return super.prontuario;
+  }
+
+  @override
+  set prontuario(Prontuario? value) {
+    _$prontuarioAtom.reportWrite(value, super.prontuario, () {
+      super.prontuario = value;
+    });
+  }
+
+  late final _$prontuarioErrorAtom = Atom(
+      name: '_BeneficiarioAterControllerBase.prontuarioError',
+      context: context);
+
+  @override
+  String? get prontuarioError {
+    _$prontuarioErrorAtom.reportRead();
+    return super.prontuarioError;
+  }
+
+  @override
+  set prontuarioError(String? value) {
+    _$prontuarioErrorAtom.reportWrite(value, super.prontuarioError, () {
+      super.prontuarioError = value;
+    });
+  }
+
+  late final _$carregarProntuarioAsyncAction = AsyncAction(
+      '_BeneficiarioAterControllerBase.carregarProntuario',
+      context: context);
+
+  @override
+  Future<void> carregarProntuario(int id) {
+    return _$carregarProntuarioAsyncAction
+        .run(() => super.carregarProntuario(id));
+  }
+
+  late final _$_BeneficiarioAterControllerBaseActionController =
+      ActionController(
+          name: '_BeneficiarioAterControllerBase', context: context);
+
+  @override
+  void changeSexoSelecionada(Sexo? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.changeSexoSelecionada');
+    try {
+      return super.changeSexoSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeEstadoCivilSelecionada(EstadoCivil? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeEstadoCivilSelecionada');
+    try {
+      return super.changeEstadoCivilSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeUfSelecionada(UF? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.changeUfSelecionada');
+    try {
+      return super.changeUfSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeUfEnderecoSelecionada(UF? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeUfEnderecoSelecionada');
+    try {
+      return super.changeUfEnderecoSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeEscolaridadeSelecionada(Escolaridade? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeEscolaridadeSelecionada');
+    try {
+      return super.changeEscolaridadeSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeNacionalidadeSelecionada(Nacionalidade? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeNacionalidadeSelecionada');
+    try {
+      return super.changeNacionalidadeSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeNaturalidadeSelecionada(Naturalidade? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeNaturalidadeSelecionada');
+    try {
+      return super.changeNaturalidadeSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeCategoriaPublicoSelecionada(CategoriaPublico? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeCategoriaPublicoSelecionada');
+    try {
+      return super.changeCategoriaPublicoSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeMotivoRegistroSelecionada(MotivoRegistro? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeMotivoRegistroSelecionada');
+    try {
+      return super.changeMotivoRegistroSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addMotivoRegistroSelecionado(MotivoRegistro? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.addMotivoRegistroSelecionado');
+    try {
+      return super.addMotivoRegistroSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeParentescoSelecionada(Parentesco? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeParentescoSelecionada');
+    try {
+      return super.changeParentescoSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeSexoFamiliarSelecionada(Sexo? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeSexoFamiliarSelecionada');
+    try {
+      return super.changeSexoFamiliarSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeEscolaridadeFamiliarSelecionada(Escolaridade? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeEscolaridadeFamiliarSelecionada');
+    try {
+      return super.changeEscolaridadeFamiliarSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void deleteMotivosRegustroSelecionado(MotivoRegistro? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.deleteMotivosRegustroSelecionado');
+    try {
+      return super.deleteMotivosRegustroSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeAtividadeProdutivaSelecionada(CategoriaAtividadeProdutiva? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeAtividadeProdutivaSelecionada');
+    try {
+      return super.changeAtividadeProdutivaSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addAtividadeProdutivaSelecionado(CategoriaAtividadeProdutiva? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.addAtividadeProdutivaSelecionado');
+    try {
+      return super.addAtividadeProdutivaSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void deleteAtividadeProdutivaSelecionado(CategoriaAtividadeProdutiva? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.deleteAtividadeProdutivaSelecionado');
+    try {
+      return super.deleteAtividadeProdutivaSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeProdutoSelecionada(Produto? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.changeProdutoSelecionada');
+    try {
+      return super.changeProdutoSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addProdutoSelecionado(Produto? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.addProdutoSelecionado');
+    try {
+      return super.addProdutoSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void deleteProdutoSelecionado(Produto? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.deleteProdutoSelecionado');
+    try {
+      return super.deleteProdutoSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeProgGovSelecionada(ProgramasGovernamentais? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.changeProgGovSelecionada');
+    try {
+      return super.changeProgGovSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addProgGovSelecionado(ProgramasGovernamentais? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.addProgGovSelecionado');
+    try {
+      return super.addProgGovSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void deleteProgGovSelecionado(ProgramasGovernamentais? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.deleteProgGovSelecionado');
+    try {
+      return super.deleteProgGovSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeSubProdutoSelecionada(SubProduto? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeSubProdutoSelecionada');
+    try {
+      return super.changeSubProdutoSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addSubProdutoSelecionado(SubProduto? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.addSubProdutoSelecionado');
+    try {
+      return super.addSubProdutoSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void deleteSubProdutoSelecionado(SubProduto? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.deleteSubProdutoSelecionado');
+    try {
+      return super.deleteSubProdutoSelecionado(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeEnqCafSelecionada(EnqCaf? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.changeEnqCafSelecionada');
+    try {
+      return super.changeEnqCafSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeEntidadeCafSelecionada(EntidadeCaf? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeEntidadeCafSelecionada');
+    try {
+      return super.changeEntidadeCafSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeRegistroStatusSelecionada(RegistroStatus? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeRegistroStatusSelecionada');
+    try {
+      return super.changeRegistroStatusSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeComunidadeSelecionada(Comunidade? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changeComunidadeSelecionada');
+    try {
+      return super.changeComunidadeSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeMunicipioSelecionada(Municipio? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.changeMunicipioSelecionada');
+    try {
+      return super.changeMunicipioSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changesubComunidadeSelecionada(Comunidade? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name:
+                '_BeneficiarioAterControllerBase.changesubComunidadeSelecionada');
+    try {
+      return super.changesubComunidadeSelecionada(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addRegistroMotivo(MotivoRegistro? e) {
+    final _$actionInfo = _$_BeneficiarioAterControllerBaseActionController
+        .startAction(name: '_BeneficiarioAterControllerBase.addRegistroMotivo');
+    try {
+      return super.addRegistroMotivo(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeRegistroMotivo(MotivoRegistro? e) {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.removeRegistroMotivo');
+    try {
+      return super.removeRegistroMotivo(e);
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? getProntuarioPdfBase64() {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.getProntuarioPdfBase64');
+    try {
+      return super.getProntuarioPdfBase64();
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void resetProntuarioState() {
+    final _$actionInfo =
+        _$_BeneficiarioAterControllerBaseActionController.startAction(
+            name: '_BeneficiarioAterControllerBase.resetProntuarioState');
+    try {
+      return super.resetProntuarioState();
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void resetEditState() {
+    final _$actionInfo = _$_BeneficiarioAterControllerBaseActionController
+        .startAction(name: '_BeneficiarioAterControllerBase.resetEditState');
+    try {
+      return super.resetEditState();
+    } finally {
+      _$_BeneficiarioAterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String toString() {
+    return '''
+listaBeneficiarios: ${listaBeneficiarios},
+beneficiariosFiltrados: ${beneficiariosFiltrados},
+beneficiariosFiltradosPorNome: ${beneficiariosFiltradosPorNome},
+maisBeneficiariosFiltrados: ${maisBeneficiariosFiltrados},
+termoBusca: ${termoBusca},
+statusCarregaBeneficiarios: ${statusCarregaBeneficiarios},
+statusCarregaBeneficiariosPorNome: ${statusCarregaBeneficiariosPorNome},
+statusCarregaMaisBeneficiarios: ${statusCarregaMaisBeneficiarios},
+statusCarregaDadosPagina: ${statusCarregaDadosPagina},
+statusCarregaMunicipios: ${statusCarregaMunicipios},
+statusCarregaComunidades: ${statusCarregaComunidades},
+statusPostFamilar: ${statusPostFamilar},
+statusCarregaFamiliar: ${statusCarregaFamiliar},
+produtosSelecionados: ${produtosSelecionados},
+motivosRegistroSelecionados: ${motivosRegistroSelecionados},
+subProdutosSelecionados: ${subProdutosSelecionados},
+categoriasAtividadeProdutivaSelecionadas: ${categoriasAtividadeProdutivaSelecionadas},
+programasGovernamentaisSelecionados: ${programasGovernamentaisSelecionados},
+sexoSelecionado: ${sexoSelecionado},
+sexoFamiliarSelecionado: ${sexoFamiliarSelecionado},
+estadoCivilSelecionado: ${estadoCivilSelecionado},
+ufSelecionado: ${ufSelecionado},
+ufEnderecoSelecionado: ${ufEnderecoSelecionado},
+escolaridadeSelecionada: ${escolaridadeSelecionada},
+escolaridadeFamiliarSelecionada: ${escolaridadeFamiliarSelecionada},
+nacionalidadeSelecionada: ${nacionalidadeSelecionada},
+naturalidadeSelecionada: ${naturalidadeSelecionada},
+categoriaPublicoSelecionada: ${categoriaPublicoSelecionada},
+motivoRegistroSelecionado: ${motivoRegistroSelecionado},
+subProdutoSelecionado: ${subProdutoSelecionado},
+programasGovernamentaisSelecionado: ${programasGovernamentaisSelecionado},
+produtoSelecionado: ${produtoSelecionado},
+categoriaAtividadeProdutivaSelecionada: ${categoriaAtividadeProdutivaSelecionada},
+cafBool: ${cafBool},
+EntidadeCafSelecionada: ${EntidadeCafSelecionada},
+EnqCafSelecionada: ${EnqCafSelecionada},
+registroStatusSelecionado: ${registroStatusSelecionado},
+municipioSelecionado: ${municipioSelecionado},
+parentescoSelecionado: ${parentescoSelecionado},
+municipioUF: ${municipioUF},
+comunidadeSelecionada: ${comunidadeSelecionada},
+subComunidades: ${subComunidades},
+subComunidadeSelecionada: ${subComunidadeSelecionada},
+motivoRegistroSelecionadoLista: ${motivoRegistroSelecionadoLista},
+cadastraBeneficiarioStatus: ${cadastraBeneficiarioStatus},
+mensagemError: ${mensagemError},
+putBeneficiarioStatus: ${putBeneficiarioStatus},
+deleteBeneficiarioAterStatus: ${deleteBeneficiarioAterStatus},
+editarBeneficiarioStatus: ${editarBeneficiarioStatus},
+deleteFamiliarBeneficiarioStatus: ${deleteFamiliarBeneficiarioStatus},
+statusFamiliaresBeneficiario: ${statusFamiliaresBeneficiario},
+listaMembrosFamiliares: ${listaMembrosFamiliares},
+statusCarregaProntuario: ${statusCarregaProntuario},
+prontuario: ${prontuario},
+prontuarioError: ${prontuarioError}
+    ''';
+  }
+}

@@ -21,7 +21,7 @@ class LoginResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['access_token'] = accessToken;
     data['expires_in'] = expiresIn;
     data['token_type'] = tokenType;

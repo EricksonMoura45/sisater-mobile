@@ -3,7 +3,6 @@ import 'package:esig_utils/status_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:loading_empty_error/snackbar.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mobx/mobx.dart';
 import 'package:one_context/one_context.dart';
@@ -40,17 +39,21 @@ class _LoginPageState extends State<LoginPage> {
     loginDisposer = reaction(
       (_) => controller.statusLogin,
       (StatusLogin status) {
-        if (status == StatusLogin.ERRO) {
-          FocusScope.of(OneContext().context!).unfocus();
-          getEsigSnackBar(
-            status.mensagem,
-            duracao: 12,
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            icon: Icons.error,
-            corFundo: Colors.red,
-            context: OneContext().context,
-          );
-          controller.statusLogin = StatusLogin.DESLOGADO;
+        if (status == StatusLogin.ERRO && mounted) {
+          // Usar o contexto da página atual em vez de OneContext
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) {
+              FocusScope.of(context).unfocus();
+              // Mostrar aviso mais sutil primeiro (snackbar)
+              _showErrorSnackBar(controller.mensagemErroLogin);
+              // Resetar o status após um delay
+              Future.delayed(const Duration(seconds: 1), () {
+                if (mounted) {
+                  controller.statusLogin = StatusLogin.DESLOGADO;
+                }
+              });
+            }
+          });
         }
       },
     );
@@ -95,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Bem-vindos',
+            'Bem-vindo',
             style: TextStyle(
                 fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 25),
           ),
@@ -263,13 +266,21 @@ class _LoginPageState extends State<LoginPage> {
       colorBrightness: Brightness.dark,
       color: Themes.verdeBotao,
       onPressed: () async {
-
         if (_formKey.currentState!.validate()) {
           FocusScope.of(context).unfocus();
+          
+          // Verificar se os campos estão preenchidos
+          if (_loginController.text.trim().isEmpty || _senhaController.text.trim().isEmpty) {
+            _showErrorSnackBar('Por favor, preencha todos os campos');
+            return;
+          }
+          
           await controller.login(
             _loginController.text.replaceAll(RegExp(r'[^0-9]'), ''),
             _senhaController.text,
           );
+          
+          // Limpar senha após tentativa de login
           _senhaController.clear();
         }
       },
@@ -287,6 +298,164 @@ class _LoginPageState extends State<LoginPage> {
             width: 8,
           ),
         ],
+      ),
+    );
+  }
+
+  void _showErrorDialog(String message) {
+    // Verificar se o contexto ainda é válido
+    if (!mounted) return;
+    
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          title: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.red.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Icon(
+                  Icons.error_outline,
+                  color: Colors.red,
+                  size: 28,
+                ),
+              ),
+              const SizedBox(width: 12),
+              const Expanded(
+                child: Text(
+                  'Erro no Login',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.red.withOpacity(0.05),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: Colors.red.withOpacity(0.2),
+                    width: 1,
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.info_outline,
+                      color: Colors.red,
+                      size: 20,
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        message.isNotEmpty ? message : 'Credenciais inválidas',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.red,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Por favor, verifique suas credenciais e tente novamente.',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                // Limpar o campo de senha após fechar o diálogo
+                _senhaController.clear();
+                // Focar no campo de senha para facilitar nova tentativa
+                FocusScope.of(context).requestFocus(FocusNode());
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.red.withOpacity(0.1),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: const Text(
+                'OK',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.red,
+                ),
+              ),
+            ),
+          ],
+          actionsPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+        );
+      },
+    );
+  }
+
+  void _showErrorSnackBar(String message) {
+    if (!mounted) return;
+    
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            const Icon(
+              Icons.error_outline,
+              color: Colors.white,
+              size: 20,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                message.isNotEmpty ? message : 'Erro no login',
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: Colors.red,
+        duration: const Duration(seconds: 4),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        action: SnackBarAction(
+          label: 'OK',
+          textColor: Colors.white,
+          onPressed: () {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          },
+        ),
       ),
     );
   }

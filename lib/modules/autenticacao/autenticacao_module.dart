@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sisater_mobile/modules/autenticacao/autenticacao_controller.dart';
 import 'package:sisater_mobile/modules/autenticacao/pages/login_page.dart';
 import 'package:sisater_mobile/modules/autenticacao/pages/splashscreen_page.dart';
+import 'package:sisater_mobile/modules/autenticacao/pages/video_carregamento_page.dart';
 import 'package:sisater_mobile/modules/autenticacao/repositories/autenticacao_repository.dart';
 import 'package:sisater_mobile/shared/utils/custom_dio.dart';
 
@@ -26,6 +27,11 @@ class AutenticacaoModule extends Module{
           '/login_page',
           child: (_, args) => const LoginPage(),
           transition: TransitionType.downToUp,
+        ),
+        ChildRoute(
+          '/video_carregamento',
+          child: (_, args) => const VideoCarregamentoPage(),
+          transition: TransitionType.fadeIn,
         ),
         // ModuleRoute(
         //   '/autocadastro',

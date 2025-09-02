@@ -1,0 +1,366 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'atividade_de_pesca_controller.dart';
+
+// **************************************************************************
+// StoreGenerator
+// **************************************************************************
+
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
+
+mixin _$AtividadeDePescaController on _AtividadeDePescaControllerBase, Store {
+  late final _$statusAtividadePescaListAtom = Atom(
+      name: '_AtividadeDePescaControllerBase.statusAtividadePescaList',
+      context: context);
+
+  @override
+  Status get statusAtividadePescaList {
+    _$statusAtividadePescaListAtom.reportRead();
+    return super.statusAtividadePescaList;
+  }
+
+  @override
+  set statusAtividadePescaList(Status value) {
+    _$statusAtividadePescaListAtom
+        .reportWrite(value, super.statusAtividadePescaList, () {
+      super.statusAtividadePescaList = value;
+    });
+  }
+
+  late final _$statusCarregaMaisAtividadesPescaAtom = Atom(
+      name: '_AtividadeDePescaControllerBase.statusCarregaMaisAtividadesPesca',
+      context: context);
+
+  @override
+  Status get statusCarregaMaisAtividadesPesca {
+    _$statusCarregaMaisAtividadesPescaAtom.reportRead();
+    return super.statusCarregaMaisAtividadesPesca;
+  }
+
+  @override
+  set statusCarregaMaisAtividadesPesca(Status value) {
+    _$statusCarregaMaisAtividadesPescaAtom
+        .reportWrite(value, super.statusCarregaMaisAtividadesPesca, () {
+      super.statusCarregaMaisAtividadesPesca = value;
+    });
+  }
+
+  late final _$statusCarregaAtividadePorNomeAtom = Atom(
+      name: '_AtividadeDePescaControllerBase.statusCarregaAtividadePorNome',
+      context: context);
+
+  @override
+  Status get statusCarregaAtividadePorNome {
+    _$statusCarregaAtividadePorNomeAtom.reportRead();
+    return super.statusCarregaAtividadePorNome;
+  }
+
+  @override
+  set statusCarregaAtividadePorNome(Status value) {
+    _$statusCarregaAtividadePorNomeAtom
+        .reportWrite(value, super.statusCarregaAtividadePorNome, () {
+      super.statusCarregaAtividadePorNome = value;
+    });
+  }
+
+  late final _$statusCarregaMunicipiosAtom = Atom(
+      name: '_AtividadeDePescaControllerBase.statusCarregaMunicipios',
+      context: context);
+
+  @override
+  Status get statusCarregaMunicipios {
+    _$statusCarregaMunicipiosAtom.reportRead();
+    return super.statusCarregaMunicipios;
+  }
+
+  @override
+  set statusCarregaMunicipios(Status value) {
+    _$statusCarregaMunicipiosAtom
+        .reportWrite(value, super.statusCarregaMunicipios, () {
+      super.statusCarregaMunicipios = value;
+    });
+  }
+
+  late final _$statusCarregaBeneficiariosAterAtom = Atom(
+      name: '_AtividadeDePescaControllerBase.statusCarregaBeneficiariosAter',
+      context: context);
+
+  @override
+  Status get statusCarregaBeneficiariosAter {
+    _$statusCarregaBeneficiariosAterAtom.reportRead();
+    return super.statusCarregaBeneficiariosAter;
+  }
+
+  @override
+  set statusCarregaBeneficiariosAter(Status value) {
+    _$statusCarregaBeneficiariosAterAtom
+        .reportWrite(value, super.statusCarregaBeneficiariosAter, () {
+      super.statusCarregaBeneficiariosAter = value;
+    });
+  }
+
+  late final _$statusPostAtividadePescaAtom = Atom(
+      name: '_AtividadeDePescaControllerBase.statusPostAtividadePesca',
+      context: context);
+
+  @override
+  Status get statusPostAtividadePesca {
+    _$statusPostAtividadePescaAtom.reportRead();
+    return super.statusPostAtividadePesca;
+  }
+
+  @override
+  set statusPostAtividadePesca(Status value) {
+    _$statusPostAtividadePescaAtom
+        .reportWrite(value, super.statusPostAtividadePesca, () {
+      super.statusPostAtividadePesca = value;
+    });
+  }
+
+  late final _$statusDeleteAtividadePescaAtom = Atom(
+      name: '_AtividadeDePescaControllerBase.statusDeleteAtividadePesca',
+      context: context);
+
+  @override
+  Status get statusDeleteAtividadePesca {
+    _$statusDeleteAtividadePescaAtom.reportRead();
+    return super.statusDeleteAtividadePesca;
+  }
+
+  @override
+  set statusDeleteAtividadePesca(Status value) {
+    _$statusDeleteAtividadePescaAtom
+        .reportWrite(value, super.statusDeleteAtividadePesca, () {
+      super.statusDeleteAtividadePesca = value;
+    });
+  }
+
+  late final _$atividadesAtom = Atom(
+      name: '_AtividadeDePescaControllerBase.atividades', context: context);
+
+  @override
+  List<AtividadePesca> get atividades {
+    _$atividadesAtom.reportRead();
+    return super.atividades;
+  }
+
+  @override
+  set atividades(List<AtividadePesca> value) {
+    _$atividadesAtom.reportWrite(value, super.atividades, () {
+      super.atividades = value;
+    });
+  }
+
+  late final _$maisAtividadesFiltradasAtom = Atom(
+      name: '_AtividadeDePescaControllerBase.maisAtividadesFiltradas',
+      context: context);
+
+  @override
+  List<AtividadePesca> get maisAtividadesFiltradas {
+    _$maisAtividadesFiltradasAtom.reportRead();
+    return super.maisAtividadesFiltradas;
+  }
+
+  @override
+  set maisAtividadesFiltradas(List<AtividadePesca> value) {
+    _$maisAtividadesFiltradasAtom
+        .reportWrite(value, super.maisAtividadesFiltradas, () {
+      super.maisAtividadesFiltradas = value;
+    });
+  }
+
+  late final _$atividadesFiltradasPorNomeAtom = Atom(
+      name: '_AtividadeDePescaControllerBase.atividadesFiltradasPorNome',
+      context: context);
+
+  @override
+  List<AtividadePesca> get atividadesFiltradasPorNome {
+    _$atividadesFiltradasPorNomeAtom.reportRead();
+    return super.atividadesFiltradasPorNome;
+  }
+
+  @override
+  set atividadesFiltradasPorNome(List<AtividadePesca> value) {
+    _$atividadesFiltradasPorNomeAtom
+        .reportWrite(value, super.atividadesFiltradasPorNome, () {
+      super.atividadesFiltradasPorNome = value;
+    });
+  }
+
+  late final _$beneficiariosAterAtom = Atom(
+      name: '_AtividadeDePescaControllerBase.beneficiariosAter',
+      context: context);
+
+  @override
+  List<BeneficiarioAter> get beneficiariosAter {
+    _$beneficiariosAterAtom.reportRead();
+    return super.beneficiariosAter;
+  }
+
+  @override
+  set beneficiariosAter(List<BeneficiarioAter> value) {
+    _$beneficiariosAterAtom.reportWrite(value, super.beneficiariosAter, () {
+      super.beneficiariosAter = value;
+    });
+  }
+
+  late final _$comunidadesSelecionaveisAtom = Atom(
+      name: '_AtividadeDePescaControllerBase.comunidadesSelecionaveis',
+      context: context);
+
+  @override
+  List<ComunidadeSelecionavel> get comunidadesSelecionaveis {
+    _$comunidadesSelecionaveisAtom.reportRead();
+    return super.comunidadesSelecionaveis;
+  }
+
+  @override
+  set comunidadesSelecionaveis(List<ComunidadeSelecionavel> value) {
+    _$comunidadesSelecionaveisAtom
+        .reportWrite(value, super.comunidadesSelecionaveis, () {
+      super.comunidadesSelecionaveis = value;
+    });
+  }
+
+  late final _$mensagemErroAtom = Atom(
+      name: '_AtividadeDePescaControllerBase.mensagemErro', context: context);
+
+  @override
+  String get mensagemErro {
+    _$mensagemErroAtom.reportRead();
+    return super.mensagemErro;
+  }
+
+  @override
+  set mensagemErro(String value) {
+    _$mensagemErroAtom.reportWrite(value, super.mensagemErro, () {
+      super.mensagemErro = value;
+    });
+  }
+
+  late final _$pageCounterAtom = Atom(
+      name: '_AtividadeDePescaControllerBase.pageCounter', context: context);
+
+  @override
+  int get pageCounter {
+    _$pageCounterAtom.reportRead();
+    return super.pageCounter;
+  }
+
+  @override
+  set pageCounter(int value) {
+    _$pageCounterAtom.reportWrite(value, super.pageCounter, () {
+      super.pageCounter = value;
+    });
+  }
+
+  late final _$carregarAtividadesPescaAsyncAction = AsyncAction(
+      '_AtividadeDePescaControllerBase.carregarAtividadesPesca',
+      context: context);
+
+  @override
+  Future<void> carregarAtividadesPesca() {
+    return _$carregarAtividadesPescaAsyncAction
+        .run(() => super.carregarAtividadesPesca());
+  }
+
+  late final _$carregarMunicipiosAsyncAction = AsyncAction(
+      '_AtividadeDePescaControllerBase.carregarMunicipios',
+      context: context);
+
+  @override
+  Future<void> carregarMunicipios() {
+    return _$carregarMunicipiosAsyncAction
+        .run(() => super.carregarMunicipios());
+  }
+
+  late final _$carregarBeneficiariosAterAsyncAction = AsyncAction(
+      '_AtividadeDePescaControllerBase.carregarBeneficiariosAter',
+      context: context);
+
+  @override
+  Future<void> carregarBeneficiariosAter(String idCidade) {
+    return _$carregarBeneficiariosAterAsyncAction
+        .run(() => super.carregarBeneficiariosAter(idCidade));
+  }
+
+  late final _$postAtividadePescaAsyncAction = AsyncAction(
+      '_AtividadeDePescaControllerBase.postAtividadePesca',
+      context: context);
+
+  @override
+  Future<void> postAtividadePesca(AtividadePescaPost atividadePesca) {
+    return _$postAtividadePescaAsyncAction
+        .run(() => super.postAtividadePesca(atividadePesca));
+  }
+
+  late final _$putAtividadePescaAsyncAction = AsyncAction(
+      '_AtividadeDePescaControllerBase.putAtividadePesca',
+      context: context);
+
+  @override
+  Future<void> putAtividadePesca(AtividadePesca atividadePesca, int id) {
+    return _$putAtividadePescaAsyncAction
+        .run(() => super.putAtividadePesca(atividadePesca, id));
+  }
+
+  late final _$deleteAtividadePescaAsyncAction = AsyncAction(
+      '_AtividadeDePescaControllerBase.deleteAtividadePesca',
+      context: context);
+
+  @override
+  Future<void> deleteAtividadePesca(int id) {
+    return _$deleteAtividadePescaAsyncAction
+        .run(() => super.deleteAtividadePesca(id));
+  }
+
+  late final _$_AtividadeDePescaControllerBaseActionController =
+      ActionController(
+          name: '_AtividadeDePescaControllerBase', context: context);
+
+  @override
+  void changeComunidadeSelecionada(ComunidadeSelecionavel? value) {
+    final _$actionInfo =
+        _$_AtividadeDePescaControllerBaseActionController.startAction(
+            name:
+                '_AtividadeDePescaControllerBase.changeComunidadeSelecionada');
+    try {
+      return super.changeComunidadeSelecionada(value);
+    } finally {
+      _$_AtividadeDePescaControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeBeneficiarioAterSelecionado(BeneficiarioAter? value) {
+    final _$actionInfo =
+        _$_AtividadeDePescaControllerBaseActionController.startAction(
+            name:
+                '_AtividadeDePescaControllerBase.changeBeneficiarioAterSelecionado');
+    try {
+      return super.changeBeneficiarioAterSelecionado(value);
+    } finally {
+      _$_AtividadeDePescaControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String toString() {
+    return '''
+statusAtividadePescaList: ${statusAtividadePescaList},
+statusCarregaMaisAtividadesPesca: ${statusCarregaMaisAtividadesPesca},
+statusCarregaAtividadePorNome: ${statusCarregaAtividadePorNome},
+statusCarregaMunicipios: ${statusCarregaMunicipios},
+statusCarregaBeneficiariosAter: ${statusCarregaBeneficiariosAter},
+statusPostAtividadePesca: ${statusPostAtividadePesca},
+statusDeleteAtividadePesca: ${statusDeleteAtividadePesca},
+atividades: ${atividades},
+maisAtividadesFiltradas: ${maisAtividadesFiltradas},
+atividadesFiltradasPorNome: ${atividadesFiltradasPorNome},
+beneficiariosAter: ${beneficiariosAter},
+comunidadesSelecionaveis: ${comunidadesSelecionaveis},
+mensagemErro: ${mensagemErro},
+pageCounter: ${pageCounter}
+    ''';
+  }
+}

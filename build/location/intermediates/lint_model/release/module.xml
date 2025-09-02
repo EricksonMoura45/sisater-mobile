@@ -1,0 +1,19 @@
+<lint-module
+    format="1"
+    dir="C:\Users\Erick\AppData\Local\Pub\Cache\hosted\pub.dev\location-7.0.1\android"
+    name=":location"
+    type="LIBRARY"
+    maven="com.lyokone.location:location:"
+    agpVersion="8.2.1"
+    buildFolder="C:\Users\Erick\OneDrive\Documentos\sisater-bitbucket\sisater-mobile-reworked\build\location"
+    bootClassPath="C:\Users\Erick\AppData\Local\Android\sdk\platforms\android-34\android.jar;C:\Users\Erick\AppData\Local\Android\sdk\build-tools\34.0.0\core-lambda-stubs.jar"
+    javaSourceLevel="1.8"
+    compileTarget="android-34"
+    neverShrinking="true">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

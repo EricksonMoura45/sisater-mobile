@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:sisater_mobile/modules/beneficiario_ater/beneficiario_ater_controller.dart';
+import 'package:sisater_mobile/modules/ater/beneficiario_ater/beneficiario_ater_controller.dart';
 
 // ignore: must_be_immutable
 class DatePickerWidget extends StatefulWidget {
@@ -22,17 +22,21 @@ class DatePickerWidget extends StatefulWidget {
 class _DatePickerWidgetState extends State<DatePickerWidget> {
 
   BeneficiarioAterController beneficiarioAterController = Modular.get();
+  
 
   // Variável para armazenar a data selecionada
   DateTime selectedDate = DateTime.now();
 
   // Função para abrir o DatePicker
   Future<void> _selectDate(BuildContext context) async {
-    // Data inicial (se não tiver uma data selecionada)
-    DateTime initialDate = selectedDate;
-    // Data de início e fim para o calendário
-    DateTime firstDate = DateTime(DateTime.now().year - 100);
-    DateTime lastDate = DateTime(DateTime.now().year, DateTime.now().day, DateTime.now().month);
+    final DateTime now = DateTime.now();
+    final DateTime firstDate = DateTime(1900);
+    final DateTime lastDate = now; // ou outra lógica, mas nunca menor que initialDate
+
+    final DateTime initialDate = 
+        (selectedDate.isBefore(lastDate))
+          ? selectedDate
+          : lastDate;
 
     // Exibe o DatePicker
     final DateTime? picked = await showDatePicker(
@@ -51,7 +55,10 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
           beneficiarioAterController.dataNascimentoPicked = selectedDate;
         } else if(widget.formfield == 2){
           beneficiarioAterController.dataEmissaoRGPicked = selectedDate;
+        } else if(widget.formfield == 3){
+          beneficiarioAterController.dataNascimentoFamiliarPicked = selectedDate;
         }
+
       });
     }
   }
@@ -72,7 +79,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
                 fillColor: Colors.white,
                 //labelText: 'Selecione uma data...',
                 hintText: selectedDate != null
-                    ? '${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}'
+                    ? '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}'
                     : 'Selecione uma data',
                 suffixIcon: Icon(Icons.calendar_today),
                enabledBorder: OutlineInputBorder(

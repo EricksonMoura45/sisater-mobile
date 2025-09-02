@@ -1,7 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 
 class BeneficiarioAterPost {
   int? id;
@@ -19,17 +17,17 @@ class BeneficiarioAterPost {
   String? email;
   int? communityId;
   int? targetPublicId;
-  bool? hasDap;
+  int? hasDap;
   String? nis;
   int? dapId;
   int? dapOriginId;
   String? caf;
   int? officeId;
   int? registrationStatusId;
-  List<String>? derivativesMultiple;
+  List<String>? derivativesMultiples;
   List<String>? reasonMultiples;
   List<String>? productiveActivityMultiples;
-  List<String>? productMultiples = [];
+  List<String>? productMultiples;
   List<String>? governmentProgramsMultiples;
   List<String>? targetPublicMultiples;
   PhysicalPerson? physicalPerson;
@@ -57,7 +55,7 @@ class BeneficiarioAterPost {
     this.caf,
     this.officeId,
     this.registrationStatusId,
-    this.derivativesMultiple,
+    this.derivativesMultiples,
     this.reasonMultiples,
     this.productiveActivityMultiples,
     this.productMultiples,
@@ -92,7 +90,7 @@ class BeneficiarioAterPost {
       'reason_multiples': reasonMultiples,
       'officeId': officeId,
       'registration_status_id': registrationStatusId,
-      'derivatives_multiple': derivativesMultiple,
+      'derivatives_multiple': derivativesMultiples,
       'productive_activity_multiples': productiveActivityMultiples,
       'product_multiples': productMultiples,
       'government_programs_multiples': governmentProgramsMultiples,
@@ -102,38 +100,52 @@ class BeneficiarioAterPost {
   }
 
   factory BeneficiarioAterPost.fromJson(Map<String, dynamic> map) {
-    return BeneficiarioAterPost(
-      id: map['id'] != null ? map['id'] as int : null,
-      document: map['document'] != null ? map['document'] as String : null,
-      name: map['name'] != null ? map['name'] as String : null,
-      type: map['type'] != null ? map['type'] as int : null,
-      street: map['street'] != null ? map['street'] as String : null,
-      number: map['number'] != null ? map['number'] as String : null,
-      complement: map['complement'] != null ? map['complement'] as String : null,
-      neighborhood: map['neighborhood'] != null ? map['neighborhood'] as String : null,
-      cityCode: map['city_code'] != null ? map['city_code'] as String : null,
-      postalCode: map['postal_code'] != null ? map['postal_code'] as String : null,
-      phone: map['phone'] != null ? map['phone'] as String : null,
-      cellphone: map['cellphone'] != null ? map['cellphone'] as String : null,
-      email: map['email'] != null ? map['email'] as String : null,
-      communityId: map['community_id'] != null ? map['community_id'] as int : null,
-      targetPublicId: map['target_public_id'] != null ? map['target_public_id'] as int : null,
-      hasDap: map['has_dap'] != null ? map['has_dap'] as bool : null,
-      nis: map['nis'] != null ? map['nis'] as String : null,
-      dapId: map['dap_id'] != null ? map['dap_id'] as int : null,
-      dapOriginId: map['dap_origin_id'] != null ? map['dap_origin_id'] as int : null,
-      caf: map['caf'] != null ? map['caf'] as String : null,
-      reasonMultiples: map['reason_multiples'] != null ? List<String>.from((map['reason_multiples'] as List<String>)) : null,
-      officeId: map['office_id'] != null ? map['office_id'] as int : null,
-      registrationStatusId: map['registration_status_id'] != null ? map['registration_status_id'] as int : null,
-      derivativesMultiple: map['derivatives_multiple'] != null ? List<String>.from((map['derivatives_multiple'] as List<String>)) : null,
-      productiveActivityMultiples: map['productive_activity_multiples'] != null ? List<String>.from((map['productive_activity_multiples'] as List<String>)) : null,
-      productMultiples: map['product_multiples'] != null ? List<String>.from((map['product_multiples'] as List<String>)) : null,
-      governmentProgramsMultiples: map['government_programs_multiples'] != null ? List<String>.from((map['government_programs_multiples'] as List<String>)) : null,
-      targetPublicMultiples: map['target_public_multiples'] != null ? List<String>.from((map['target_public_multiples'] as List<String>)) : null,
-      physicalPerson: map['physicalPerson'] != null ? PhysicalPerson.fromJson(map['physicalPerson'] as Map<String,dynamic>) : null,
-    );
-  }
+  return BeneficiarioAterPost(
+    id: map['id'] != null ? map['id'] as int : null,
+    document: map['document'] != null ? map['document'] as String : null,
+    name: map['name'] != null ? map['name'] as String : null,
+    type: map['type'] != null ? map['type'] as int : null,
+    street: map['street'] != null ? map['street'] as String : null,
+    number: map['number'] != null ? map['number'] as String : null,
+    complement: map['complement'] != null ? map['complement'] as String : null,
+    neighborhood: map['neighborhood'] != null ? map['neighborhood'] as String : null,
+    cityCode: map['city_code'] != null ? map['city_code'] as String : null,
+    postalCode: map['postal_code'] != null ? map['postal_code'] as String : null,
+    phone: map['phone'] != null ? map['phone'] as String : null,
+    cellphone: map['cellphone'] != null ? map['cellphone'] as String : null,
+    email: map['email'] != null ? map['email'] as String : null,
+    communityId: map['community_id'] != null ? map['community_id'] as int : null,
+    targetPublicId: map['target_public_id'] != null ? map['target_public_id'] as int : null,
+    hasDap: map['has_dap'] != null ? map['has_dap'] as int : null,
+    nis: map['nis'] != null ? map['nis'] as String : null,
+    dapId: map['dap_id'] != null ? map['dap_id'] as int : null,
+    dapOriginId: map['dap_origin_id'] != null ? map['dap_origin_id'] as int : null,
+    caf: map['caf'] != null ? map['caf'] as String : null,
+    reasonMultiples: map['reason_multiples'] != null 
+        ? List<String>.from(map['reason_multiples'].map((item) => item.toString())) 
+        : null,
+    officeId: map['office_id'] != null ? map['office_id'] as int : null,
+    registrationStatusId: map['registration_status_id'] != null ? map['registration_status_id'] as int : null,
+    derivativesMultiples: map['derivatives_multiples'] != null 
+        ? List<String>.from(map['derivatives_multiples'].map((item) => item.toString())) 
+        : null,
+    productiveActivityMultiples: map['productive_activity_multiples'] != null 
+        ? List<String>.from(map['productive_activity_multiples'].map((item) => item.toString())) 
+        : null,
+    productMultiples: map['product_multiples'] != null 
+        ? List<String>.from(map['product_multiples'].map((item) => item.toString())) 
+        : null,
+    governmentProgramsMultiples: map['government_programs_multiples'] != null 
+        ? List<String>.from(map['government_programs_multiples'].map((item) => item.toString())) 
+        : null,
+    targetPublicMultiples: map['target_public_multiples'] != null 
+        ? List<String>.from(map['target_public_multiples'].map((item) => item.toString())) 
+        : null,
+    physicalPerson: map['physicalPerson'] != null 
+        ? PhysicalPerson.fromJson(map['physicalPerson'] as Map<String, dynamic>) 
+        : null,
+  );
+}
 }
 
 class PhysicalPerson {

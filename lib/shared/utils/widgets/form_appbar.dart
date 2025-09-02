@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sisater_mobile/shared/utils/themes.dart';
 
-PreferredSizeWidget? formAppBar(BuildContext context, String titulo){
+PreferredSizeWidget? formAppBar(BuildContext context, String titulo, bool hasAddButton, String? route) {
    //final ColorScheme temaPadrao = Theme.of(context).colorScheme;
     return AppBar(
       shadowColor: Colors.white,
+      surfaceTintColor: Colors.white,
       leading: GestureDetector(
               child: Container(
                 decoration: BoxDecoration(
@@ -27,6 +28,8 @@ PreferredSizeWidget? formAppBar(BuildContext context, String titulo){
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _buildTitulo(context, titulo),
+          hasAddButton ? buildAddBeneficiario(route!) : SizedBox(),
+          
         ],
       ),      
     );
@@ -46,6 +49,26 @@ PreferredSizeWidget? formAppBar(BuildContext context, String titulo){
         maxLines: 1,
       ),
     );
+  }
+
+  Widget buildAddBeneficiario(String route){
+    return  GestureDetector(
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Themes.verdeBotao),
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.transparent,
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Icon(Icons.add,
+                      size: 32, color: Themes.verdeBotao),
+                ),
+              ),
+              onTap: () {
+                Modular.to.pushNamed(route);
+              } ,
+            );
   }
 
 

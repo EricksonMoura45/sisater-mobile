@@ -1,0 +1,18 @@
+<lint-module
+    format="1"
+    dir="C:\Users\Erick\OneDrive\Documentos\sisater-bitbucket\sisater-mobile-reworked\android\app"
+    name=":app"
+    type="APP"
+    maven="android:app:"
+    agpVersion="8.2.1"
+    buildFolder="C:\Users\Erick\OneDrive\Documentos\sisater-bitbucket\sisater-mobile-reworked\build\app"
+    bootClassPath="C:\Users\Erick\AppData\Local\Android\sdk\platforms\android-35\android.jar;C:\Users\Erick\AppData\Local\Android\sdk\build-tools\34.0.0\core-lambda-stubs.jar"
+    javaSourceLevel="11"
+    compileTarget="android-35">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

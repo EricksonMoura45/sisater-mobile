@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Themes {
-  static const Color corBaseApp = Color(0xff089b3b);
-  static const Color verdeTexto = Color(0xff1E671E);
-  static const Color verdeBotao = Color(0xff078906);
+  static const Color corBaseApp = Color(0xff008854);
+  static const Color verdeTexto = Color(0xff008854);
+  static const Color verdeBotao = Color(0xff008854);
   static const Color verdeBackground = Color(0xffe8fdec);
+  static const Color verdeTags = Color(0xffA6D0C1);
 
   static const Color cinzaTexto = Color(0xff999999);
   static const Color pretoTexto = Color(0xff1B1918);
   static const Color cinzaBotao = Color(0xff2e2e2e);
+  static const Color cinzaBackground = Color(0xffEFEFEF);
 
   static const Color azulTexto = Color(0xff284982);
   static const Color azulBackground = Color(0xfff4f8ff);

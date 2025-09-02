@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sisater_mobile/shared/utils/themes.dart';
 
-PreferredSizeWidget? listPageAppBar(BuildContext context, String titulo){
+PreferredSizeWidget? listPageAppBar(BuildContext context, String titulo, int tipo){
    //final ColorScheme temaPadrao = Theme.of(context).colorScheme;
     return AppBar(
+      backgroundColor: Colors.white,
       shadowColor: Colors.white,
+      surfaceTintColor: Colors.white,
       leading: GestureDetector(
               child: Container(
                 decoration: BoxDecoration(
@@ -26,7 +28,7 @@ PreferredSizeWidget? listPageAppBar(BuildContext context, String titulo){
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _buildTitulo(context, titulo),
-          _buildAddBeneficiario()
+          //_buildAddBeneficiario(tipo)
         ],
       ),      
     );
@@ -48,7 +50,7 @@ PreferredSizeWidget? listPageAppBar(BuildContext context, String titulo){
     );
   }
 
-  Widget _buildAddBeneficiario(){
+  Widget _buildAddBeneficiario(int tipo){
     return  GestureDetector(
               child: Container(
                 decoration: BoxDecoration(
@@ -63,7 +65,29 @@ PreferredSizeWidget? listPageAppBar(BuildContext context, String titulo){
                 ),
               ),
               onTap: () {
-                Modular.to.pushNamed('/beneficiarios_ater/cadastro_ater');
+                //inteiros para definir qual parte do código irá o cadastro
+                if(tipo == 1){ //Benefiriários Ater
+                  Modular.to.pushNamed('/beneficiarios_ater/cadastro_ater'); 
+                }
+                else if(tipo == 2){ 
+                  Modular.to.pushNamed('/organizacoes_ater/cadastro_ater_organizacao'); 
+                }
+                else if(tipo == 3){ 
+                  Modular.to.pushNamed('/beneficiarios_fater/cadastro_beneficiario_fater'); 
+                }
+                else if(tipo == 4){ 
+                  Modular.to.pushNamed('/organizacoes_fater/cadastro_organizacao_fater'); 
+                }
+                else if(tipo == 5){ 
+                  Modular.to.pushNamed('/comunidades/cadastrar_comunidade'); 
+                }
+                else if(tipo == 6){ 
+                  Modular.to.pushNamed('/atividade_pesca/cadastrar_atividade_pesca'); 
+                }
+                else if(tipo == 7){ 
+                  Modular.to.pushNamed('/atividade_pesca/cadastrar_atividade_pesca'); //UND PROD
+                }
+
               } ,
             );
   }

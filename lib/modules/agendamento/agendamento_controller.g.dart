@@ -1,0 +1,195 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'agendamento_controller.dart';
+
+// **************************************************************************
+// StoreGenerator
+// **************************************************************************
+
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
+
+mixin _$AgendamentoController on _AgendamentoControllerBase, Store {
+  late final _$agendamentosAtom =
+      Atom(name: '_AgendamentoControllerBase.agendamentos', context: context);
+
+  @override
+  List<AgendamentoLista> get agendamentos {
+    _$agendamentosAtom.reportRead();
+    return super.agendamentos;
+  }
+
+  @override
+  set agendamentos(List<AgendamentoLista> value) {
+    _$agendamentosAtom.reportWrite(value, super.agendamentos, () {
+      super.agendamentos = value;
+    });
+  }
+
+  late final _$statusCarregaAgendamentosAtom = Atom(
+      name: '_AgendamentoControllerBase.statusCarregaAgendamentos',
+      context: context);
+
+  @override
+  Status get statusCarregaAgendamentos {
+    _$statusCarregaAgendamentosAtom.reportRead();
+    return super.statusCarregaAgendamentos;
+  }
+
+  @override
+  set statusCarregaAgendamentos(Status value) {
+    _$statusCarregaAgendamentosAtom
+        .reportWrite(value, super.statusCarregaAgendamentos, () {
+      super.statusCarregaAgendamentos = value;
+    });
+  }
+
+  late final _$statusAgendarVisitaAtom = Atom(
+      name: '_AgendamentoControllerBase.statusAgendarVisita', context: context);
+
+  @override
+  Status get statusAgendarVisita {
+    _$statusAgendarVisitaAtom.reportRead();
+    return super.statusAgendarVisita;
+  }
+
+  @override
+  set statusAgendarVisita(Status value) {
+    _$statusAgendarVisitaAtom.reportWrite(value, super.statusAgendarVisita, () {
+      super.statusAgendarVisita = value;
+    });
+  }
+
+  late final _$statusEditarAgendamentoAtom = Atom(
+      name: '_AgendamentoControllerBase.statusEditarAgendamento',
+      context: context);
+
+  @override
+  Status get statusEditarAgendamento {
+    _$statusEditarAgendamentoAtom.reportRead();
+    return super.statusEditarAgendamento;
+  }
+
+  @override
+  set statusEditarAgendamento(Status value) {
+    _$statusEditarAgendamentoAtom
+        .reportWrite(value, super.statusEditarAgendamento, () {
+      super.statusEditarAgendamento = value;
+    });
+  }
+
+  late final _$beneficiariosAterEslocAtom = Atom(
+      name: '_AgendamentoControllerBase.beneficiariosAterEsloc',
+      context: context);
+
+  @override
+  List<BeneficiarioAter> get beneficiariosAterEsloc {
+    _$beneficiariosAterEslocAtom.reportRead();
+    return super.beneficiariosAterEsloc;
+  }
+
+  @override
+  set beneficiariosAterEsloc(List<BeneficiarioAter> value) {
+    _$beneficiariosAterEslocAtom
+        .reportWrite(value, super.beneficiariosAterEsloc, () {
+      super.beneficiariosAterEsloc = value;
+    });
+  }
+
+  late final _$statusCarregaBeneficiariosAtom = Atom(
+      name: '_AgendamentoControllerBase.statusCarregaBeneficiarios',
+      context: context);
+
+  @override
+  Status get statusCarregaBeneficiarios {
+    _$statusCarregaBeneficiariosAtom.reportRead();
+    return super.statusCarregaBeneficiarios;
+  }
+
+  @override
+  set statusCarregaBeneficiarios(Status value) {
+    _$statusCarregaBeneficiariosAtom
+        .reportWrite(value, super.statusCarregaBeneficiarios, () {
+      super.statusCarregaBeneficiarios = value;
+    });
+  }
+
+  late final _$errorMessageAtom =
+      Atom(name: '_AgendamentoControllerBase.errorMessage', context: context);
+
+  @override
+  String? get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String? value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
+
+  late final _$getAgendamentosAsyncAction = AsyncAction(
+      '_AgendamentoControllerBase.getAgendamentos',
+      context: context);
+
+  @override
+  Future<void> getAgendamentos() {
+    return _$getAgendamentosAsyncAction.run(() => super.getAgendamentos());
+  }
+
+  late final _$agendarVisitaAsyncAction =
+      AsyncAction('_AgendamentoControllerBase.agendarVisita', context: context);
+
+  @override
+  Future<bool> agendarVisita(AgendamentoLista agendamento,
+      {bool veioDoChat = false}) {
+    return _$agendarVisitaAsyncAction
+        .run(() => super.agendarVisita(agendamento, veioDoChat: veioDoChat));
+  }
+
+  late final _$editarAgendamentoAsyncAction = AsyncAction(
+      '_AgendamentoControllerBase.editarAgendamento',
+      context: context);
+
+  @override
+  Future<void> editarAgendamento(int id, AgendamentoLista agendamento,
+      void Function() onSuccess, void Function(String) onError) {
+    return _$editarAgendamentoAsyncAction.run(
+        () => super.editarAgendamento(id, agendamento, onSuccess, onError));
+  }
+
+  late final _$deletarAgendamentoAsyncAction = AsyncAction(
+      '_AgendamentoControllerBase.deletarAgendamento',
+      context: context);
+
+  @override
+  Future<void> deletarAgendamento(
+      int id, void Function() onSuccess, void Function(String) onError) {
+    return _$deletarAgendamentoAsyncAction
+        .run(() => super.deletarAgendamento(id, onSuccess, onError));
+  }
+
+  late final _$getBeneficiariosAterEslocAsyncAction = AsyncAction(
+      '_AgendamentoControllerBase.getBeneficiariosAterEsloc',
+      context: context);
+
+  @override
+  Future<void> getBeneficiariosAterEsloc() {
+    return _$getBeneficiariosAterEslocAsyncAction
+        .run(() => super.getBeneficiariosAterEsloc());
+  }
+
+  @override
+  String toString() {
+    return '''
+agendamentos: ${agendamentos},
+statusCarregaAgendamentos: ${statusCarregaAgendamentos},
+statusAgendarVisita: ${statusAgendarVisita},
+statusEditarAgendamento: ${statusEditarAgendamento},
+beneficiariosAterEsloc: ${beneficiariosAterEsloc},
+statusCarregaBeneficiarios: ${statusCarregaBeneficiarios},
+errorMessage: ${errorMessage}
+    ''';
+  }
+}

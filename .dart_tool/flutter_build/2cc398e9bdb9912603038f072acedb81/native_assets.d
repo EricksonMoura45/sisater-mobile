@@ -1,0 +1,1 @@
+ C:\\Users\\Erick\\OneDrive\\Documentos\\sisater-bitbucket\\sisater-mobile-reworked\\.dart_tool\\flutter_build\\2cc398e9bdb9912603038f072acedb81\\native_assets.yaml: 

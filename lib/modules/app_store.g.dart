@@ -16,6 +16,20 @@ mixin _$AppStore on _AppStoreBase, Store {
       (_$isLogadoComputed ??= Computed<dynamic>(() => super.isLogado,
               name: '_AppStoreBase.isLogado'))
           .value;
+  Computed<dynamic>? _$hasOfflineDataComputed;
+
+  @override
+  dynamic get hasOfflineData => (_$hasOfflineDataComputed ??= Computed<dynamic>(
+          () => super.hasOfflineData,
+          name: '_AppStoreBase.hasOfflineData'))
+      .value;
+  Computed<dynamic>? _$pendingSyncCountComputed;
+
+  @override
+  dynamic get pendingSyncCount => (_$pendingSyncCountComputed ??=
+          Computed<dynamic>(() => super.pendingSyncCount,
+              name: '_AppStoreBase.pendingSyncCount'))
+      .value;
 
   late final _$loginResponseAtom =
       Atom(name: '_AppStoreBase.loginResponse', context: context);
@@ -49,6 +63,134 @@ mixin _$AppStore on _AppStoreBase, Store {
     });
   }
 
+  late final _$offlineDataAtom =
+      Atom(name: '_AppStoreBase.offlineData', context: context);
+
+  @override
+  OfflineData? get offlineData {
+    _$offlineDataAtom.reportRead();
+    return super.offlineData;
+  }
+
+  @override
+  set offlineData(OfflineData? value) {
+    _$offlineDataAtom.reportWrite(value, super.offlineData, () {
+      super.offlineData = value;
+    });
+  }
+
+  late final _$isOnlineAtom =
+      Atom(name: '_AppStoreBase.isOnline', context: context);
+
+  @override
+  bool get isOnline {
+    _$isOnlineAtom.reportRead();
+    return super.isOnline;
+  }
+
+  @override
+  set isOnline(bool value) {
+    _$isOnlineAtom.reportWrite(value, super.isOnline, () {
+      super.isOnline = value;
+    });
+  }
+
+  late final _$offlineBeneficiariosAtom =
+      Atom(name: '_AppStoreBase.offlineBeneficiarios', context: context);
+
+  @override
+  List<OfflineBeneficiarioFater> get offlineBeneficiarios {
+    _$offlineBeneficiariosAtom.reportRead();
+    return super.offlineBeneficiarios;
+  }
+
+  @override
+  set offlineBeneficiarios(List<OfflineBeneficiarioFater> value) {
+    _$offlineBeneficiariosAtom.reportWrite(value, super.offlineBeneficiarios,
+        () {
+      super.offlineBeneficiarios = value;
+    });
+  }
+
+  late final _$checkConnectivityAsyncAction =
+      AsyncAction('_AppStoreBase.checkConnectivity', context: context);
+
+  @override
+  Future<void> checkConnectivity() {
+    return _$checkConnectivityAsyncAction.run(() => super.checkConnectivity());
+  }
+
+  late final _$startConnectivityMonitoringAsyncAction = AsyncAction(
+      '_AppStoreBase.startConnectivityMonitoring',
+      context: context);
+
+  @override
+  Future<void> startConnectivityMonitoring() {
+    return _$startConnectivityMonitoringAsyncAction
+        .run(() => super.startConnectivityMonitoring());
+  }
+
+  late final _$saveOfflineDataAsyncAction =
+      AsyncAction('_AppStoreBase.saveOfflineData', context: context);
+
+  @override
+  Future<void> saveOfflineData(OfflineData data) {
+    return _$saveOfflineDataAsyncAction.run(() => super.saveOfflineData(data));
+  }
+
+  late final _$loadOfflineDataAsyncAction =
+      AsyncAction('_AppStoreBase.loadOfflineData', context: context);
+
+  @override
+  Future<void> loadOfflineData() {
+    return _$loadOfflineDataAsyncAction.run(() => super.loadOfflineData());
+  }
+
+  late final _$saveOfflineBeneficiarioAsyncAction =
+      AsyncAction('_AppStoreBase.saveOfflineBeneficiario', context: context);
+
+  @override
+  Future<void> saveOfflineBeneficiario(OfflineBeneficiarioFater beneficiario) {
+    return _$saveOfflineBeneficiarioAsyncAction
+        .run(() => super.saveOfflineBeneficiario(beneficiario));
+  }
+
+  late final _$updateOfflineBeneficiarioAsyncAction =
+      AsyncAction('_AppStoreBase.updateOfflineBeneficiario', context: context);
+
+  @override
+  Future<void> updateOfflineBeneficiario(
+      OfflineBeneficiarioFater beneficiario) {
+    return _$updateOfflineBeneficiarioAsyncAction
+        .run(() => super.updateOfflineBeneficiario(beneficiario));
+  }
+
+  late final _$deleteOfflineBeneficiarioAsyncAction =
+      AsyncAction('_AppStoreBase.deleteOfflineBeneficiario', context: context);
+
+  @override
+  Future<void> deleteOfflineBeneficiario(String id) {
+    return _$deleteOfflineBeneficiarioAsyncAction
+        .run(() => super.deleteOfflineBeneficiario(id));
+  }
+
+  late final _$loadOfflineBeneficiariosAsyncAction =
+      AsyncAction('_AppStoreBase.loadOfflineBeneficiarios', context: context);
+
+  @override
+  Future<void> loadOfflineBeneficiarios() {
+    return _$loadOfflineBeneficiariosAsyncAction
+        .run(() => super.loadOfflineBeneficiarios());
+  }
+
+  late final _$syncOfflineDataAsyncAction =
+      AsyncAction('_AppStoreBase.syncOfflineData', context: context);
+
+  @override
+  Future<void> syncOfflineData() {
+    return _$syncOfflineDataAsyncAction.run(() => super.syncOfflineData());
+  }
+
   late final _$carregarDadosAsyncAction =
       AsyncAction('_AppStoreBase.carregarDados', context: context);
 
@@ -70,7 +212,12 @@ mixin _$AppStore on _AppStoreBase, Store {
     return '''
 loginResponse: ${loginResponse},
 usuarioDados: ${usuarioDados},
-isLogado: ${isLogado}
+offlineData: ${offlineData},
+isOnline: ${isOnline},
+offlineBeneficiarios: ${offlineBeneficiarios},
+isLogado: ${isLogado},
+hasOfflineData: ${hasOfflineData},
+pendingSyncCount: ${pendingSyncCount}
     ''';
   }
 }

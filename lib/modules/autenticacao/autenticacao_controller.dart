@@ -1,15 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:esig_utils/status.dart';
 import 'package:esig_utils/status_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mobx/mobx.dart';
 import 'package:sisater_mobile/models/autenticacao/login_post.dart';
 import 'package:sisater_mobile/models/autenticacao/usuario_dados.dart';
 import 'package:sisater_mobile/modules/app_store.dart';
 import 'package:sisater_mobile/modules/autenticacao/repositories/autenticacao_repository.dart';
-import 'package:sisater_mobile/shared/utils/Themes.dart';
 import 'package:sisater_mobile/shared/utils/shared_prefs.dart';
 part 'autenticacao_controller.g.dart';
 
@@ -46,9 +43,13 @@ abstract class _AutenticacaoControllerBase with Store {
   @observable
   UsuarioDados? usuarioDados;
 
+  @observable
+  String mensagemErroLogin = '';
+
   @action
   Future login(String cpf, String senha) async {
     try {
+      mensagemErroLogin = '';
 
       loginPost = LoginPost(
         grantType: 'user_credentials',
@@ -59,8 +60,9 @@ abstract class _AutenticacaoControllerBase with Store {
       );
       
       statusLogin = StatusLogin.AGUARDANDO;
-      appStore.loginResponse = await _authRepository.login(loginPost!);
-      await carregaUsuario();
+      
+       appStore.loginResponse = await _authRepository.login(loginPost!);
+       await carregaUsuario();
        await appStore.prefs.saveSenha(senha);
        //TODO arrumar 'lembrar-me'
       if(manterLogado){
@@ -70,32 +72,37 @@ abstract class _AutenticacaoControllerBase with Store {
       
       if (_authRepository.statusLogin == true) {
         statusLogin = StatusLogin.LOGADO;
-        Modular.to.pushReplacementNamed('/home', arguments: usuarioDados);
+        appStore.persistirDadosLogin();
+        
+        // Redirect to video loading page after successful login
+        Modular.to.pushReplacementNamed('/video_carregamento');
         print(appStore.loginResponse?.accessToken);
 
       } else {
-        Fluttertoast.showToast(
-            //TODO Colocar toast numa função global
-            msg: "Erro ao realizar login, tente novamente.",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 3,
-            backgroundColor: Themes.corBaseApp.withOpacity(.5),
-            textColor: Colors.red.withOpacity(.5),
-            fontSize: 16.0);
+        mensagemErroLogin = 'Erro ao realizar login. Tente novamente.';
+        statusLogin = StatusLogin.ERRO;
       }
     } on DioException catch (e) {
       print(e);
       if (e.type == DioExceptionType.connectionTimeout) {
-        statusLogin.mensagem =
-            'Tempo de espera excedido. Tente novamente mais tarde.';
+        mensagemErroLogin = 'Tempo de espera excedido. O servidor demorou muito para responder. Tente novamente mais tarde.';
       } else if (e.type == DioExceptionType.unknown) {
-        statusLogin.mensagem =
-            'Por favor, verifique sua conexão com a internet e tente novamente.';
+        mensagemErroLogin = 'Erro de conexão. Por favor, verifique sua conexão com a internet e tente novamente.';
+      } else if (e.response?.statusCode == 401) {
+        mensagemErroLogin = 'CPF ou senha incorretos. Verifique suas credenciais e tente novamente.';
+      } else if (e.response?.statusCode == 400) {
+        mensagemErroLogin = 'Dados inválidos. Verifique se o CPF está no formato correto.';
+      } else if (e.response?.statusCode == 500) {
+        mensagemErroLogin = 'Erro interno do servidor. Tente novamente mais tarde.';
+      } else if (e.response?.statusCode == 503) {
+        mensagemErroLogin = 'Serviço temporariamente indisponível. Tente novamente mais tarde.';
       } else {
-        statusLogin.mensagem =
-            'Login ou senha incorreta. Verifique suas credenciais e tente novamente. Cód: ${e.response?.statusCode}';
+        mensagemErroLogin = 'Erro inesperado. Tente novamente ou entre em contato com o suporte.';
       }
+      statusLogin = StatusLogin.ERRO;
+    } catch (e) {
+      print('Erro geral: $e');
+      mensagemErroLogin = 'Erro inesperado. Tente novamente ou entre em contato com o suporte.';
       statusLogin = StatusLogin.ERRO;
     }
   }
@@ -103,11 +110,17 @@ abstract class _AutenticacaoControllerBase with Store {
   Future carregaUsuario() async{
     try {
       statusCarregaUsuario = Status.AGUARDANDO;
+      
       usuarioDados = await _authRepository.dadosUsuario();
-
+      
+      // Salva no AppStore
+      appStore.usuarioDados = usuarioDados;
+      
       if(_authRepository.statusDadosUsuario == true){
         statusCarregaUsuario = Status.CONCLUIDO;
-
+        
+        // Persiste os dados do usuário junto com o login
+        appStore.persistirDadosLogin();
       }
     } catch (e) {
       statusCarregaUsuario = Status.ERRO;
@@ -128,11 +141,15 @@ abstract class _AutenticacaoControllerBase with Store {
         //await appStore.prefs.remove(SharedPrefs.dashboardResponseKey);
         await appStore.prefs.remove(SharedPrefs.loginResponseKey);
 
-        Modular.to.navigate('/login_page');
+        Modular.to.navigate('/');
 
        } else {
-
-          Modular.to.navigate('/home');
+          // Atualiza o usuarioDados no controller com os dados do AppStore
+          if(appStore.usuarioDados?.perfil == 'BENEFICIÁRIO'){
+            Modular.to.navigate('/beneficiario', arguments: appStore.usuarioDados);
+          } else {
+            Modular.to.navigate('/home', arguments: appStore.usuarioDados);
+          }
 
        }
     } catch (e) {
@@ -143,8 +160,11 @@ abstract class _AutenticacaoControllerBase with Store {
   @action
   Future logout([StatusLogin? status]) async {
     AppStore appStore = Modular.get();
-     await appStore.logout();
+    await appStore.logout();
     statusLogin = status ?? StatusLogin.DESLOGADO;
+    usuarioDados = null;
+    loginPost = null;
+    mensagemErroLogin = '';
   }
 
   // Future<void> esqueciSenha(String email) async {

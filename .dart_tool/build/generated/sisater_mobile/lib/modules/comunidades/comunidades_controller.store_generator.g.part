@@ -1,0 +1,433 @@
+// **************************************************************************
+// StoreGenerator
+// **************************************************************************
+
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
+
+mixin _$ComunidadesController on _ComunidadesControllerBase, Store {
+  late final _$statusCarregaComunidadesAtom = Atom(
+      name: '_ComunidadesControllerBase.statusCarregaComunidades',
+      context: context);
+
+  @override
+  Status get statusCarregaComunidades {
+    _$statusCarregaComunidadesAtom.reportRead();
+    return super.statusCarregaComunidades;
+  }
+
+  @override
+  set statusCarregaComunidades(Status value) {
+    _$statusCarregaComunidadesAtom
+        .reportWrite(value, super.statusCarregaComunidades, () {
+      super.statusCarregaComunidades = value;
+    });
+  }
+
+  late final _$statusCarregaMaisComunidadesAtom = Atom(
+      name: '_ComunidadesControllerBase.statusCarregaMaisComunidades',
+      context: context);
+
+  @override
+  Status get statusCarregaMaisComunidades {
+    _$statusCarregaMaisComunidadesAtom.reportRead();
+    return super.statusCarregaMaisComunidades;
+  }
+
+  @override
+  set statusCarregaMaisComunidades(Status value) {
+    _$statusCarregaMaisComunidadesAtom
+        .reportWrite(value, super.statusCarregaMaisComunidades, () {
+      super.statusCarregaMaisComunidades = value;
+    });
+  }
+
+  late final _$statusCarregaComunidadesSelAtom = Atom(
+      name: '_ComunidadesControllerBase.statusCarregaComunidadesSel',
+      context: context);
+
+  @override
+  Status get statusCarregaComunidadesSel {
+    _$statusCarregaComunidadesSelAtom.reportRead();
+    return super.statusCarregaComunidadesSel;
+  }
+
+  @override
+  set statusCarregaComunidadesSel(Status value) {
+    _$statusCarregaComunidadesSelAtom
+        .reportWrite(value, super.statusCarregaComunidadesSel, () {
+      super.statusCarregaComunidadesSel = value;
+    });
+  }
+
+  late final _$statusPostComunidadesAtom = Atom(
+      name: '_ComunidadesControllerBase.statusPostComunidades',
+      context: context);
+
+  @override
+  Status get statusPostComunidades {
+    _$statusPostComunidadesAtom.reportRead();
+    return super.statusPostComunidades;
+  }
+
+  @override
+  set statusPostComunidades(Status value) {
+    _$statusPostComunidadesAtom.reportWrite(value, super.statusPostComunidades,
+        () {
+      super.statusPostComunidades = value;
+    });
+  }
+
+  late final _$statusPutComunidadesAtom = Atom(
+      name: '_ComunidadesControllerBase.statusPutComunidades',
+      context: context);
+
+  @override
+  Status get statusPutComunidades {
+    _$statusPutComunidadesAtom.reportRead();
+    return super.statusPutComunidades;
+  }
+
+  @override
+  set statusPutComunidades(Status value) {
+    _$statusPutComunidadesAtom.reportWrite(value, super.statusPutComunidades,
+        () {
+      super.statusPutComunidades = value;
+    });
+  }
+
+  late final _$statusDeleteComunidadesAtom = Atom(
+      name: '_ComunidadesControllerBase.statusDeleteComunidades',
+      context: context);
+
+  @override
+  Status get statusDeleteComunidades {
+    _$statusDeleteComunidadesAtom.reportRead();
+    return super.statusDeleteComunidades;
+  }
+
+  @override
+  set statusDeleteComunidades(Status value) {
+    _$statusDeleteComunidadesAtom
+        .reportWrite(value, super.statusDeleteComunidades, () {
+      super.statusDeleteComunidades = value;
+    });
+  }
+
+  late final _$statusCarregaComunidadesPorNomeAtom = Atom(
+      name: '_ComunidadesControllerBase.statusCarregaComunidadesPorNome',
+      context: context);
+
+  @override
+  Status get statusCarregaComunidadesPorNome {
+    _$statusCarregaComunidadesPorNomeAtom.reportRead();
+    return super.statusCarregaComunidadesPorNome;
+  }
+
+  @override
+  set statusCarregaComunidadesPorNome(Status value) {
+    _$statusCarregaComunidadesPorNomeAtom
+        .reportWrite(value, super.statusCarregaComunidadesPorNome, () {
+      super.statusCarregaComunidadesPorNome = value;
+    });
+  }
+
+  late final _$mensagemErrorAtom =
+      Atom(name: '_ComunidadesControllerBase.mensagemError', context: context);
+
+  @override
+  String get mensagemError {
+    _$mensagemErrorAtom.reportRead();
+    return super.mensagemError;
+  }
+
+  @override
+  set mensagemError(String value) {
+    _$mensagemErrorAtom.reportWrite(value, super.mensagemError, () {
+      super.mensagemError = value;
+    });
+  }
+
+  late final _$pageCounterAtom =
+      Atom(name: '_ComunidadesControllerBase.pageCounter', context: context);
+
+  @override
+  int get pageCounter {
+    _$pageCounterAtom.reportRead();
+    return super.pageCounter;
+  }
+
+  @override
+  set pageCounter(int value) {
+    _$pageCounterAtom.reportWrite(value, super.pageCounter, () {
+      super.pageCounter = value;
+    });
+  }
+
+  late final _$listaComunidadesAtom = Atom(
+      name: '_ComunidadesControllerBase.listaComunidades', context: context);
+
+  @override
+  List<ComunidadesList> get listaComunidades {
+    _$listaComunidadesAtom.reportRead();
+    return super.listaComunidades;
+  }
+
+  @override
+  set listaComunidades(List<ComunidadesList> value) {
+    _$listaComunidadesAtom.reportWrite(value, super.listaComunidades, () {
+      super.listaComunidades = value;
+    });
+  }
+
+  late final _$comunidadesFiltradasAtom = Atom(
+      name: '_ComunidadesControllerBase.comunidadesFiltradas',
+      context: context);
+
+  @override
+  List<ComunidadesList> get comunidadesFiltradas {
+    _$comunidadesFiltradasAtom.reportRead();
+    return super.comunidadesFiltradas;
+  }
+
+  @override
+  set comunidadesFiltradas(List<ComunidadesList> value) {
+    _$comunidadesFiltradasAtom.reportWrite(value, super.comunidadesFiltradas,
+        () {
+      super.comunidadesFiltradas = value;
+    });
+  }
+
+  late final _$maisComunidadesFiltradasAtom = Atom(
+      name: '_ComunidadesControllerBase.maisComunidadesFiltradas',
+      context: context);
+
+  @override
+  List<ComunidadesList> get maisComunidadesFiltradas {
+    _$maisComunidadesFiltradasAtom.reportRead();
+    return super.maisComunidadesFiltradas;
+  }
+
+  @override
+  set maisComunidadesFiltradas(List<ComunidadesList> value) {
+    _$maisComunidadesFiltradasAtom
+        .reportWrite(value, super.maisComunidadesFiltradas, () {
+      super.maisComunidadesFiltradas = value;
+    });
+  }
+
+  late final _$comunidadesFiltradosPorNomeAtom = Atom(
+      name: '_ComunidadesControllerBase.comunidadesFiltradosPorNome',
+      context: context);
+
+  @override
+  List<ComunidadesList> get comunidadesFiltradosPorNome {
+    _$comunidadesFiltradosPorNomeAtom.reportRead();
+    return super.comunidadesFiltradosPorNome;
+  }
+
+  @override
+  set comunidadesFiltradosPorNome(List<ComunidadesList> value) {
+    _$comunidadesFiltradosPorNomeAtom
+        .reportWrite(value, super.comunidadesFiltradosPorNome, () {
+      super.comunidadesFiltradosPorNome = value;
+    });
+  }
+
+  late final _$comunidadeSelecionadaAtom = Atom(
+      name: '_ComunidadesControllerBase.comunidadeSelecionada',
+      context: context);
+
+  @override
+  ComunidadeSelecionavel? get comunidadeSelecionada {
+    _$comunidadeSelecionadaAtom.reportRead();
+    return super.comunidadeSelecionada;
+  }
+
+  @override
+  set comunidadeSelecionada(ComunidadeSelecionavel? value) {
+    _$comunidadeSelecionadaAtom.reportWrite(value, super.comunidadeSelecionada,
+        () {
+      super.comunidadeSelecionada = value;
+    });
+  }
+
+  late final _$tipoAcessoSelecionadoAtom = Atom(
+      name: '_ComunidadesControllerBase.tipoAcessoSelecionado',
+      context: context);
+
+  @override
+  TipoAcesso? get tipoAcessoSelecionado {
+    _$tipoAcessoSelecionadoAtom.reportRead();
+    return super.tipoAcessoSelecionado;
+  }
+
+  @override
+  set tipoAcessoSelecionado(TipoAcesso? value) {
+    _$tipoAcessoSelecionadoAtom.reportWrite(value, super.tipoAcessoSelecionado,
+        () {
+      super.tipoAcessoSelecionado = value;
+    });
+  }
+
+  late final _$unidadeMedidaSelecionadoAtom = Atom(
+      name: '_ComunidadesControllerBase.unidadeMedidaSelecionado',
+      context: context);
+
+  @override
+  String? get unidadeMedidaSelecionado {
+    _$unidadeMedidaSelecionadoAtom.reportRead();
+    return super.unidadeMedidaSelecionado;
+  }
+
+  @override
+  set unidadeMedidaSelecionado(String? value) {
+    _$unidadeMedidaSelecionadoAtom
+        .reportWrite(value, super.unidadeMedidaSelecionado, () {
+      super.unidadeMedidaSelecionado = value;
+    });
+  }
+
+  late final _$comunidadesSelecionaveisAtom = Atom(
+      name: '_ComunidadesControllerBase.comunidadesSelecionaveis',
+      context: context);
+
+  @override
+  List<ComunidadeSelecionavel> get comunidadesSelecionaveis {
+    _$comunidadesSelecionaveisAtom.reportRead();
+    return super.comunidadesSelecionaveis;
+  }
+
+  @override
+  set comunidadesSelecionaveis(List<ComunidadeSelecionavel> value) {
+    _$comunidadesSelecionaveisAtom
+        .reportWrite(value, super.comunidadesSelecionaveis, () {
+      super.comunidadesSelecionaveis = value;
+    });
+  }
+
+  late final _$comunidadeEditandoAtom = Atom(
+      name: '_ComunidadesControllerBase.comunidadeEditando', context: context);
+
+  @override
+  ComunidadesList? get comunidadeEditando {
+    _$comunidadeEditandoAtom.reportRead();
+    return super.comunidadeEditando;
+  }
+
+  @override
+  set comunidadeEditando(ComunidadesList? value) {
+    _$comunidadeEditandoAtom.reportWrite(value, super.comunidadeEditando, () {
+      super.comunidadeEditando = value;
+    });
+  }
+
+  late final _$statusPutComunidadeAtom = Atom(
+      name: '_ComunidadesControllerBase.statusPutComunidade', context: context);
+
+  @override
+  Status get statusPutComunidade {
+    _$statusPutComunidadeAtom.reportRead();
+    return super.statusPutComunidade;
+  }
+
+  @override
+  set statusPutComunidade(Status value) {
+    _$statusPutComunidadeAtom.reportWrite(value, super.statusPutComunidade, () {
+      super.statusPutComunidade = value;
+    });
+  }
+
+  late final _$editarComunidadeAsyncAction = AsyncAction(
+      '_ComunidadesControllerBase.editarComunidade',
+      context: context);
+
+  @override
+  Future<void> editarComunidade(ComunidadesPost comunidade, int id) {
+    return _$editarComunidadeAsyncAction
+        .run(() => super.editarComunidade(comunidade, id));
+  }
+
+  late final _$deleteComunidadeAsyncAction = AsyncAction(
+      '_ComunidadesControllerBase.deleteComunidade',
+      context: context);
+
+  @override
+  Future<void> deleteComunidade(int id) {
+    return _$deleteComunidadeAsyncAction.run(() => super.deleteComunidade(id));
+  }
+
+  late final _$_ComunidadesControllerBaseActionController =
+      ActionController(name: '_ComunidadesControllerBase', context: context);
+
+  @override
+  void changeComunidadeSelecionada(ComunidadeSelecionavel? e) {
+    final _$actionInfo =
+        _$_ComunidadesControllerBaseActionController.startAction(
+            name: '_ComunidadesControllerBase.changeComunidadeSelecionada');
+    try {
+      return super.changeComunidadeSelecionada(e);
+    } finally {
+      _$_ComunidadesControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeTipoAcessoSelecionada(TipoAcesso? e) {
+    final _$actionInfo =
+        _$_ComunidadesControllerBaseActionController.startAction(
+            name: '_ComunidadesControllerBase.changeTipoAcessoSelecionada');
+    try {
+      return super.changeTipoAcessoSelecionada(e);
+    } finally {
+      _$_ComunidadesControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeUnidadeMedSelecionada(String? e) {
+    final _$actionInfo =
+        _$_ComunidadesControllerBaseActionController.startAction(
+            name: '_ComunidadesControllerBase.changeUnidadeMedSelecionada');
+    try {
+      return super.changeUnidadeMedSelecionada(e);
+    } finally {
+      _$_ComunidadesControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setComunidadeEditando(ComunidadesList comunidade) {
+    final _$actionInfo = _$_ComunidadesControllerBaseActionController
+        .startAction(name: '_ComunidadesControllerBase.setComunidadeEditando');
+    try {
+      return super.setComunidadeEditando(comunidade);
+    } finally {
+      _$_ComunidadesControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String toString() {
+    return '''
+statusCarregaComunidades: ${statusCarregaComunidades},
+statusCarregaMaisComunidades: ${statusCarregaMaisComunidades},
+statusCarregaComunidadesSel: ${statusCarregaComunidadesSel},
+statusPostComunidades: ${statusPostComunidades},
+statusPutComunidades: ${statusPutComunidades},
+statusDeleteComunidades: ${statusDeleteComunidades},
+statusCarregaComunidadesPorNome: ${statusCarregaComunidadesPorNome},
+mensagemError: ${mensagemError},
+pageCounter: ${pageCounter},
+listaComunidades: ${listaComunidades},
+comunidadesFiltradas: ${comunidadesFiltradas},
+maisComunidadesFiltradas: ${maisComunidadesFiltradas},
+comunidadesFiltradosPorNome: ${comunidadesFiltradosPorNome},
+comunidadeSelecionada: ${comunidadeSelecionada},
+tipoAcessoSelecionado: ${tipoAcessoSelecionado},
+unidadeMedidaSelecionado: ${unidadeMedidaSelecionado},
+comunidadesSelecionaveis: ${comunidadesSelecionaveis},
+comunidadeEditando: ${comunidadeEditando},
+statusPutComunidade: ${statusPutComunidade}
+    ''';
+  }
+}

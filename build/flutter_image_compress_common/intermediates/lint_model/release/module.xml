@@ -1,0 +1,19 @@
+<lint-module
+    format="1"
+    dir="C:\Users\Erick\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_image_compress_common-1.0.5\android"
+    name=":flutter_image_compress_common"
+    type="LIBRARY"
+    maven="com.fluttercandies.flutter_image_compress:flutter_image_compress_common:"
+    agpVersion="8.2.1"
+    buildFolder="C:\Users\Erick\OneDrive\Documentos\sisater-bitbucket\sisater-mobile-reworked\build\flutter_image_compress_common"
+    bootClassPath="C:\Users\Erick\AppData\Local\Android\sdk\platforms\android-31\android.jar;C:\Users\Erick\AppData\Local\Android\sdk\build-tools\34.0.0\core-lambda-stubs.jar"
+    javaSourceLevel="11"
+    compileTarget="android-31"
+    neverShrinking="true">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

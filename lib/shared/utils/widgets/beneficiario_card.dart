@@ -1,25 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
 import 'package:sisater_mobile/models/beneficiarios_ater/beneficiario_ater.dart';
-import 'package:sisater_mobile/modules/beneficiario_ater/beneficiario_ater_controller.dart';
+import 'package:sisater_mobile/modules/ater/beneficiario_ater/beneficiario_ater_controller.dart';
 import 'package:sisater_mobile/shared/utils/themes.dart';
+import 'package:sisater_mobile/shared/utils/widgets/custom_tag.dart';
 
 class BeneficiarioCard extends StatelessWidget {
 
   BeneficiarioAter beneficiarioAter;
-  BeneficiarioCard({super.key, required this.beneficiarioAter});
+
+  BeneficiarioCard({
+    super.key,
+    required this.beneficiarioAter,
+  });
 
   @override
   Widget build(BuildContext context) {
     BeneficiarioAterController controller = Modular.get();
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      elevation: 4,
       child: Container(
         height: MediaQuery.of(context).size.height / 4,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Themes.cinzaBotao.withOpacity(0.1)
+         
           ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -29,48 +39,42 @@ class BeneficiarioCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.all(1),
-                    decoration: BoxDecoration(
-                      color: Themes.verdeBotao,
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(color: Themes.verdeBotao)
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(3),
-                      child: Text('Beneficiário', style: TextStyle(color: Colors.white),),
-                    )),
+                  const BeneficiarioTag(),
                     Row(
                       children: [
-                        // GestureDetector(
-                        //   onTap: () async {
-                        //     Modular.to.pushNamed('editar_ater', arguments: beneficiarioAter);
-                        //   },
-                        //   child: Container(
-                        //                       padding: const EdgeInsets.all(1),
-                        //                       decoration: BoxDecoration(
-                        //                         color: Colors.grey.withOpacity(.8),
-                        //                         borderRadius: BorderRadius.circular(5),
-                        //                         border: Border.all(color: Colors.white)
-                        //                       ),
-                        //                       child: Padding(
-                        //                         padding: const EdgeInsets.all(3),
-                        //                         child:Row(
-                        //                               children: [
-                        //                                 Icon(Icons.edit, color: Colors.white,),
-                        //                                 SizedBox(width: 2,),
-                        //                                 Text('Editar', style: TextStyle(color: Colors.white),),
-                        //                              ],
-                        //                         )
-                        //                       )),
-                        // ),
+                        GestureDetector(
+                          onTap: () async {
+                          
+                          Modular.to.pushNamed('editar_ater', arguments: beneficiarioAter);
+            
+                          await controller.getBeneficiarioAter(beneficiarioAter.id!);    
+                           
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(1),
+                            decoration: BoxDecoration(
+                              color: Colors.grey.withOpacity(.8),
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(color: Colors.white)
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(3),
+                              child:Row(
+                                    children: [
+                                      Icon(Icons.edit, color: Colors.white,),
+                                      // SizedBox(width: 2,),
+                                      // Text('Editar', style: TextStyle(color: Colors.white),),
+                                    ],
+                              )
+                            )),
+                      ),
                     SizedBox(width: 5,),
                     
                     GestureDetector(
                       onTap: () async{
-
+            
                         exibirAlertDialog(context, beneficiarioAter);
-
+            
                       },
                       child: Container(
                       padding: const EdgeInsets.all(1),
@@ -83,9 +87,9 @@ class BeneficiarioCard extends StatelessWidget {
                         padding: const EdgeInsets.all(3),
                         child: Row(
                           children: [
-                            Icon(Icons.remove_circle, color: Colors.white,),
-                            SizedBox(width: 2,),
-                            Text('Apagar', style: TextStyle(color: Colors.white),),
+                            Icon(Icons.highlight_remove_rounded, color: Colors.white,),
+                            // SizedBox(width: 2,),
+                            // Text('Apagar', style: TextStyle(color: Colors.white),),
                           ],
                         ),
                       )),

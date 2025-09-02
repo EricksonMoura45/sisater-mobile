@@ -127,6 +127,22 @@ mixin _$AutenticacaoController on _AutenticacaoControllerBase, Store {
     });
   }
 
+  late final _$mensagemErroLoginAtom = Atom(
+      name: '_AutenticacaoControllerBase.mensagemErroLogin', context: context);
+
+  @override
+  String get mensagemErroLogin {
+    _$mensagemErroLoginAtom.reportRead();
+    return super.mensagemErroLogin;
+  }
+
+  @override
+  set mensagemErroLogin(String value) {
+    _$mensagemErroLoginAtom.reportWrite(value, super.mensagemErroLogin, () {
+      super.mensagemErroLogin = value;
+    });
+  }
+
   late final _$loginAsyncAction =
       AsyncAction('_AutenticacaoControllerBase.login', context: context);
 
@@ -152,7 +168,8 @@ statusEmailEsqueciSenha: ${statusEmailEsqueciSenha},
 statusEmailRedefinirSenha: ${statusEmailRedefinirSenha},
 manterLogado: ${manterLogado},
 loginPost: ${loginPost},
-usuarioDados: ${usuarioDados}
+usuarioDados: ${usuarioDados},
+mensagemErroLogin: ${mensagemErroLogin}
     ''';
   }
 }

@@ -16,7 +16,7 @@ class BeneficiarioAter {
   String? email;
   int? communityId;
   int? targetPublicId;
-  bool? hasDap;
+  int? hasDap;
   String? nis;
   int? dapId;
   int? dapOriginId;
@@ -81,8 +81,8 @@ class BeneficiarioAter {
     registrationStatusId = json['registration_status_id'] ?? 0; 
     createdAt = json['created_at'] ?? 0;
     updatedAt = json['updated_at'] ?? 0;
-    physicalPerson = json['physical_person'] != null
-        ? PhysicalPerson.fromJson(json['physical_person'])
+    physicalPerson = json['physicalPerson'] != null
+        ? PhysicalPerson.fromJson(json['physicalPerson'])
         : null;
   }
 
@@ -113,7 +113,7 @@ class BeneficiarioAter {
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     if (physicalPerson != null) {
-      data['physical_person'] = physicalPerson!.toJson();
+      data['physicaPerson'] = physicalPerson!.toJson();
     }
     return data;
   }

@@ -28,7 +28,7 @@ class InputWidget extends StatefulWidget {
   final TextStyle? textStyle;
 
   const InputWidget({
-    Key? key,
+    super.key,
     required this.controller,
     this.texto,
     this.validator,
@@ -50,7 +50,7 @@ class InputWidget extends StatefulWidget {
     this.mostrarButton = false,
     this.quantLinhas = 1,
     this.textStyle,
-  }) : super(key: key);
+  });
 
   @override
   _InputWidgetState createState() => _InputWidgetState();
